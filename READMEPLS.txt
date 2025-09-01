@@ -1,1 +1,0 @@
-Attention. There are my OOP labs. Thanks for your attention.
