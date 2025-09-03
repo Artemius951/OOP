@@ -10,11 +10,11 @@ class SortTest {
     public void sort() {
         int[] array = new int[]{1, 3, 2};
         int[] result = Sort.heapSort(array);
-        assertArrayEquals(new int[]{1, 2, 3},result);
+        assertArrayEquals(new int[]{1, 2, 3}, result);
 
         array = new int[]{-1, -2, -3, -4, 0};
         result = Sort.heapSort(array);
-        assertArrayEquals(new int[]{-4, -3, -2, -1, 0},result);
+        assertArrayEquals(new int[]{-4, -3, -2, -1, 0}, result);
 
         array = new int[]{951};
         result = Sort.heapSort(array);
@@ -22,7 +22,7 @@ class SortTest {
 
         array = new int[]{3, 2, 1, 0, -1, -2, -3};
         result = Sort.heapSort(array);
-        assertArrayEquals(new int[]{-3, -2, -1, 0, 1, 2, 3},result);
+        assertArrayEquals(new int[]{-3, -2, -1, 0, 1, 2, 3}, result);
 
         array = new int[]{100, 101, 102, 951};
         result = Sort.heapSort(array);
