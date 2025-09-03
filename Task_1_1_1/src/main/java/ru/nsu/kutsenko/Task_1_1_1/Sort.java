@@ -8,22 +8,22 @@ public class Sort {
     }
 
     private static void sift(int[] arr, int length, int i) {
-        int minID = i;
+        int maxID = i;
         int leftson = 2 * i + 1;
         int rightson = 2 * i + 2;
 
-        if (leftson < length && arr[leftson] > arr[minID]) {
-            minID = leftson;
+        if (leftson < length && arr[leftson] > arr[maxID]) {
+            maxID = leftson;
         }
-        if (rightson < length && arr[rightson] > arr[minID]) {
-            minID = rightson;
+        if (rightson < length && arr[rightson] > arr[maxID]) {
+            maxID = rightson;
         }
-        if (minID != i) {
+        if (maxID != i) {
             int swap = arr[i];
-            arr[i] = arr[minID];
-            arr[minID] = swap;
+            arr[i] = arr[maxID];
+            arr[maxID] = swap;
 
-            sift(arr,length, minID);
+            sift(arr,length, maxID);
         }
     }
 
