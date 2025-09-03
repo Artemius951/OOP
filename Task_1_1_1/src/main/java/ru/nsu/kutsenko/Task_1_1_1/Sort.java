@@ -31,15 +31,15 @@ public class Sort {
     public static int[] heapSort(int[] arr) {
         check(arr);
         int length = arr.length;
-        for (int i = length/2-1; i >= 0; i--) {
-            sift(arr,length,i);
+        for (int i = length / 2 - 1; i >= 0; i--) {
+            sift(arr, length, i);
         }
         for (int i = length - 1; i > 0; i--) {
             int swap = arr[0];
             arr[0] = arr[i];
             arr[i] = swap;
 
-            sift(arr,i,0);
+            sift(arr, i, 0);
         }
 
         return arr;
