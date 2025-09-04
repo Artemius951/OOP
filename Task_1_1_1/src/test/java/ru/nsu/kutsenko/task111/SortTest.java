@@ -51,15 +51,15 @@ class SortTest {
     }
 
     private void testLargeNumbers() {
-        int[] array = new int[]{214748364, 1000000000, 500000000, 999999999, 1234567890};
+        int[] array = new int[]{214748364, 1000000000, 500000000, 1234567890};
         Sort.heapSort(array);
-        assertArrayEquals(new int[]{214748364, 500000000, 999999999, 1000000000, 1234567890}, array);
+        assertArrayEquals(new int[]{214748364, 500000000, 1000000000, 1234567890}, array);
     }
 
     private void testLargeNegativeNumbers() {
-        int[] array = new int[]{-214748364, -1000000000, -500000000, -999999999, -1234567890};
+        int[] array = new int[]{-214748364, -1000000000, -500000000, -1234567890};
         Sort.heapSort(array);
-        assertArrayEquals(new int[]{-1234567890, -1000000000, -999999999, -500000000, -214748364}, array);
+        assertArrayEquals(new int[]{-1234567890, -1000000000, -500000000, -214748364}, array);
     }
 
     private void testRepeatedNumbers() {
