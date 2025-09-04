@@ -22,7 +22,7 @@ public class Sort {
             arr[index] = arr[maxId];
             arr[maxId] = swap;
 
-            sift(arr,length, maxId);
+            sift(arr, length, maxId);
         }
     }
 
