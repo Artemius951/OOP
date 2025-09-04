@@ -1,4 +1,4 @@
-package ru.nsu.kutsenko.Task_1_1_1;
+package ru.nsu.kutsenko.task111;
 
 import org.junit.jupiter.api.Test;
 
