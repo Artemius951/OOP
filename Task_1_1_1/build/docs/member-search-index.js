@@ -1,1 +1,0 @@
-memberSearchIndex = [{"p":"ru.nsu.kutsenko.task111","c":"Sort","l":"heapSort(int[])"},{"p":"ru.nsu.kutsenko.task111","c":"Sort","l":"Sort()","u":"%3Cinit%3E()"}];updateSearchResults();
