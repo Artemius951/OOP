@@ -73,12 +73,12 @@ public class Sort {
             sift(arr, index, 0);
         }
     }
+
     /**
      * Простой main, который ничего не делает, но нужен для создания манифеста.
      *
      * @param args просто пустышка
      */
     public static void main(String[] args) {
-        
     }
 }
