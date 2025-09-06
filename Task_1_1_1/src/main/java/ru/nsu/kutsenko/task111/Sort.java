@@ -75,6 +75,7 @@ public class Sort {
     }
     /**
      * Простой main, который ничего не делает, но нужен для создания манифеста
+     * 
      * @param args просто пустышка
      */
     public static void main(String[] args) {
