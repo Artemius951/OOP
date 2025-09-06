@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.nsu.kutsenko.task111.SortTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2025-09-05T14:06:28.356Z" hostname="ARTEMIUS951" time="0.055">
+  <properties/>
+  <testcase name="testSimpleSort()" classname="ru.nsu.kutsenko.task111.SortTest" time="0.032"/>
+  <testcase name="testLargeNegativeNumbers()" classname="ru.nsu.kutsenko.task111.SortTest" time="0.001"/>
+  <testcase name="testRepeatedNumbers()" classname="ru.nsu.kutsenko.task111.SortTest" time="0.001"/>
+  <testcase name="testSameElements()" classname="ru.nsu.kutsenko.task111.SortTest" time="0.001"/>
+  <testcase name="testEmpty()" classname="ru.nsu.kutsenko.task111.SortTest" time="0.005"/>
+  <testcase name="testNegativeAndZero()" classname="ru.nsu.kutsenko.task111.SortTest" time="0.001"/>
+  <testcase name="testMixedSigns()" classname="ru.nsu.kutsenko.task111.SortTest" time="0.001"/>
+  <testcase name="testMaxMinValues()" classname="ru.nsu.kutsenko.task111.SortTest" time="0.001"/>
+  <testcase name="testReverse()" classname="ru.nsu.kutsenko.task111.SortTest" time="0.0"/>
+  <testcase name="testLargeNumbers()" classname="ru.nsu.kutsenko.task111.SortTest" time="0.001"/>
+  <testcase name="testOneElement()" classname="ru.nsu.kutsenko.task111.SortTest" time="0.001"/>
+  <system-out><![CDATA[пустой массив
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
