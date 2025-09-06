@@ -79,5 +79,6 @@ public class Sort {
      * @param args просто пустышка
      */
     public static void main(String[] args) {
+        
     }
 }
