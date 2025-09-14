@@ -3,9 +3,6 @@ package ru.nsu.kutsenko.task112;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -100,6 +97,35 @@ class BlackjackGameTest {
         assertEquals(1, game.getPlayerWins());
         assertEquals(0, game.getDealerWins());
     }
+
+
+    @Test
+    void testPlayerBlackjackDetection() {
+        Player player = new Player();
+        player.addCard(new Card("Пики", "Туз", 11));
+        player.addCard(new Card("Червы", "Король", 10));
+
+        assertTrue(player.hasBlackjack());
+    }
+
+    @Test
+    void testPlayerNotBlackjack() {
+        Player player = new Player();
+        player.addCard(new Card("Пики", "Туз", 11));
+        player.addCard(new Card("Червы", "Девятка", 9));
+
+        assertFalse(player.hasBlackjack());
+    }
+
+    @Test
+    void testDealerBlackjackDetection() {
+        Dealer dealer = new Dealer();
+        dealer.addCard(new Card("Бубны", "Туз", 11));
+        dealer.addCard(new Card("Трефы", "Дама", 10));
+
+        assertTrue(dealer.hasBlackjack());
+    }
+
 
 
 
