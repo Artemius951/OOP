@@ -76,6 +76,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">BlackjackGame</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Основной класс игры Blackjack, управляющий игровым процессом
+ Содержит логику раундов, взаимодействие с игроком и определение победителя</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -115,7 +117,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int)" class="member-name-link">BlackjackGame</a><wbr>(int&nbsp;numberOfDecks)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Конструктор игры Blackjack</div>
+</div>
 </div>
 </section>
 </li>
@@ -132,19 +136,31 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDealerWins()" class="member-name-link">getDealerWins</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает количество побед дилера</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPlayerWins()" class="member-name-link">getPlayerWins</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает количество побед игрока</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#main(java.lang.String%5B%5D)" class="member-name-link">main</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]&nbsp;args)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Точка входа в приложение</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#playRound()" class="member-name-link">playRound</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Проводит один раунд игры
+ Включает раздачу карт, ходы игрока и дилера, определение победителя</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#startGame()" class="member-name-link">startGame</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Запускает основную игровую петлю
+ Управляет раундами и отображает статистику игры</div>
+</div>
 </div>
 </div>
 </div>
@@ -204,6 +220,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(int)">
 <h3>BlackjackGame</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">BlackjackGame</span><wbr><span class="parameters">(int&nbsp;numberOfDecks)</span></div>
+<div class="block">Конструктор игры Blackjack</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>numberOfDecks</code> - количество колод для создания игры</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -218,30 +239,49 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="startGame()">
 <h3>startGame</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">startGame</span>()</div>
+<div class="block">Запускает основную игровую петлю
+ Управляет раундами и отображает статистику игры</div>
 </section>
 </li>
 <li>
 <section class="detail" id="playRound()">
 <h3>playRound</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">playRound</span>()</div>
+<div class="block">Проводит один раунд игры
+ Включает раздачу карт, ходы игрока и дилера, определение победителя</div>
 </section>
 </li>
 <li>
 <section class="detail" id="main(java.lang.String[])">
 <h3>main</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">main</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]&nbsp;args)</span></div>
+<div class="block">Точка входа в приложение</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>args</code> - аргументы командной строки</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getPlayerWins()">
 <h3>getPlayerWins</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getPlayerWins</span>()</div>
+<div class="block">Возвращает количество побед игрока</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>количество побед игрока</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getDealerWins()">
 <h3>getDealerWins</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getDealerWins</span>()</div>
+<div class="block">Возвращает количество побед дилера</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>количество побед дилера</dd>
+</dl>
 </section>
 </li>
 </ul>
