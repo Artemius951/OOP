@@ -4,22 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Класс представляющий дилера в игре Blackjack
- * Наследует функциональность Hand и добавляет логику скрытия карт
+ * Класс представляющий дилера в игре Blackjack.
+ * Наследует функциональность Hand и добавляет логику скрытия карт.
  */
 public class Dealer {
     private final List<Card> hand;
     private boolean allCardsRevealed = false;
 
     /**
-     * Конструктор дилера
+     * Конструктор дилера.
      */
     public Dealer() {
         this.hand = new ArrayList<>();
     }
 
     /**
-     * Добавляет карту в руку дилера
+     * Добавляет карту в руку дилера.
+     *
      * @param card карта для добавления
      */
     public void addCard(Card card) {
@@ -27,7 +28,8 @@ public class Dealer {
     }
 
     /**
-     * Вычисляет сумму очков в руке дилера
+     * Вычисляет сумму очков в руке дилера.
+     *
      * @return сумма очков с учетом правила туза
      */
     public int getHandValue() {
@@ -50,7 +52,8 @@ public class Dealer {
     }
 
     /**
-     * Проверяет наличие блэкджека у дилера
+     * Проверяет наличие блэкджека у дилера.
+     *
      * @return true если у дилера блэкджек
      */
     public boolean hasBlackjack() {
@@ -58,14 +61,14 @@ public class Dealer {
     }
 
     /**
-     * Раскрывает все карты дилера
+     * Раскрывает все карты дилера.
      */
     public void revealAllCards() {
         allCardsRevealed = true;
     }
 
     /**
-     * Очищает руку дилера
+     * Очищает руку дилера.
      */
     public void clearHand() {
         hand.clear();
@@ -73,7 +76,8 @@ public class Dealer {
     }
 
     /**
-     * Возвращает строковое представление руки дилера
+     * Возвращает строковое представление руки дилера.
+     *
      * @param revealed показывать ли все карты
      * @return строка с описанием карт в руке
      */
@@ -102,7 +106,8 @@ public class Dealer {
     }
 
     /**
-     * Проверяет раскрыты ли все карты дилера
+     * Проверяет раскрыты ли все карты дилера.
+     *
      * @return true если все карты раскрыты
      */
     public boolean isAllCardsRevealed() {
@@ -110,7 +115,8 @@ public class Dealer {
     }
 
     /**
-     * Возвращает копию руки дилера
+     * Возвращает копию руки дилера.
+     *
      * @return список карт в руке
      */
     public List<Card> getHand() {
