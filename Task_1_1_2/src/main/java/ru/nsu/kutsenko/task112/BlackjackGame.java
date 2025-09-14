@@ -3,8 +3,8 @@ package ru.nsu.kutsenko.task112;
 import java.util.Scanner;
 
 /**
- * Основной класс игры Blackjack, управляющий игровым процессом
- * Содержит логику раундов, взаимодействие с игроком и определение победителя
+ * Основной класс игры Blackjack, управляющий игровым процессом.
+ * Содержит логику раундов, взаимодействие с игроком и определение победителя.
  */
 public class BlackjackGame {
     public Deck deck;
@@ -16,8 +16,9 @@ public class BlackjackGame {
     private Scanner scanner;
 
     /**
-     * Конструктор игры Blackjack
-     * @param numberOfDecks количество колод для создания игры
+     * Конструктор игры Blackjack.
+     *
+     * @param numberOfDecks количество колод для создания игры.
      */
     public BlackjackGame(int numberOfDecks) {
         this.deck = new Deck(numberOfDecks);
@@ -30,8 +31,8 @@ public class BlackjackGame {
     }
 
     /**
-     * Запускает основную игровую петлю
-     * Управляет раундами и отображает статистику игры
+     * Запускает основную игровую петлю.
+     * Управляет раундами и отображает статистику игры.
      */
     public void startGame() {
         System.out.println("Добро пожаловать в Блэкджек!\n");
@@ -73,8 +74,8 @@ public class BlackjackGame {
     }
 
     /**
-     * Проводит один раунд игры
-     * Включает раздачу карт, ходы игрока и дилера, определение победителя
+     * Проводит один раунд игры.
+     * Включает раздачу карт, ходы игрока и дилера, определение победителя.
      */
     public void playRound() {
         System.out.println("Раунд " + roundNumber);
@@ -108,8 +109,9 @@ public class BlackjackGame {
     }
 
     /**
-     * Проверяет наличие блэкджека у игрока или дилера
-     * @return true если у кого-то есть блэкджек, иначе false
+     * Проверяет наличие блэкджека у игрока или дилера.
+     *
+     * @return true если у кого-то есть блэкджек, иначе false.
      */
     private boolean checkBlackjack() {
         boolean playerBj = player.hasBlackjack();
@@ -133,8 +135,8 @@ public class BlackjackGame {
     }
 
     /**
-     * Управляет ходом игрока
-     * Предлагает игроку брать карты или остановиться
+     * Управляет ходом игрока.
+     * Предлагает игроку брать карты или остановиться.
      */
     private void playerTurn() {
         System.out.println("\nВаш ход");
@@ -161,8 +163,8 @@ public class BlackjackGame {
     }
 
     /**
-     * Управляет ходом дилера
-     * Дилер берет карты пока сумма меньше 17
+     * Управляет ходом дилера.
+     * Дилер берет карты пока сумма меньше 17.
      */
     private void dealerTurn() {
         System.out.println("\nХод дилера");
@@ -185,7 +187,7 @@ public class BlackjackGame {
     }
 
     /**
-     * Определяет победителя раунда на основе суммы карт
+     * Определяет победителя раунда на основе суммы карт.
      */
     private void determineWinner() {
         int playerValue = player.getHandValue();
@@ -213,8 +215,9 @@ public class BlackjackGame {
     }
 
     /**
-     * Отображает текущее состояние игры
-     * @param dealerRevealed показывать ли все карты дилера
+     * Отображает текущее состояние игры.
+     *
+     * @param dealerRevealed показывать ли все карты дилера.
      */
     private void displayGameState(boolean dealerRevealed) {
         System.out.println("Ваши карты: " + player.getHandString() + " > " + player.getHandValue());
@@ -222,8 +225,9 @@ public class BlackjackGame {
     }
 
     /**
-     * Точка входа в приложение
-     * @param args аргументы командной строки
+     * Точка входа в приложение.
+     *
+     * @param args аргументы командной строки.
      */
     public static void main(String[] args) {
         System.out.print("Введите количество колод (1-8): ");
@@ -242,16 +246,18 @@ public class BlackjackGame {
     }
 
     /**
-     * Возвращает количество побед игрока
-     * @return количество побед игрока
+     * Возвращает количество побед игрока.
+     *
+     * @return количество побед игрока.
      */
     public int getPlayerWins() {
         return playerWins;
     }
 
     /**
-     * Возвращает количество побед дилера
-     * @return количество побед дилера
+     * Возвращает количество побед дилера.
+     *
+     * @return количество побед дилера.
      */
     public int getDealerWins() {
         return dealerWins;

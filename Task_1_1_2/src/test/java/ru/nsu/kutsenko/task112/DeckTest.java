@@ -1,8 +1,15 @@
 package ru.nsu.kutsenko.task112;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import org.junit.jupiter.api.Test;
+
+/**
+ * Тестовый класс для класса Deck.
+ * Содержит unit-тесты для функциональности колоды карт.
+ */
 public class DeckTest {
 
     @Test

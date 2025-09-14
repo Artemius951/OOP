@@ -1,8 +1,14 @@
 package ru.nsu.kutsenko.task112;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.Test;
+
+/**
+ * Test class for Player class.
+ * Contains unit tests for Player functionality.
+ */
 public class PlayerTest {
 
     @Test

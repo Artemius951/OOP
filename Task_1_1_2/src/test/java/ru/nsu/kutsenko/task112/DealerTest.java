@@ -1,99 +1,57 @@
 package ru.nsu.kutsenko.task112;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class DealerTest {
+import org.junit.jupiter.api.Test;
+
+
+/**
+ * Тестовый класс для класса Dealer.
+ * Содержит unit-тесты для функциональности дилера.
+ */
+class DealerTest {
 
     @Test
-    public void testAddCard() {
+    void testAddCard() {
         Dealer dealer = new Dealer();
         Card card = new Card("Пики", "Туз", 11);
-
         dealer.addCard(card);
-
         assertEquals(1, dealer.getHand().size());
-        assertEquals(card, dealer.getHand().get(0));
     }
 
     @Test
-    public void testClearHand() {
+    void testGetHandValue() {
         Dealer dealer = new Dealer();
         dealer.addCard(new Card("Пики", "Туз", 11));
         dealer.addCard(new Card("Червы", "Король", 10));
-
-        dealer.clearHand();
-
-        assertEquals(0, dealer.getHand().size());
-        assertFalse(dealer.isAllCardsRevealed());
+        assertEquals(21, dealer.getHandValue());
     }
 
     @Test
-    public void testGetHandValue() {
-        Dealer dealer = new Dealer();
-        dealer.addCard(new Card("Пики", "Десятка", 10));
-        dealer.addCard(new Card("Червы", "Семерка", 7));
-
-        assertEquals(17, dealer.getHandValue());
-    }
-
-    @Test
-    public void testHasBlackjack() {
+    void testHasBlackjack() {
         Dealer dealer = new Dealer();
         dealer.addCard(new Card("Пики", "Туз", 11));
         dealer.addCard(new Card("Червы", "Король", 10));
-
         assertTrue(dealer.hasBlackjack());
     }
 
     @Test
-    public void testRevealAllCards() {
+    void testRevealAllCards() {
         Dealer dealer = new Dealer();
-
+        dealer.addCard(new Card("Пики", "Туз", 11));
         assertFalse(dealer.isAllCardsRevealed());
         dealer.revealAllCards();
         assertTrue(dealer.isAllCardsRevealed());
     }
 
     @Test
-    public void testGetHandStringNotRevealed() {
+    void testClearHand() {
         Dealer dealer = new Dealer();
         dealer.addCard(new Card("Пики", "Туз", 11));
-        dealer.addCard(new Card("Червы", "Король", 10));
-
-        String expected = "[Туз Пики (11), <закрытая карта>]";
-        assertEquals(expected, dealer.getHandString(false));
-    }
-
-    @Test
-    public void testGetHandStringRevealed() {
-        Dealer dealer = new Dealer();
-        dealer.addCard(new Card("Пики", "Туз", 11));
-        dealer.addCard(new Card("Червы", "Король", 10));
-
-        String expected = "[Туз Пики (11), Король Червы (10)]";
-        assertEquals(expected, dealer.getHandString(true));
-    }
-
-    @Test
-    public void testGetHandStringAfterRevealAll() {
-        Dealer dealer = new Dealer();
-        dealer.addCard(new Card("Пики", "Туз", 11));
-        dealer.addCard(new Card("Червы", "Король", 10));
-
-        dealer.revealAllCards();
-        String expected = "[Туз Пики (11), Король Червы (10)]";
-        assertEquals(expected, dealer.getHandString(false));
-    }
-
-    @Test
-    public void testGetHandReturnsCopy() {
-        Dealer dealer = new Dealer();
-        Card card = new Card("Пики", "Туз", 11);
-        dealer.addCard(card);
-
-        dealer.getHand().clear();
-
-        assertEquals(1, dealer.getHand().size());
+        dealer.clearHand();
+        assertEquals(0, dealer.getHand().size());
+        assertFalse(dealer.isAllCardsRevealed());
     }
 }

@@ -12,9 +12,9 @@ public class Card {
     /**
      * Конструктор карты.
      *
-     * @param suit масть карты
-     * @param rank достоинство карты
-     * @param value числовое значение карты
+     * @param suit масть карты.
+     * @param rank достоинство карты.
+     * @param value числовое значение карты.
      */
     public Card(String suit, String rank, int value) {
         this.suit = suit;
@@ -25,7 +25,7 @@ public class Card {
     /**
      * Возвращает текстовое представление карты.
      *
-     * @return строка с описанием карты
+     * @return строка с описанием карты.
      */
     public String textCard() {
         return rank + " " + suit + " (" + value + ")";
@@ -34,7 +34,7 @@ public class Card {
     /**
      * Возвращает масть карты.
      *
-     * @return масть карты
+     * @return масть карты.
      */
     public String getSuit() {
         return suit;
@@ -43,7 +43,7 @@ public class Card {
     /**
      * Возвращает достоинство карты.
      *
-     * @return достоинство карты
+     * @return достоинство карты.
      */
     public String getRank() {
         return rank;
@@ -52,7 +52,7 @@ public class Card {
     /**
      * Возвращает числовое значение карты.
      *
-     * @return значение карты
+     * @return значение карты.
      */
     public int getValue() {
         return value;
@@ -61,7 +61,7 @@ public class Card {
     /**
      * Строковое представление карты.
      *
-     * @return текстовое описание карты
+     * @return текстовое описание карты.
      */
     @Override
     public String toString() {

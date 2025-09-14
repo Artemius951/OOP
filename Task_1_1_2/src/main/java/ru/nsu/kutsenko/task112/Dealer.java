@@ -21,7 +21,7 @@ public class Dealer {
     /**
      * Добавляет карту в руку дилера.
      *
-     * @param card карта для добавления
+     * @param card карта для добавления.
      */
     public void addCard(Card card) {
         hand.add(card);
@@ -30,7 +30,7 @@ public class Dealer {
     /**
      * Вычисляет сумму очков в руке дилера.
      *
-     * @return сумма очков с учетом правила туза
+     * @return сумма очков с учетом правила туза.
      */
     public int getHandValue() {
         int value = 0;
@@ -54,7 +54,7 @@ public class Dealer {
     /**
      * Проверяет наличие блэкджека у дилера.
      *
-     * @return true если у дилера блэкджек
+     * @return true если у дилера блэкджек.
      */
     public boolean hasBlackjack() {
         return hand.size() == 2 && getHandValue() == 21;
@@ -78,8 +78,8 @@ public class Dealer {
     /**
      * Возвращает строковое представление руки дилера.
      *
-     * @param revealed показывать ли все карты
-     * @return строка с описанием карт в руке
+     * @param revealed показывать ли все карты.
+     * @return строка с описанием карт в руке.
      */
     public String getHandString(boolean revealed) {
         if (revealed || allCardsRevealed) {
@@ -108,7 +108,7 @@ public class Dealer {
     /**
      * Проверяет раскрыты ли все карты дилера.
      *
-     * @return true если все карты раскрыты
+     * @return true если все карты раскрыты.
      */
     public boolean isAllCardsRevealed() {
         return allCardsRevealed;
@@ -117,7 +117,7 @@ public class Dealer {
     /**
      * Возвращает копию руки дилера.
      *
-     * @return список карт в руке
+     * @return список карт в руке.
      */
     public List<Card> getHand() {
         return new ArrayList<>(hand);

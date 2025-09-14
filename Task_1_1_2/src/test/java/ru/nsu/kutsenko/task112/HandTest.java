@@ -1,8 +1,15 @@
 package ru.nsu.kutsenko.task112;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.Test;
+
+/**
+ * Тестовый класс для класса Hand.
+ * Содержит unit-тесты для базовой функциональности руки карт.
+ */
 public class HandTest {
 
     private static class TestHand extends Hand {

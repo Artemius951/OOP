@@ -21,7 +21,7 @@ public class Player {
     /**
      * Добавляет карту в руку игрока.
      *
-     * @param card карта для добавления
+     * @param card карта для добавления.
      */
     public void addCard(Card card) {
         hand.add(card);
@@ -31,7 +31,7 @@ public class Player {
      * Вычисляет сумму очков в руке игрока.
      * Учитывает правило туза (11 или 1 очко).
      *
-     * @return сумма очков в руке
+     * @return сумма очков в руке.
      */
     public int getHandValue() {
         int value = 0;
@@ -56,7 +56,7 @@ public class Player {
      * Проверяет наличие блэкджека у игрока.
      * Блэкджек - две карты с суммой 21 очко.
      *
-     * @return true если у игрока блэкджек
+     * @return true если у игрока блэкджек.
      */
     public boolean hasBlackjack() {
         return hand.size() == 2 && getHandValue() == 21;
@@ -65,7 +65,7 @@ public class Player {
     /**
      * Возвращает строковое представление руки игрока.
      *
-     * @return строка с описанием всех карт в руке
+     * @return строка с описанием всех карт в руке.
      */
     public String getHandString() {
         StringBuilder sb = new StringBuilder("[");
@@ -90,7 +90,7 @@ public class Player {
     /**
      * Возвращает копию руки игрока.
      *
-     * @return список карт в руке игрока
+     * @return список карт в руке игрока.
      */
     public List<Card> getHand() {
         return new ArrayList<>(hand);

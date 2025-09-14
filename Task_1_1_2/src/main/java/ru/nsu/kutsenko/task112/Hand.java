@@ -4,45 +4,48 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Абстрактный класс представляющий руку карт
- * Содержит общую функциональность для игрока и дилера
+ * Абстрактный класс представляющий руку карт.
+ * Содержит общую функциональность для игрока и дилера.
  */
 public abstract class Hand {
     protected final List<Card> hand;
 
     /**
-     * Конструктор руки
+     * Конструктор руки.
      */
     public Hand() {
         this.hand = new ArrayList<>();
     }
 
     /**
-     * Добавляет карту в руку
-     * @param card карта для добавления
+     * Добавляет карту в руку.
+     *
+     * @param card карта для добавления.
      */
     public void addCard(Card card) {
         hand.add(card);
     }
 
     /**
-     * Очищает руку
+     * Очищает руку.
      */
     public void clearHand() {
         hand.clear();
     }
 
     /**
-     * Возвращает копию руки
-     * @return список карт в руке
+     * Возвращает копию руки.
+     *
+     * @return список карт в руке.
      */
     public List<Card> getHand() {
         return hand;
     }
 
     /**
-     * Вычисляет сумму очков в руке
-     * @return сумма очков с учетом правила туза
+     * Вычисляет сумму очков в руке.
+     *
+     * @return сумма очков с учетом правила туза.
      */
     public int getHandValue() {
         int value = 0;
@@ -64,16 +67,18 @@ public abstract class Hand {
     }
 
     /**
-     * Проверяет наличие блэкджека
-     * @return true если в руке блэкджек
+     * Проверяет наличие блэкджека.
+     *
+     * @return true если в руке блэкджек.
      */
     public boolean hasBlackjack() {
         return hand.size() == 2 && getHandValue() == 21;
     }
 
     /**
-     * Возвращает строковое представление руки
-     * @return строка с описанием карт в руке
+     * Возвращает строковое представление руки.
+     *
+     * @return строка с описанием карт в руке.
      */
     public String getHandString() {
         StringBuilder sb = new StringBuilder("[");
