@@ -2,6 +2,10 @@ package ru.nsu.kutsenko.task112;
 
 import java.util.Scanner;
 
+/**
+ * Основной класс игры Blackjack, управляющий игровым процессом
+ * Содержит логику раундов, взаимодействие с игроком и определение победителя
+ */
 public class BlackjackGame {
     public Deck deck;
     public Player player;
@@ -11,7 +15,10 @@ public class BlackjackGame {
     private int roundNumber;
     private Scanner scanner;
 
-
+    /**
+     * Конструктор игры Blackjack
+     * @param numberOfDecks количество колод для создания игры
+     */
     public BlackjackGame(int numberOfDecks) {
         this.deck = new Deck(numberOfDecks);
         this.player = new Player();
@@ -22,6 +29,10 @@ public class BlackjackGame {
         this.scanner = new Scanner(System.in);
     }
 
+    /**
+     * Запускает основную игровую петлю
+     * Управляет раундами и отображает статистику игры
+     */
     public void startGame() {
         System.out.println("Добро пожаловать в Блэкджек!\n");
 
@@ -61,6 +72,10 @@ public class BlackjackGame {
         scanner.close();
     }
 
+    /**
+     * Проводит один раунд игры
+     * Включает раздачу карт, ходы игрока и дилера, определение победителя
+     */
     public void playRound() {
         System.out.println("Раунд " + roundNumber);
 
@@ -92,6 +107,10 @@ public class BlackjackGame {
         determineWinner();
     }
 
+    /**
+     * Проверяет наличие блэкджека у игрока или дилера
+     * @return true если у кого-то есть блэкджек, иначе false
+     */
     private boolean checkBlackjack() {
         boolean playerBj = player.hasBlackjack();
         boolean dealerBj = dealer.hasBlackjack();
@@ -113,6 +132,10 @@ public class BlackjackGame {
         return false;
     }
 
+    /**
+     * Управляет ходом игрока
+     * Предлагает игроку брать карты или остановиться
+     */
     private void playerTurn() {
         System.out.println("\nВаш ход");
         System.out.println("-------");
@@ -137,6 +160,10 @@ public class BlackjackGame {
         }
     }
 
+    /**
+     * Управляет ходом дилера
+     * Дилер берет карты пока сумма меньше 17
+     */
     private void dealerTurn() {
         System.out.println("\nХод дилера");
         System.out.println("-------");
@@ -157,6 +184,9 @@ public class BlackjackGame {
         }
     }
 
+    /**
+     * Определяет победителя раунда на основе суммы карт
+     */
     private void determineWinner() {
         int playerValue = player.getHandValue();
         int dealerValue = dealer.getHandValue();
@@ -182,11 +212,19 @@ public class BlackjackGame {
         }
     }
 
+    /**
+     * Отображает текущее состояние игры
+     * @param dealerRevealed показывать ли все карты дилера
+     */
     private void displayGameState(boolean dealerRevealed) {
         System.out.println("Ваши карты: " + player.getHandString() + " > " + player.getHandValue());
         System.out.println("Карты дилера: " + dealer.getHandString(dealerRevealed));
     }
 
+    /**
+     * Точка входа в приложение
+     * @param args аргументы командной строки
+     */
     public static void main(String[] args) {
         System.out.print("Введите количество колод (1-8): ");
         Scanner initScanner = new Scanner(System.in);
@@ -203,10 +241,18 @@ public class BlackjackGame {
         game.startGame();
     }
 
+    /**
+     * Возвращает количество побед игрока
+     * @return количество побед игрока
+     */
     public int getPlayerWins() {
         return playerWins;
     }
 
+    /**
+     * Возвращает количество побед дилера
+     * @return количество побед дилера
+     */
     public int getDealerWins() {
         return dealerWins;
     }
