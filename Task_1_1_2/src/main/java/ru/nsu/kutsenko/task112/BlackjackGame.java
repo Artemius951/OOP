@@ -3,11 +3,11 @@ package ru.nsu.kutsenko.task112;
 import java.util.Scanner;
 
 public class BlackjackGame {
-    private Deck deck;
+    public Deck deck;
     public Player player;
     public Dealer dealer;
-    private int playerWins;
-    private int dealerWins;
+    public int playerWins;
+    public int dealerWins;
     private int roundNumber;
     private Scanner scanner;
 
