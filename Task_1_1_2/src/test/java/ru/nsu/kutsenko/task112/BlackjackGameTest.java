@@ -5,8 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.lang.reflect.Method;
 
 public class BlackjackGameTest {
 
@@ -59,6 +58,90 @@ public class BlackjackGameTest {
         game.dealer.addCard(new Card("Трефы", "Семерка", 7)); // 17
 
 
+    }
+
+    @Test
+    public void testCheckBlackjackPlayer() throws Exception {
+        Method checkBlackjack = BlackjackGame.class.getDeclaredMethod("checkBlackjack");
+        checkBlackjack.setAccessible(true);
+
+        game.player.addCard(new Card("Пики", "Туз", 11));
+        game.player.addCard(new Card("Червы", "Король", 10));
+
+        game.dealer.addCard(new Card("Бубны", "Девятка", 9));
+        game.dealer.addCard(new Card("Трефы", "Дама", 10));
+
+        boolean result = (Boolean) checkBlackjack.invoke(game);
+        assertTrue(result);
+        assertEquals(1, game.getPlayerWins());
+        assertEquals(0, game.getDealerWins());
+    }
+
+    @Test
+    public void testCheckBlackjackDealer() throws Exception {
+        Method checkBlackjack = BlackjackGame.class.getDeclaredMethod("checkBlackjack");
+        checkBlackjack.setAccessible(true);
+
+        game.player.addCard(new Card("Пики", "Девятка", 9));
+        game.player.addCard(new Card("Червы", "Король", 10));
+
+        game.dealer.addCard(new Card("Бубны", "Туз", 11));
+        game.dealer.addCard(new Card("Трефы", "Дама", 10));
+
+        boolean result = (Boolean) checkBlackjack.invoke(game);
+        assertTrue(result);
+        assertEquals(0, game.getPlayerWins());
+        assertEquals(1, game.getDealerWins());
+    }
+
+    @Test
+    public void testDetermineWinnerTie() throws Exception {
+        Method determineWinner = BlackjackGame.class.getDeclaredMethod("determineWinner");
+        determineWinner.setAccessible(true);
+
+        game.player.addCard(new Card("Пики", "Десятка", 10));
+        game.player.addCard(new Card("Червы", "Семерка", 7)); // 17
+
+        game.dealer.addCard(new Card("Бубны", "Десятка", 10));
+        game.dealer.addCard(new Card("Трефы", "Семерка", 7)); // 17
+
+        determineWinner.invoke(game);
+        assertEquals(0, game.getPlayerWins());
+        assertEquals(0, game.getDealerWins());
+    }
+
+    @Test
+    public void testDetermineWinnerPlayerBust() throws Exception {
+        Method determineWinner = BlackjackGame.class.getDeclaredMethod("determineWinner");
+        determineWinner.setAccessible(true);
+
+        game.player.addCard(new Card("Пики", "Десятка", 10));
+        game.player.addCard(new Card("Червы", "Десятка", 10));
+        game.player.addCard(new Card("Трефы", "Двойка", 2)); // 22 - bust
+
+        game.dealer.addCard(new Card("Бубны", "Десятка", 10));
+        game.dealer.addCard(new Card("Трефы", "Семерка", 7)); // 17
+
+        determineWinner.invoke(game);
+        assertEquals(0, game.getPlayerWins());
+        assertEquals(1, game.getDealerWins());
+    }
+
+    @Test
+    public void testDetermineWinnerDealerBust() throws Exception {
+        Method determineWinner = BlackjackGame.class.getDeclaredMethod("determineWinner");
+        determineWinner.setAccessible(true);
+
+        game.player.addCard(new Card("Пики", "Десятка", 10));
+        game.player.addCard(new Card("Червы", "Семерка", 7)); // 17
+
+        game.dealer.addCard(new Card("Бубны", "Десятка", 10));
+        game.dealer.addCard(new Card("Трефы", "Десятка", 10));
+        game.dealer.addCard(new Card("Пики", "Двойка", 2)); // 22 - bust
+
+        determineWinner.invoke(game);
+        assertEquals(1, game.getPlayerWins());
+        assertEquals(0, game.getDealerWins());
     }
 
 
