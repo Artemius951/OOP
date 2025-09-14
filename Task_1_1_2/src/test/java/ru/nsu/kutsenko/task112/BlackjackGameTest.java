@@ -224,6 +224,8 @@ public class BlackjackGameTest {
         assertEquals(0, game.getDealerWins());
     }
 
+
+
     @Test
     public void testDetermineWinnerPlayer20vsDealer21() throws Exception {
         Method determineWinner = BlackjackGame.class.getDeclaredMethod("determineWinner");
@@ -270,6 +272,26 @@ public class BlackjackGameTest {
         game.player.addCard(new Card("Червы", "Король", 10));
 
         assertTrue(game.player.hasBlackjack());
+    }
+
+    @Test
+    public void testStartGameSingleRound() throws Exception {
+        String input = "0\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        BlackjackGame testGame = new BlackjackGame(1) {
+            @Override
+            public void playRound() {
+                // Mock playRound to avoid complex game logic
+                int playerWins = 0;
+                int dealerWins = 0;
+            }
+        };
+
+        testGame.startGame();
+
+        // Should complete without exception
+        assertTrue(true);
     }
 
     @Test
