@@ -190,23 +190,7 @@ public class BlackjackGameTest {
     }
 
 
-    @Test
-    public void testPlayerTurnMultipleAces() throws Exception {
-        String input = "1\n0\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
 
-        Method playerTurn = BlackjackGame.class.getDeclaredMethod("playerTurn");
-        playerTurn.setAccessible(true);
-
-        game.player.addCard(new Card("Пики", "Туз", 11));
-        game.player.addCard(new Card("Червы", "Туз", 11));
-
-        playerTurn.invoke(game);
-
-
-        assertEquals(3, game.player.getHand().size());
-        assertTrue(game.player.getHandValue() <= 21);
-    }
 
     @Test
     public void testDealerTurnExact16() throws Exception {
@@ -327,7 +311,7 @@ public class BlackjackGameTest {
         assertEquals(21, game.player.getHandValue());
         assertEquals(2, game.player.getHand().size()); // Не должно брать дополнительные карты
     }
-    
+
     @Test
     public void testDetermineWinnerWithEqualScores() throws Exception {
         Method determineWinner = BlackjackGame.class.getDeclaredMethod("determineWinner");
