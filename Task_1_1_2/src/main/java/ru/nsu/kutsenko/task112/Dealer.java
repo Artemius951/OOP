@@ -29,7 +29,6 @@ public class Dealer extends Hand {
         }
     }
 
-    // Добавим вспомогательный метод для тестирования
     public boolean isAllCardsRevealed() {
         return allCardsRevealed;
     }

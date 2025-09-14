@@ -33,7 +33,6 @@ public abstract class Hand {
             }
         }
 
-        // Корректировка тузов
         while (value > 21 && aces > 0) {
             value -= 10;
             aces--;
