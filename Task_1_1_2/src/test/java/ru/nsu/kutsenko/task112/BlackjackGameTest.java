@@ -49,6 +49,35 @@ public class BlackjackGameTest {
     }
 
     @Test
+    public void testDealerTurnUnder17() throws Exception {
+        Method dealerTurn = BlackjackGame.class.getDeclaredMethod("dealerTurn");
+        dealerTurn.setAccessible(true);
+
+        game.dealer.addCard(new Card("Бубны", "Десятка", 10));
+        game.dealer.addCard(new Card("Трефы", "Шестерка", 6)); // 16 - should hit
+
+        dealerTurn.invoke(game);
+
+        // Dealer should have at least 3 cards (16 + whatever was drawn)
+        assertTrue(game.dealer.getHand().size() >= 3);
+    }
+
+    @Test
+    public void testDealerTurnOver17() throws Exception {
+        Method dealerTurn = BlackjackGame.class.getDeclaredMethod("dealerTurn");
+        dealerTurn.setAccessible(true);
+
+        game.dealer.addCard(new Card("Бубны", "Десятка", 10));
+        game.dealer.addCard(new Card("Трефы", "Восьмерка", 8)); // 18 - should stand
+
+        int initialSize = game.dealer.getHand().size();
+        dealerTurn.invoke(game);
+
+        // Dealer should not have drawn any cards
+        assertEquals(initialSize, game.dealer.getHand().size());
+    }
+
+    @Test
     public void testDetermineWinnerPlayerWins() {
 
         game.player.addCard(new Card("Пики", "Десятка", 10));
