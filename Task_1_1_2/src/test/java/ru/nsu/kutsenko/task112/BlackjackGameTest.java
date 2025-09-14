@@ -174,4 +174,122 @@ public class BlackjackGameTest {
     }
 
 
+    @Test
+    public void testPlayerTurnMultipleAces() throws Exception {
+        String input = "1\n0\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        Method playerTurn = BlackjackGame.class.getDeclaredMethod("playerTurn");
+        playerTurn.setAccessible(true);
+
+        game.player.addCard(new Card("Пики", "Туз", 11));
+        game.player.addCard(new Card("Червы", "Туз", 11)); // 12
+
+        playerTurn.invoke(game);
+
+        // After hitting, should have 3 cards and proper ace value calculation
+        assertEquals(3, game.player.getHand().size());
+        assertTrue(game.player.getHandValue() <= 21);
+    }
+
+    @Test
+    public void testDealerTurnExact16() throws Exception {
+        Method dealerTurn = BlackjackGame.class.getDeclaredMethod("dealerTurn");
+        dealerTurn.setAccessible(true);
+
+        game.dealer.addCard(new Card("Бубны", "Десятка", 10));
+        game.dealer.addCard(new Card("Трефы", "Шестерка", 6)); // 16 - must hit
+
+        dealerTurn.invoke(game);
+
+        assertTrue(game.dealer.getHand().size() >= 3);
+        assertTrue(game.dealer.getHandValue() >= 17 || game.dealer.getHandValue() > 21);
+    }
+
+
+
+    @Test
+    public void testDetermineWinnerPlayer21vsDealer20() throws Exception {
+        Method determineWinner = BlackjackGame.class.getDeclaredMethod("determineWinner");
+        determineWinner.setAccessible(true);
+
+        game.player.addCard(new Card("Пики", "Туз", 11));
+        game.player.addCard(new Card("Червы", "Король", 10)); // 21
+
+        game.dealer.addCard(new Card("Бубны", "Король", 10));
+        game.dealer.addCard(new Card("Трефы", "Десятка", 10)); // 20
+
+        determineWinner.invoke(game);
+        assertEquals(1, game.getPlayerWins());
+        assertEquals(0, game.getDealerWins());
+    }
+
+    @Test
+    public void testDetermineWinnerPlayer20vsDealer21() throws Exception {
+        Method determineWinner = BlackjackGame.class.getDeclaredMethod("determineWinner");
+        determineWinner.setAccessible(true);
+
+        game.player.addCard(new Card("Пики", "Король", 10));
+        game.player.addCard(new Card("Червы", "Десятка", 10)); // 20
+
+        game.dealer.addCard(new Card("Бубны", "Туз", 11));
+        game.dealer.addCard(new Card("Трефы", "Король", 10)); // 21
+
+        determineWinner.invoke(game);
+        assertEquals(0, game.getPlayerWins());
+        assertEquals(1, game.getDealerWins());
+    }
+
+    @Test
+    public void testDetermineWinnerBoth20() throws Exception {
+        Method determineWinner = BlackjackGame.class.getDeclaredMethod("determineWinner");
+        determineWinner.setAccessible(true);
+
+        game.player.addCard(new Card("Пики", "Король", 10));
+        game.player.addCard(new Card("Червы", "Десятка", 10)); // 20
+
+        game.dealer.addCard(new Card("Бубны", "Дама", 10));
+        game.dealer.addCard(new Card("Трефы", "Десятка", 10)); // 20
+
+        determineWinner.invoke(game);
+        assertEquals(0, game.getPlayerWins());
+        assertEquals(0, game.getDealerWins());
+    }
+
+    @Test
+    public void testPlayerBlackjackWithAceAndTen() {
+        game.player.addCard(new Card("Пики", "Туз", 11));
+        game.player.addCard(new Card("Червы", "Десятка", 10));
+
+        assertTrue(game.player.hasBlackjack());
+    }
+
+    @Test
+    public void testPlayerBlackjackWithAceAndPicture() {
+        game.player.addCard(new Card("Пики", "Туз", 11));
+        game.player.addCard(new Card("Червы", "Король", 10));
+
+        assertTrue(game.player.hasBlackjack());
+    }
+
+    @Test
+    public void testNotBlackjackWithThreeCards() {
+        game.player.addCard(new Card("Пики", "Туз", 11));
+        game.player.addCard(new Card("Червы", "Пятерка", 5));
+        game.player.addCard(new Card("Трефы", "Пятерка", 5)); // 21 but not blackjack
+
+        assertFalse(game.player.hasBlackjack());
+    }
+
+    @Test
+    public void testDealerRevealAllCards() {
+        game.dealer.addCard(new Card("Пики", "Туз", 11));
+        game.dealer.addCard(new Card("Червы", "Король", 10));
+
+        game.dealer.revealAllCards();
+
+        // After reveal, all cards should be visible in string representation
+        String handString = game.dealer.getHandString(true);
+        assertTrue(handString.contains("Туз") && handString.contains("Король"));
+    }
 }
