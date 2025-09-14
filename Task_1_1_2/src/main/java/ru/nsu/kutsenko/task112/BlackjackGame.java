@@ -46,8 +46,8 @@ public abstract class BlackjackGame {
             System.out.println();
         }
 
-        System.out.println("\nИгра завершена. Финальный счет: " +
-                "Игрок " + playerWins + ":" + dealerWins + " Дилер");
+        System.out.println("\nИгра завершена. Счет: Игрок " + playerWins + ":" + dealerWins
+                + " Дилer");
 
         if (playerWins > dealerWins) {
             System.out.println("Победил игрок!");
@@ -92,17 +92,17 @@ public abstract class BlackjackGame {
     }
 
     private boolean checkBlackjack() {
-        boolean playerBJ = player.hasBlackjack();
-        boolean dealerBJ = dealer.hasBlackjack();
+        boolean playerBj = player.hasBlackjack();
+        boolean dealerBj = dealer.hasBlackjack();
 
-        if (playerBJ && dealerBJ) {
+        if (playerBj && dealerBj) {
             System.out.println("У обоих блэкджек! Ничья.");
             return true;
-        } else if (playerBJ) {
+        } else if (playerBj) {
             System.out.println("У вас блэкджек! Вы выиграли раунд!");
             playerWins++;
             return true;
-        } else if (dealerBJ) {
+        } else if (dealerBj) {
             dealer.revealAllCards();
             displayGameState(true);
             System.out.println("У дилера блэкджек! Дилер выиграл раунд.");
@@ -117,8 +117,8 @@ public abstract class BlackjackGame {
         System.out.println("-------");
 
         while (player.getHandValue() < 21) {
-            System.out.print("Введите \"1\", чтобы взять карту, " +
-                    "и \"0\", чтобы остановиться: ");
+            System.out.print("Введите \"1\", чтобы взять карту, "
+                    + "\"0\", чтобы остановиться: ");
             int choice = scanner.nextInt();
 
             if (choice == 0) {
@@ -191,8 +191,12 @@ public abstract class BlackjackGame {
         Scanner initScanner = new Scanner(System.in);
         int decks = initScanner.nextInt();
 
-        if (decks < 1) decks = 1;
-        if (decks > 8) decks = 8;
+        if (decks < 1) {
+            decks = 1;
+        }
+        if (decks > 8) {
+            decks = 8;
+        }
 
         BlackjackGame game = new BlackjackGame(decks) {
             @Override
