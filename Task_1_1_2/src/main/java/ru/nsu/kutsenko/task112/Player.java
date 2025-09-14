@@ -38,13 +38,14 @@ public class Player {
     }
 
     public String getHandString() {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder("[");
         for (int i = 0; i < hand.size(); i++) {
             if (i > 0) {
                 sb.append(", ");
             }
             sb.append(hand.get(i).textCard());
         }
+        sb.append("]");
         return sb.toString();
     }
 

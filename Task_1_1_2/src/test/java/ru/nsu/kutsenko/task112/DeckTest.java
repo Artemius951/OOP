@@ -2,76 +2,61 @@ package ru.nsu.kutsenko.task112;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import java.lang.reflect.Field;
-import java.util.List;
 
-class DeckTest {
+public class DeckTest {
 
     @Test
-    void testDeckCreationSingleDeck() {
+    public void testDeckCreationSingleDeck() {
         Deck deck = new Deck(1);
 
-        assertEquals(52, getRemainingCardsCount(deck));
+        assertEquals(52, deck.getCards().size());
+        assertEquals(0, deck.getCurrentIndex());
     }
 
     @Test
-    void testDeckCreationMultipleDecks() {
-        Deck deck = new Deck(2);
+    public void testDeckCreationMultipleDecks() {
+        Deck deck = new Deck(4);
 
-        assertEquals(104, getRemainingCardsCount(deck));
+        assertEquals(208, deck.getCards().size()); // 52 * 4
     }
 
     @Test
-    void testDrawCard() {
+    public void testShuffle() {
         Deck deck = new Deck(1);
-        Card card = deck.drawCard();
-
-        assertNotNull(card);
-        assertTrue(card.getValue() >= 2 && card.getValue() <= 11);
-        assertEquals(51, getRemainingCardsCount(deck));
-    }
-
-    @Test
-    void testShuffleResetsIndex() {
-        Deck deck = new Deck(1);
-
-        // Draw some cards
-        for (int i = 0; i < 10; i++) {
-            deck.drawCard();
-        }
+        Card firstCardBeforeShuffle = deck.getCards().get(0);
 
         deck.shuffle();
-        assertEquals(52, getRemainingCardsCount(deck));
+        Card firstCardAfterShuffle = deck.getCards().get(0);
+
+        assertNotEquals(firstCardBeforeShuffle, firstCardAfterShuffle);
+        assertEquals(0, deck.getCurrentIndex());
     }
 
     @Test
-    void testDeckAutoShuffle() {
+    public void testDrawCard() {
+        Deck deck = new Deck(1);
+        int initialSize = deck.getCards().size();
+
+        Card drawnCard = deck.drawCard();
+
+        assertNotNull(drawnCard);
+        assertEquals(1, deck.getCurrentIndex());
+        assertEquals(initialSize - 1, deck.remainingCards());
+    }
+
+    @Test
+    public void testDrawCardWithReshuffle() {
         Deck deck = new Deck(1);
 
-        // Draw all cards
         for (int i = 0; i < 52; i++) {
             deck.drawCard();
         }
 
-        // Next draw should trigger shuffle
+        assertEquals(52, deck.getCurrentIndex());
+        assertEquals(0, deck.remainingCards());
+
         Card card = deck.drawCard();
         assertNotNull(card);
-        assertEquals(51, getRemainingCardsCount(deck));
-    }
-
-    private int getRemainingCardsCount(Deck deck) {
-        try {
-            Field cardsField = Deck.class.getDeclaredField("cards");
-            cardsField.setAccessible(true);
-            List<Card> cards = (List<Card>) cardsField.get(deck);
-
-            Field indexField = Deck.class.getDeclaredField("currentIndex");
-            indexField.setAccessible(true);
-            int currentIndex = (int) indexField.get(deck);
-
-            return cards.size() - currentIndex;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        assertEquals(1, deck.getCurrentIndex());
     }
 }

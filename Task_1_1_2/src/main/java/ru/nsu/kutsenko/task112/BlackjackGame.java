@@ -2,17 +2,18 @@ package ru.nsu.kutsenko.task112;
 
 import java.util.Scanner;
 
-public abstract class BlackjackGame {
-    private static Deck deck = null;
-    private final Player player;
-    private final Dealer dealer;
+public class BlackjackGame {
+    private Deck deck;
+    public Player player;
+    public Dealer dealer;
     private int playerWins;
     private int dealerWins;
     private int roundNumber;
-    private final Scanner scanner;
+    private Scanner scanner;
+
 
     public BlackjackGame(int numberOfDecks) {
-        deck = new Deck(numberOfDecks);
+        this.deck = new Deck(numberOfDecks);
         this.player = new Player();
         this.dealer = new Dealer();
         this.playerWins = 0;
@@ -47,7 +48,7 @@ public abstract class BlackjackGame {
         }
 
         System.out.println("\nИгра завершена. Счет: Игрок " + playerWins + ":" + dealerWins
-                + " Дилer");
+                + " Дилер");
 
         if (playerWins > dealerWins) {
             System.out.println("Победил игрок!");
@@ -198,18 +199,10 @@ public abstract class BlackjackGame {
             decks = 8;
         }
 
-        BlackjackGame game = new BlackjackGame(decks) {
-            @Override
-            public Card drawCard() {
-                return deck.drawCard();
-            }
-        };
+        BlackjackGame game = new BlackjackGame(decks);
         game.startGame();
     }
 
-    public abstract Card drawCard();
-
-    // Геттеры для тестирования
     public int getPlayerWins() {
         return playerWins;
     }
