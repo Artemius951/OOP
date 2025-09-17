@@ -1,3 +1,4 @@
+// Card.java с enum
 package ru.nsu.kutsenko.task112;
 
 /**
@@ -5,21 +6,65 @@ package ru.nsu.kutsenko.task112;
  * Содержит масть, достоинство и значение карты.
  */
 public class Card {
-    private final String suit;
-    private final String rank;
-    private final int value;
+    public enum Suit {
+        SPADES("Пики"), HEARTS("Червы"), DIAMONDS("Бубны"), CLUBS("Трефы");
+
+        private final String name;
+
+        Suit(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public String toString() {
+            return name;
+        }
+    }
+
+    public enum Rank {
+        TWO("Двойка", 2), THREE("Тройка", 3), FOUR("Четверка", 4),
+        FIVE("Пятерка", 5), SIX("Шестерка", 6), SEVEN("Семерка", 7),
+        EIGHT("Восьмерка", 8), NINE("Девятка", 9), TEN("Десятка", 10),
+        JACK("Валет", 10), QUEEN("Дама", 10), KING("Король", 10), ACE("Туз", 11);
+
+        private final String name;
+        private final int value;
+
+        Rank(String name, int value) {
+            this.name = name;
+            this.value = value;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return name;
+        }
+    }
+
+    private final Suit suit;
+    private final Rank rank;
 
     /**
      * Конструктор карты.
      *
      * @param suit масть карты.
      * @param rank достоинство карты.
-     * @param value числовое значение карты.
      */
-    public Card(String suit, String rank, int value) {
+    public Card(Suit suit, Rank rank) {
         this.suit = suit;
         this.rank = rank;
-        this.value = value;
     }
 
     /**
@@ -28,7 +73,7 @@ public class Card {
      * @return строка с описанием карты.
      */
     public String textCard() {
-        return rank + " " + suit + " (" + value + ")";
+        return rank.getName() + " " + suit.getName() + " (" + rank.getValue() + ")";
     }
 
     /**
@@ -36,7 +81,7 @@ public class Card {
      *
      * @return масть карты.
      */
-    public String getSuit() {
+    public Suit getSuit() {
         return suit;
     }
 
@@ -45,7 +90,7 @@ public class Card {
      *
      * @return достоинство карты.
      */
-    public String getRank() {
+    public Rank getRank() {
         return rank;
     }
 
@@ -55,7 +100,7 @@ public class Card {
      * @return значение карты.
      */
     public int getValue() {
-        return value;
+        return rank.getValue();
     }
 
     /**

@@ -1,3 +1,4 @@
+// HandTest.java
 package ru.nsu.kutsenko.task112;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,13 +14,12 @@ import org.junit.jupiter.api.Test;
 public class HandTest {
 
     private static class TestHand extends Hand {
-
     }
 
     @Test
     public void testAddCard() {
         TestHand hand = new TestHand();
-        Card card = new Card("Пики", "Туз", 11);
+        Card card = new Card(Card.Suit.SPADES, Card.Rank.ACE);
 
         hand.addCard(card);
 
@@ -30,8 +30,8 @@ public class HandTest {
     @Test
     public void testClearHand() {
         TestHand hand = new TestHand();
-        hand.addCard(new Card("Пики", "Туз", 11));
-        hand.addCard(new Card("Червы", "Король", 10));
+        hand.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
+        hand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.KING));
 
         hand.clearHand();
 
@@ -41,8 +41,8 @@ public class HandTest {
     @Test
     public void testGetHandValueBasic() {
         TestHand hand = new TestHand();
-        hand.addCard(new Card("Пики", "Десятка", 10));
-        hand.addCard(new Card("Червы", "Семерка", 7));
+        hand.addCard(new Card(Card.Suit.SPADES, Card.Rank.TEN));
+        hand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.SEVEN));
 
         assertEquals(17, hand.getHandValue());
     }
@@ -50,27 +50,27 @@ public class HandTest {
     @Test
     public void testGetHandValueWithAces() {
         TestHand hand = new TestHand();
-        hand.addCard(new Card("Пики", "Туз", 11));
-        hand.addCard(new Card("Червы", "Девятка", 9));
+        hand.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
+        hand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.NINE));
 
-        assertEquals(20, hand.getHandValue()); // 11 + 9 = 20
+        assertEquals(20, hand.getHandValue());
     }
 
     @Test
     public void testGetHandValueWithMultipleAces() {
         TestHand hand = new TestHand();
-        hand.addCard(new Card("Пики", "Туз", 11));
-        hand.addCard(new Card("Червы", "Туз", 11));
-        hand.addCard(new Card("Бубны", "Девятка", 9));
+        hand.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
+        hand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.ACE));
+        hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.NINE));
 
-        assertEquals(21, hand.getHandValue()); // 11 + 1 + 9 = 21
+        assertEquals(21, hand.getHandValue());
     }
 
     @Test
     public void testHasBlackjack() {
         TestHand hand = new TestHand();
-        hand.addCard(new Card("Пики", "Туз", 11));
-        hand.addCard(new Card("Червы", "Король", 10));
+        hand.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
+        hand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.KING));
 
         assertTrue(hand.hasBlackjack());
     }
@@ -78,8 +78,8 @@ public class HandTest {
     @Test
     public void testHasBlackjackFalse() {
         TestHand hand = new TestHand();
-        hand.addCard(new Card("Пики", "Туз", 11));
-        hand.addCard(new Card("Червы", "Девятка", 9));
+        hand.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
+        hand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.NINE));
 
         assertFalse(hand.hasBlackjack());
     }
@@ -87,8 +87,8 @@ public class HandTest {
     @Test
     public void testGetHandString() {
         TestHand hand = new TestHand();
-        hand.addCard(new Card("Пики", "Туз", 11));
-        hand.addCard(new Card("Червы", "Король", 10));
+        hand.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
+        hand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.KING));
 
         String expected = "[Туз Пики (11), Король Червы (10)]";
         assertEquals(expected, hand.getHandString());

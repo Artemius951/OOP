@@ -1,3 +1,4 @@
+// Deck.java с использованием enum
 package ru.nsu.kutsenko.task112;
 
 import java.util.ArrayList;
@@ -21,15 +22,10 @@ public class Deck {
         this.cards = new ArrayList<>();
         this.currentIndex = 0;
 
-        String[] suits = {"Пики", "Червы", "Бубны", "Трефы"};
-        String[] ranks = {"Двойка", "Тройка", "Четверка", "Пятерка", "Шестерка",
-            "Семерка", "Восьмерка", "Девятка", "Десятка", "Валет", "Дама", "Король", "Туз"};
-        int[] values = {2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11};
-
         for (int i = 0; i < numberOfDecks; i++) {
-            for (String suit : suits) {
-                for (int j = 0; j < ranks.length; j++) {
-                    cards.add(new Card(suit, ranks[j], values[j]));
+            for (Card.Suit suit : Card.Suit.values()) {
+                for (Card.Rank rank : Card.Rank.values()) {
+                    cards.add(new Card(suit, rank));
                 }
             }
         }
@@ -42,7 +38,7 @@ public class Deck {
      */
     public void shuffle() {
         Collections.shuffle(cards);
-        currentIndex = 0;
+        // currentIndex = 0; // Убрано отсюда для ясности
     }
 
     /**
@@ -52,7 +48,8 @@ public class Deck {
      */
     public Card drawCard() {
         if (currentIndex >= cards.size()) {
-            shuffle();
+            shuffle();          // Только перетасовываем
+            currentIndex = 0;   // Явно сбрасываем индекс здесь
         }
         return cards.get(currentIndex++);
     }

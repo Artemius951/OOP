@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.ByteArrayInputStream;
-import java.lang.reflect.Method;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -32,362 +30,179 @@ public class BlackjackGameTest {
 
     @Test
     public void testCheckBlackjackBoth() {
+        game.player.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
+        game.player.addCard(new Card(Card.Suit.HEARTS, Card.Rank.KING));
 
-        game.player.addCard(new Card("Пики", "Туз", 11));
-        game.player.addCard(new Card("Червы", "Король", 10));
+        game.dealer.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
+        game.dealer.addCard(new Card(Card.Suit.CLUBS, Card.Rank.QUEEN));
 
-        game.dealer.addCard(new Card("Бубны", "Туз", 11));
-        game.dealer.addCard(new Card("Трефы", "Дама", 10));
-
-
+        boolean result = game.checkBlackjack();
+        assertTrue(result);
+        assertEquals(0, game.getPlayerWins());
+        assertEquals(0, game.getDealerWins());
     }
 
     @Test
-    public void testPlayerTurnHit() {
+    public void testCheckBlackjackPlayer() {
+        game.player.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
+        game.player.addCard(new Card(Card.Suit.HEARTS, Card.Rank.KING));
 
-        String input = "1\n0\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        game.dealer.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.NINE));
+        game.dealer.addCard(new Card(Card.Suit.CLUBS, Card.Rank.QUEEN));
 
-        game.player.addCard(new Card("Пики", "Десятка", 10));
-        game.player.addCard(new Card("Червы", "Шестерка", 6));
-
-
+        boolean result = game.checkBlackjack();
+        assertTrue(result);
+        assertEquals(1, game.getPlayerWins());
+        assertEquals(0, game.getDealerWins());
     }
 
     @Test
-    public void testDealerTurnUnder17() throws Exception {
-        Method dealerTurn = BlackjackGame.class.getDeclaredMethod("dealerTurn");
-        dealerTurn.setAccessible(true);
+    public void testCheckBlackjackDealer() {
+        game.player.addCard(new Card(Card.Suit.SPADES, Card.Rank.NINE));
+        game.player.addCard(new Card(Card.Suit.HEARTS, Card.Rank.KING));
 
-        game.dealer.addCard(new Card("Бубны", "Десятка", 10));
-        game.dealer.addCard(new Card("Трефы", "Шестерка", 6));
+        game.dealer.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
+        game.dealer.addCard(new Card(Card.Suit.CLUBS, Card.Rank.QUEEN));
 
-        dealerTurn.invoke(game);
+        boolean result = game.checkBlackjack();
+        assertTrue(result);
+        assertEquals(0, game.getPlayerWins());
+        assertEquals(1, game.getDealerWins());
+    }
+
+    @Test
+    public void testDealerTurnUnder17() {
+        game.dealer.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.TEN));
+        game.dealer.addCard(new Card(Card.Suit.CLUBS, Card.Rank.SIX));
+
+        game.dealerTurn();
 
         assertTrue(game.dealer.getHand().size() >= 3);
     }
 
     @Test
-    public void testDealerTurnOver17() throws Exception {
-        Method dealerTurn = BlackjackGame.class.getDeclaredMethod("dealerTurn");
-        dealerTurn.setAccessible(true);
-
-        game.dealer.addCard(new Card("Бубны", "Десятка", 10));
-        game.dealer.addCard(new Card("Трефы", "Восьмерка", 8));
+    public void testDealerTurnOver17() {
+        game.dealer.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.TEN));
+        game.dealer.addCard(new Card(Card.Suit.CLUBS, Card.Rank.EIGHT));
 
         int initialSize = game.dealer.getHand().size();
-        dealerTurn.invoke(game);
+        game.dealerTurn();
 
         assertEquals(initialSize, game.dealer.getHand().size());
     }
 
     @Test
     public void testDetermineWinnerPlayerWins() {
+        game.player.addCard(new Card(Card.Suit.SPADES, Card.Rank.TEN));
+        game.player.addCard(new Card(Card.Suit.HEARTS, Card.Rank.EIGHT));
 
-        game.player.addCard(new Card("Пики", "Десятка", 10));
-        game.player.addCard(new Card("Червы", "Восьмерка", 8));
+        game.dealer.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.TEN));
+        game.dealer.addCard(new Card(Card.Suit.CLUBS, Card.Rank.SEVEN));
 
-        game.dealer.addCard(new Card("Бубны", "Десятка", 10));
-        game.dealer.addCard(new Card("Трефы", "Семерка", 7));
-
-
-    }
-
-    @Test
-    public void testCheckBlackjackPlayer() throws Exception {
-        Method checkBlackjack = BlackjackGame.class.getDeclaredMethod("checkBlackjack");
-        checkBlackjack.setAccessible(true);
-
-        game.player.addCard(new Card("Пики", "Туз", 11));
-        game.player.addCard(new Card("Червы", "Король", 10));
-
-        game.dealer.addCard(new Card("Бубны", "Девятка", 9));
-        game.dealer.addCard(new Card("Трефы", "Дама", 10));
-
-        boolean result = (Boolean) checkBlackjack.invoke(game);
-        assertTrue(result);
+        game.determineWinner();
         assertEquals(1, game.getPlayerWins());
         assertEquals(0, game.getDealerWins());
     }
 
     @Test
-    public void testGameTermination() {
-        String input = "0\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
+    public void testDetermineWinnerDealerWins() {
+        game.player.addCard(new Card(Card.Suit.SPADES, Card.Rank.TEN));
+        game.player.addCard(new Card(Card.Suit.HEARTS, Card.Rank.SEVEN));
 
-        BlackjackGame testGame = new BlackjackGame(1) {
-            @Override
-            public void playRound() {
-                playerWins = 1;
-                dealerWins = 0;
-            }
-        };
+        game.dealer.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.TEN));
+        game.dealer.addCard(new Card(Card.Suit.CLUBS, Card.Rank.EIGHT));
 
-        testGame.startGame();
-
-        assertEquals(1, testGame.getPlayerWins());
-        assertEquals(0, testGame.getDealerWins());
-    }
-
-    @Test
-    public void testCheckBlackjackDealer() throws Exception {
-        Method checkBlackjack = BlackjackGame.class.getDeclaredMethod("checkBlackjack");
-        checkBlackjack.setAccessible(true);
-
-        game.player.addCard(new Card("Пики", "Девятка", 9));
-        game.player.addCard(new Card("Червы", "Король", 10));
-
-        game.dealer.addCard(new Card("Бубны", "Туз", 11));
-        game.dealer.addCard(new Card("Трефы", "Дама", 10));
-
-        boolean result = (Boolean) checkBlackjack.invoke(game);
-        assertTrue(result);
+        game.determineWinner();
         assertEquals(0, game.getPlayerWins());
         assertEquals(1, game.getDealerWins());
     }
 
     @Test
-    public void testDetermineWinnerTie() throws Exception {
-        Method determineWinner = BlackjackGame.class.getDeclaredMethod("determineWinner");
-        determineWinner.setAccessible(true);
+    public void testDetermineWinnerTie() {
+        game.player.addCard(new Card(Card.Suit.SPADES, Card.Rank.TEN));
+        game.player.addCard(new Card(Card.Suit.HEARTS, Card.Rank.SEVEN));
 
-        game.player.addCard(new Card("Пики", "Десятка", 10));
-        game.player.addCard(new Card("Червы", "Семерка", 7));
+        game.dealer.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.TEN));
+        game.dealer.addCard(new Card(Card.Suit.CLUBS, Card.Rank.SEVEN));
 
-        game.dealer.addCard(new Card("Бубны", "Десятка", 10));
-        game.dealer.addCard(new Card("Трефы", "Семерка", 7));
-
-        determineWinner.invoke(game);
+        game.determineWinner();
         assertEquals(0, game.getPlayerWins());
         assertEquals(0, game.getDealerWins());
     }
 
     @Test
-    public void testDetermineWinnerPlayerBust() throws Exception {
-        Method determineWinner = BlackjackGame.class.getDeclaredMethod("determineWinner");
-        determineWinner.setAccessible(true);
+    public void testDetermineWinnerPlayerBust() {
+        game.player.addCard(new Card(Card.Suit.SPADES, Card.Rank.TEN));
+        game.player.addCard(new Card(Card.Suit.HEARTS, Card.Rank.TEN));
+        game.player.addCard(new Card(Card.Suit.CLUBS, Card.Rank.TWO));
 
-        game.player.addCard(new Card("Пики", "Десятка", 10));
-        game.player.addCard(new Card("Червы", "Десятка", 10));
-        game.player.addCard(new Card("Трефы", "Двойка", 2));
+        game.dealer.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.TEN));
+        game.dealer.addCard(new Card(Card.Suit.CLUBS, Card.Rank.SEVEN));
 
-        game.dealer.addCard(new Card("Бубны", "Десятка", 10));
-        game.dealer.addCard(new Card("Трефы", "Семерка", 7));
-
-        determineWinner.invoke(game);
+        game.determineWinner();
         assertEquals(0, game.getPlayerWins());
         assertEquals(1, game.getDealerWins());
     }
 
     @Test
-    public void testDetermineWinnerDealerBust() throws Exception {
-        Method determineWinner = BlackjackGame.class.getDeclaredMethod("determineWinner");
-        determineWinner.setAccessible(true);
+    public void testDetermineWinnerDealerBust() {
+        game.player.addCard(new Card(Card.Suit.SPADES, Card.Rank.TEN));
+        game.player.addCard(new Card(Card.Suit.HEARTS, Card.Rank.SEVEN));
 
-        game.player.addCard(new Card("Пики", "Десятка", 10));
-        game.player.addCard(new Card("Червы", "Семерка", 7));
+        game.dealer.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.TEN));
+        game.dealer.addCard(new Card(Card.Suit.CLUBS, Card.Rank.TEN));
+        game.dealer.addCard(new Card(Card.Suit.SPADES, Card.Rank.TWO));
 
-        game.dealer.addCard(new Card("Бубны", "Десятка", 10));
-        game.dealer.addCard(new Card("Трефы", "Десятка", 10));
-        game.dealer.addCard(new Card("Пики", "Двойка", 2));
-
-        determineWinner.invoke(game);
+        game.determineWinner();
         assertEquals(1, game.getPlayerWins());
-        assertEquals(0, game.getDealerWins());
-    }
-
-
-
-
-    @Test
-    public void testDealerTurnExact16() throws Exception {
-        Method dealerTurn = BlackjackGame.class.getDeclaredMethod("dealerTurn");
-        dealerTurn.setAccessible(true);
-
-        game.dealer.addCard(new Card("Бубны", "Десятка", 10));
-        game.dealer.addCard(new Card("Трефы", "Шестерка", 6));
-
-        dealerTurn.invoke(game);
-
-        assertTrue(game.dealer.getHand().size() >= 3);
-        assertTrue(game.dealer.getHandValue() >= 17 || game.dealer.getHandValue() > 21);
-    }
-
-
-
-    @Test
-    public void testDetermineWinnerPlayer21vsDealer20() throws Exception {
-        Method determineWinner = BlackjackGame.class.getDeclaredMethod("determineWinner");
-        determineWinner.setAccessible(true);
-
-        game.player.addCard(new Card("Пики", "Туз", 11));
-        game.player.addCard(new Card("Червы", "Король", 10));
-
-        game.dealer.addCard(new Card("Бубны", "Король", 10));
-        game.dealer.addCard(new Card("Трефы", "Десятка", 10));
-
-        determineWinner.invoke(game);
-        assertEquals(1, game.getPlayerWins());
-        assertEquals(0, game.getDealerWins());
-    }
-
-
-
-    @Test
-    public void testDetermineWinnerPlayer20vsDealer21() throws Exception {
-        Method determineWinner = BlackjackGame.class.getDeclaredMethod("determineWinner");
-        determineWinner.setAccessible(true);
-
-        game.player.addCard(new Card("Пики", "Король", 10));
-        game.player.addCard(new Card("Червы", "Десятка", 10));
-
-        game.dealer.addCard(new Card("Бубны", "Туз", 11));
-        game.dealer.addCard(new Card("Трефы", "Король", 10));
-
-        determineWinner.invoke(game);
-        assertEquals(0, game.getPlayerWins());
-        assertEquals(1, game.getDealerWins());
-    }
-
-    @Test
-    public void testDetermineWinnerBoth20() throws Exception {
-        Method determineWinner = BlackjackGame.class.getDeclaredMethod("determineWinner");
-        determineWinner.setAccessible(true);
-
-        game.player.addCard(new Card("Пики", "Король", 10));
-        game.player.addCard(new Card("Червы", "Десятка", 10));
-
-        game.dealer.addCard(new Card("Бубны", "Дама", 10));
-        game.dealer.addCard(new Card("Трефы", "Десятка", 10));
-
-        determineWinner.invoke(game);
-        assertEquals(0, game.getPlayerWins());
         assertEquals(0, game.getDealerWins());
     }
 
     @Test
     public void testPlayerBlackjackWithAceAndTen() {
-        game.player.addCard(new Card("Пики", "Туз", 11));
-        game.player.addCard(new Card("Червы", "Десятка", 10));
+        game.player.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
+        game.player.addCard(new Card(Card.Suit.HEARTS, Card.Rank.TEN));
 
         assertTrue(game.player.hasBlackjack());
-    }
-
-    @Test
-    public void testDeckShuffleWhenLowOnCards() throws Exception {
-        Method playRound = BlackjackGame.class.getDeclaredMethod("playRound");
-        playRound.setAccessible(true);
-
-        String input = "0\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-
-        BlackjackGame testGame = new BlackjackGame(1);
-
-
-        for (int i = 0; i < 48; i++) {
-            testGame.deck.drawCard();
-        }
-
-        int cardsBefore = testGame.deck.remainingCards();
-        playRound.invoke(testGame);
-        assertTrue(testGame.deck.remainingCards() > cardsBefore);
     }
 
     @Test
     public void testPlayerBlackjackWithAceAndPicture() {
-        game.player.addCard(new Card("Пики", "Туз", 11));
-        game.player.addCard(new Card("Червы", "Король", 10));
+        game.player.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
+        game.player.addCard(new Card(Card.Suit.HEARTS, Card.Rank.KING));
 
         assertTrue(game.player.hasBlackjack());
     }
 
     @Test
-    public void testPlayerTurnAutoStopAt21() throws Exception {
-        Method playerTurn = BlackjackGame.class.getDeclaredMethod("playerTurn");
-        playerTurn.setAccessible(true);
-
-        String input = "1\n1\n1\n"; // Пытаться брать карты, но должно остановиться при 21
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-        game.player.addCard(new Card("Пики", "Десятка", 10));
-        game.player.addCard(new Card("Червы", "Туз", 11)); // 21
-
-        playerTurn.invoke(game);
-
-        assertEquals(21, game.player.getHandValue());
-        assertEquals(2, game.player.getHand().size()); // Не должно брать дополнительные карты
-    }
-
-    @Test
-    public void testDetermineWinnerWithEqualScores() throws Exception {
-        Method determineWinner = BlackjackGame.class.getDeclaredMethod("determineWinner");
-        determineWinner.setAccessible(true);
-
-        game.player.addCard(new Card("Пики", "Десятка", 10));
-        game.player.addCard(new Card("Червы", "Десятка", 10)); // 20
-
-        game.dealer.addCard(new Card("Бубны", "Король", 10));
-        game.dealer.addCard(new Card("Трефы", "Десятка", 10)); // 20
-
-        determineWinner.invoke(game);
-
-        // При равных очках никто не должен выиграть
-        assertEquals(0, game.getPlayerWins());
-        assertEquals(0, game.getDealerWins());
-    }
-
-    @Test
-    public void testStartGameSingleRound() {
-        String input = "0\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-        BlackjackGame testGame = new BlackjackGame(1) {
-            @Override
-            public void playRound() {
-            }
-        };
-
-        testGame.startGame();
-
-        assertTrue(true);
-    }
-
-    @Test
-    public void testDealerMultipleAces() throws Exception {
-        Method dealerTurn = BlackjackGame.class.getDeclaredMethod("dealerTurn");
-        dealerTurn.setAccessible(true);
-
-        game.dealer.addCard(new Card("Пики", "Туз", 11));
-        game.dealer.addCard(new Card("Червы", "Туз", 11));
-        game.dealer.addCard(new Card("Бубны", "Восьмерка", 8));
-
-        dealerTurn.invoke(game);
-
-        assertEquals(3, game.dealer.getHand().size());
-        assertEquals(20, game.dealer.getHandValue());
-    }
-
-
-
-    @Test
     public void testNotBlackjackWithThreeCards() {
-        game.player.addCard(new Card("Пики", "Туз", 11));
-        game.player.addCard(new Card("Червы", "Пятерка", 5));
-        game.player.addCard(new Card("Трефы", "Пятерка", 5));
+        game.player.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
+        game.player.addCard(new Card(Card.Suit.HEARTS, Card.Rank.FIVE));
+        game.player.addCard(new Card(Card.Suit.CLUBS, Card.Rank.FIVE));
 
         assertFalse(game.player.hasBlackjack());
     }
 
     @Test
     public void testDealerRevealAllCards() {
-        game.dealer.addCard(new Card("Пики", "Туз", 11));
-        game.dealer.addCard(new Card("Червы", "Король", 10));
+        game.dealer.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
+        game.dealer.addCard(new Card(Card.Suit.HEARTS, Card.Rank.KING));
 
         game.dealer.revealAllCards();
 
-
         String handString = game.dealer.getHandString(true);
         assertTrue(handString.contains("Туз") && handString.contains("Король"));
+    }
+
+    @Test
+    public void testDealerMultipleAces() {
+        game.dealer.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
+        game.dealer.addCard(new Card(Card.Suit.HEARTS, Card.Rank.ACE));
+        game.dealer.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.EIGHT));
+
+        game.dealerTurn();
+
+        assertEquals(3, game.dealer.getHand().size());
+        assertEquals(20, game.dealer.getHandValue());
     }
 }

@@ -1,3 +1,4 @@
+// PlayerTest.java
 package ru.nsu.kutsenko.task112;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,7 +15,7 @@ public class PlayerTest {
     @Test
     public void testAddCard() {
         Player player = new Player();
-        Card card = new Card("Пики", "Туз", 11);
+        Card card = new Card(Card.Suit.SPADES, Card.Rank.ACE);
 
         player.addCard(card);
 
@@ -25,8 +26,8 @@ public class PlayerTest {
     @Test
     public void testClearHand() {
         Player player = new Player();
-        player.addCard(new Card("Пики", "Туз", 11));
-        player.addCard(new Card("Червы", "Король", 10));
+        player.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
+        player.addCard(new Card(Card.Suit.HEARTS, Card.Rank.KING));
 
         player.clearHand();
 
@@ -36,8 +37,8 @@ public class PlayerTest {
     @Test
     public void testGetHandValue() {
         Player player = new Player();
-        player.addCard(new Card("Пики", "Десятка", 10));
-        player.addCard(new Card("Червы", "Семерка", 7));
+        player.addCard(new Card(Card.Suit.SPADES, Card.Rank.TEN));
+        player.addCard(new Card(Card.Suit.HEARTS, Card.Rank.SEVEN));
 
         assertEquals(17, player.getHandValue());
     }
@@ -45,8 +46,8 @@ public class PlayerTest {
     @Test
     public void testHasBlackjack() {
         Player player = new Player();
-        player.addCard(new Card("Пики", "Туз", 11));
-        player.addCard(new Card("Червы", "Король", 10));
+        player.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
+        player.addCard(new Card(Card.Suit.HEARTS, Card.Rank.KING));
 
         assertTrue(player.hasBlackjack());
     }
@@ -54,8 +55,8 @@ public class PlayerTest {
     @Test
     public void testGetHandString() {
         Player player = new Player();
-        player.addCard(new Card("Пики", "Туз", 11));
-        player.addCard(new Card("Червы", "Король", 10));
+        player.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
+        player.addCard(new Card(Card.Suit.HEARTS, Card.Rank.KING));
 
         String expected = "[Туз Пики (11), Король Червы (10)]";
         assertEquals(expected, player.getHandString());
@@ -64,7 +65,7 @@ public class PlayerTest {
     @Test
     public void testGetHandReturnsCopy() {
         Player player = new Player();
-        Card card = new Card("Пики", "Туз", 11);
+        Card card = new Card(Card.Suit.SPADES, Card.Rank.ACE);
         player.addCard(card);
 
         player.getHand().clear();

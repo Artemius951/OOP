@@ -2,9 +2,10 @@ package ru.nsu.kutsenko.task112;
 
 import java.util.Scanner;
 
+import static ru.nsu.kutsenko.task112.Hand.BLACKJACK_VALUE;
+
 /**
- * Основной класс игры Blackjack, управляющий игровым процессом.
- * Содержит логику раундов, взаимодействие с игроком и определение победителя.
+ * Основной класс игры Blackjack.
  */
 public class BlackjackGame {
     public Deck deck;
@@ -15,11 +16,6 @@ public class BlackjackGame {
     private int roundNumber;
     private Scanner scanner;
 
-    /**
-     * Конструктор игры Blackjack.
-     *
-     * @param numberOfDecks количество колод для создания игры.
-     */
     public BlackjackGame(int numberOfDecks) {
         this.deck = new Deck(numberOfDecks);
         this.player = new Player();
@@ -30,10 +26,6 @@ public class BlackjackGame {
         this.scanner = new Scanner(System.in);
     }
 
-    /**
-     * Запускает основную игровую петлю.
-     * Управляет раундами и отображает статистику игры.
-     */
     public void startGame() {
         System.out.println("Добро пожаловать в Блэкджек!\n");
 
@@ -59,8 +51,7 @@ public class BlackjackGame {
             System.out.println();
         }
 
-        System.out.println("\nИгра завершена. Счет: Игрок " + playerWins + ":" + dealerWins
-                + " Дилер");
+        System.out.println("\nИгра завершена. Счет: Игрок " + playerWins + ":" + dealerWins + " Дилер");
 
         if (playerWins > dealerWins) {
             System.out.println("Победил игрок!");
@@ -73,10 +64,6 @@ public class BlackjackGame {
         scanner.close();
     }
 
-    /**
-     * Проводит один раунд игры.
-     * Включает раздачу карт, ходы игрока и дилера, определение победителя.
-     */
     public void playRound() {
         System.out.println("Раунд " + roundNumber);
 
@@ -101,19 +88,15 @@ public class BlackjackGame {
 
         playerTurn();
 
-        if (player.getHandValue() <= 21) {
+        if (player.getHandValue() <= BLACKJACK_VALUE) {
             dealerTurn();
         }
 
         determineWinner();
     }
 
-    /**
-     * Проверяет наличие блэкджека у игрока или дилера.
-     *
-     * @return true если у кого-то есть блэкджек, иначе false.
-     */
-    private boolean checkBlackjack() {
+    // Изменено с private на package-private
+    boolean checkBlackjack() {
         boolean playerBj = player.hasBlackjack();
         boolean dealerBj = dealer.hasBlackjack();
 
@@ -134,17 +117,13 @@ public class BlackjackGame {
         return false;
     }
 
-    /**
-     * Управляет ходом игрока.
-     * Предлагает игроку брать карты или остановиться.
-     */
-    private void playerTurn() {
+    // Изменено с private на package-private
+    void playerTurn() {
         System.out.println("\nВаш ход");
         System.out.println("-------");
 
-        while (player.getHandValue() < 21) {
-            System.out.print("Введите \"1\", чтобы взять карту, "
-                    + "\"0\", чтобы остановиться: ");
+        while (player.getHandValue() < BLACKJACK_VALUE) {
+            System.out.print("Введите \"1\", чтобы взять карту, \"0\", чтобы остановиться: ");
             int choice = scanner.nextInt();
 
             if (choice == 0) {
@@ -157,16 +136,13 @@ public class BlackjackGame {
             displayGameState(false);
         }
 
-        if (player.getHandValue() > 21) {
+        if (player.getHandValue() > BLACKJACK_VALUE) {
             System.out.println("Перебор! Сумма ваших карт: " + player.getHandValue());
         }
     }
 
-    /**
-     * Управляет ходом дилера.
-     * Дилер берет карты пока сумма меньше 17.
-     */
-    private void dealerTurn() {
+    // Изменено с private на package-private
+    void dealerTurn() {
         System.out.println("\nХод дилера");
         System.out.println("-------");
 
@@ -179,17 +155,15 @@ public class BlackjackGame {
             System.out.println("Дилер открывает карту " + newCard.textCard());
             displayGameState(true);
 
-            if (dealer.getHandValue() > 21) {
+            if (dealer.getHandValue() > BLACKJACK_VALUE) {
                 System.out.println("Дилер перебрал! Сумма карт дилера: " + dealer.getHandValue());
                 break;
             }
         }
     }
 
-    /**
-     * Определяет победителя раунда на основе суммы карт.
-     */
-    private void determineWinner() {
+    // Изменено с private на package-private
+    void determineWinner() {
         int playerValue = player.getHandValue();
         int dealerValue = dealer.getHandValue();
 
@@ -197,10 +171,10 @@ public class BlackjackGame {
         System.out.println("Ваши карты: " + player.getHandString() + " > " + playerValue);
         System.out.println("Карты дилера: " + dealer.getHandString(true) + " > " + dealerValue);
 
-        if (playerValue > 21) {
+        if (playerValue > BLACKJACK_VALUE) {
             System.out.println("Вы проиграли раунд!");
             dealerWins++;
-        } else if (dealerValue > 21) {
+        } else if (dealerValue > BLACKJACK_VALUE) {
             System.out.println("Вы выиграли раунд!");
             playerWins++;
         } else if (playerValue > dealerValue) {
@@ -214,21 +188,12 @@ public class BlackjackGame {
         }
     }
 
-    /**
-     * Отображает текущее состояние игры.
-     *
-     * @param dealerRevealed показывать ли все карты дилера.
-     */
-    private void displayGameState(boolean dealerRevealed) {
+    // Изменено с private на package-private
+    void displayGameState(boolean dealerRevealed) {
         System.out.println("Ваши карты: " + player.getHandString() + " > " + player.getHandValue());
         System.out.println("Карты дилера: " + dealer.getHandString(dealerRevealed));
     }
 
-    /**
-     * Точка входа в приложение.
-     *
-     * @param args аргументы командной строки.
-     */
     public static void main(String[] args) {
         System.out.print("Введите количество колод (1-8): ");
         Scanner initScanner = new Scanner(System.in);
@@ -245,20 +210,10 @@ public class BlackjackGame {
         game.startGame();
     }
 
-    /**
-     * Возвращает количество побед игрока.
-     *
-     * @return количество побед игрока.
-     */
     public int getPlayerWins() {
         return playerWins;
     }
 
-    /**
-     * Возвращает количество побед дилера.
-     *
-     * @return количество побед дилера.
-     */
     public int getDealerWins() {
         return dealerWins;
     }

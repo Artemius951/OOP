@@ -1,3 +1,4 @@
+// Hand.java с обновленной проверкой туза
 package ru.nsu.kutsenko.task112;
 
 import java.util.ArrayList;
@@ -8,7 +9,8 @@ import java.util.List;
  * Содержит общую функциональность для игрока и дилера.
  */
 public abstract class Hand {
-    protected final List<Card> hand;
+    protected static final int BLACKJACK_VALUE = 21;
+    protected List<Card> hand;
 
     /**
      * Конструктор руки.
@@ -19,8 +21,6 @@ public abstract class Hand {
 
     /**
      * Добавляет карту в руку.
-     *
-     * @param card карта для добавления.
      */
     public void addCard(Card card) {
         hand.add(card);
@@ -35,17 +35,13 @@ public abstract class Hand {
 
     /**
      * Возвращает копию руки.
-     *
-     * @return список карт в руке.
      */
     public List<Card> getHand() {
-        return hand;
+        return new ArrayList<>(hand);
     }
 
     /**
      * Вычисляет сумму очков в руке.
-     *
-     * @return сумма очков с учетом правила туза.
      */
     public int getHandValue() {
         int value = 0;
@@ -53,12 +49,12 @@ public abstract class Hand {
 
         for (Card card : hand) {
             value += card.getValue();
-            if (card.getRank().equals("Туз")) {
+            if (card.getRank() == Card.Rank.ACE) {
                 aces++;
             }
         }
 
-        while (value > 21 && aces > 0) {
+        while (value > BLACKJACK_VALUE && aces > 0) {
             value -= 10;
             aces--;
         }
@@ -68,17 +64,13 @@ public abstract class Hand {
 
     /**
      * Проверяет наличие блэкджека.
-     *
-     * @return true если в руке блэкджек.
      */
     public boolean hasBlackjack() {
-        return hand.size() == 2 && getHandValue() == 21;
+        return hand.size() == 2 && getHandValue() == BLACKJACK_VALUE;
     }
 
     /**
      * Возвращает строковое представление руки.
-     *
-     * @return строка с описанием карт в руке.
      */
     public String getHandString() {
         StringBuilder sb = new StringBuilder("[");
