@@ -24,7 +24,7 @@ public class DeckTest {
     public void testDeckCreationMultipleDecks() {
         Deck deck = new Deck(4);
 
-        assertEquals(208, deck.getCards().size()); // 52 * 4
+        assertEquals(208, deck.getCards().size());
     }
 
     @Test

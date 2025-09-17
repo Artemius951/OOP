@@ -1,4 +1,3 @@
-// Card.java с enum
 package ru.nsu.kutsenko.task112;
 
 /**
@@ -6,6 +5,9 @@ package ru.nsu.kutsenko.task112;
  * Содержит масть, достоинство и значение карты.
  */
 public class Card {
+    /**
+     * Перечисление мастей игральных карт.
+     */
     public enum Suit {
         SPADES("Пики"), HEARTS("Червы"), DIAMONDS("Бубны"), CLUBS("Трефы");
 
@@ -25,6 +27,10 @@ public class Card {
         }
     }
 
+    /**
+     * Перечисление достоинств игральных карт.
+     * Содержит названия и числовые значения карт.
+     */
     public enum Rank {
         TWO("Двойка", 2), THREE("Тройка", 3), FOUR("Четверка", 4),
         FIVE("Пятерка", 5), SIX("Шестерка", 6), SEVEN("Семерка", 7),

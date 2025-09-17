@@ -1,4 +1,3 @@
-// Hand.java с обновленной проверкой туза
 package ru.nsu.kutsenko.task112;
 
 import java.util.ArrayList;

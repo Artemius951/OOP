@@ -1,4 +1,3 @@
-// Deck.java с использованием enum
 package ru.nsu.kutsenko.task112;
 
 import java.util.ArrayList;
@@ -38,7 +37,6 @@ public class Deck {
      */
     public void shuffle() {
         Collections.shuffle(cards);
-        // currentIndex = 0; // Убрано отсюда для ясности
     }
 
     /**
@@ -48,8 +46,8 @@ public class Deck {
      */
     public Card drawCard() {
         if (currentIndex >= cards.size()) {
-            shuffle();          // Только перетасовываем
-            currentIndex = 0;   // Явно сбрасываем индекс здесь
+            shuffle();
+            currentIndex = 0;
         }
         return cards.get(currentIndex++);
     }

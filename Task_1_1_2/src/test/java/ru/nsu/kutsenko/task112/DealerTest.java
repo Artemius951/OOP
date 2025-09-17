@@ -1,4 +1,3 @@
-// DealerTest.java
 package ru.nsu.kutsenko.task112;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
