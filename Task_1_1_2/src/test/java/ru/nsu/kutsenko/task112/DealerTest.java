@@ -20,7 +20,7 @@ class DealerTest {
     void setUp() {
         dealer = new Dealer();
     }
-    
+
     @Test
     void testAddCard() {
         Card card = new Card(Card.Suit.SPADES, Card.Rank.ACE);
@@ -48,7 +48,7 @@ class DealerTest {
     void testGetHandValueWithAcesSoft() {
         dealer.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
         dealer.addCard(new Card(Card.Suit.HEARTS, Card.Rank.SIX));
-        assertEquals(17, dealer.getHandValue()); // Ace = 11 + 6 = 17
+        assertEquals(17, dealer.getHandValue());
     }
 
     @Test
@@ -56,7 +56,7 @@ class DealerTest {
         dealer.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
         dealer.addCard(new Card(Card.Suit.HEARTS, Card.Rank.TEN));
         dealer.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.FIVE));
-        assertEquals(16, dealer.getHandValue()); // Ace = 1 + 10 + 5 = 16
+        assertEquals(16, dealer.getHandValue());
     }
 
     @Test
@@ -64,7 +64,7 @@ class DealerTest {
         dealer.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
         dealer.addCard(new Card(Card.Suit.HEARTS, Card.Rank.ACE));
         dealer.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.NINE));
-        assertEquals(21, dealer.getHandValue()); // Ace=11 + Ace=1 + 9 = 21
+        assertEquals(21, dealer.getHandValue());
     }
 
     @Test
@@ -72,7 +72,7 @@ class DealerTest {
         dealer.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
         dealer.addCard(new Card(Card.Suit.HEARTS, Card.Rank.ACE));
         dealer.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
-        assertEquals(13, dealer.getHandValue()); // Ace=11 + Ace=1 + Ace=1 = 13
+        assertEquals(13, dealer.getHandValue());
     }
 
     @Test
@@ -94,7 +94,7 @@ class DealerTest {
         dealer.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
         dealer.addCard(new Card(Card.Suit.HEARTS, Card.Rank.FIVE));
         dealer.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.FIVE));
-        assertFalse(dealer.hasBlackjack()); // 21 очков, но не блэкджек (3 карты)
+        assertFalse(dealer.hasBlackjack());
     }
 
     @Test
@@ -136,8 +136,6 @@ class DealerTest {
         Card firstCard = new Card(Card.Suit.SPADES, Card.Rank.ACE);
         dealer.addCard(firstCard);
         dealer.addCard(new Card(Card.Suit.HEARTS, Card.Rank.KING));
-
-        // Проверяем, что можно получить первую карту (может быть полезно для отображения)
         assertEquals(firstCard, dealer.getHand().get(0));
     }
 

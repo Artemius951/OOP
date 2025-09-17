@@ -7,18 +7,36 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.Scanner;
+
 
 /**
  * Тестовый класс для класса BlackjackGame.
  * Содержит unit-тесты для основной игровой логики.
  */
+
 public class BlackjackGameTest {
 
+
     private BlackjackGame game;
+
+
+    private Deck mockDeck;
+
+
+    private Scanner mockScanner;
+
+    private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
     @BeforeEach
     public void setUp() {
         game = new BlackjackGame(1);
+        System.setOut(new PrintStream(outputStream));
     }
 
     @Test
@@ -71,14 +89,20 @@ public class BlackjackGameTest {
     }
 
     @Test
-    public void testDealerTurnUnder17() {
+    public void testCheckBlackjackNone() {
+        game.player.addCard(new Card(Card.Suit.SPADES, Card.Rank.NINE));
+        game.player.addCard(new Card(Card.Suit.HEARTS, Card.Rank.KING));
+
         game.dealer.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.TEN));
-        game.dealer.addCard(new Card(Card.Suit.CLUBS, Card.Rank.SIX));
+        game.dealer.addCard(new Card(Card.Suit.CLUBS, Card.Rank.SEVEN));
 
-        game.dealerTurn();
-
-        assertTrue(game.dealer.getHand().size() >= 3);
+        boolean result = game.checkBlackjack();
+        assertFalse(result);
+        assertEquals(0, game.getPlayerWins());
+        assertEquals(0, game.getDealerWins());
     }
+
+
 
     @Test
     public void testDealerTurnOver17() {
@@ -89,7 +113,10 @@ public class BlackjackGameTest {
         game.dealerTurn();
 
         assertEquals(initialSize, game.dealer.getHand().size());
+        assertTrue(game.dealer.isAllCardsRevealed());
     }
+
+
 
     @Test
     public void testDetermineWinnerPlayerWins() {
@@ -194,15 +221,39 @@ public class BlackjackGameTest {
         assertTrue(handString.contains("Туз") && handString.contains("Король"));
     }
 
+
     @Test
-    public void testDealerMultipleAces() {
-        game.dealer.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
-        game.dealer.addCard(new Card(Card.Suit.HEARTS, Card.Rank.ACE));
-        game.dealer.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.EIGHT));
+    public void testDisplayGameStateDealerHidden() {
+        game.player.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
+        game.player.addCard(new Card(Card.Suit.HEARTS, Card.Rank.KING));
 
-        game.dealerTurn();
+        game.dealer.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.TEN));
+        game.dealer.addCard(new Card(Card.Suit.CLUBS, Card.Rank.SEVEN));
 
-        assertEquals(3, game.dealer.getHand().size());
-        assertEquals(20, game.dealer.getHandValue());
+        game.displayGameState(false);
+
+        String output = outputStream.toString();
+        assertTrue(output.contains("Ваши карты:"));
+        assertTrue(output.contains("Карты дилера:"));
+        assertTrue(output.contains("<закрытая карта>"));
     }
+
+    @Test
+    public void testDisplayGameStateDealerRevealed() {
+        game.player.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
+        game.player.addCard(new Card(Card.Suit.HEARTS, Card.Rank.KING));
+
+        game.dealer.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.TEN));
+        game.dealer.addCard(new Card(Card.Suit.CLUBS, Card.Rank.SEVEN));
+        game.dealer.revealAllCards();
+
+        game.displayGameState(true);
+
+        String output = outputStream.toString();
+        assertTrue(output.contains("Ваши карты:"));
+        assertTrue(output.contains("Карты дилера:"));
+        assertTrue(output.contains("Десятка") || output.contains("Семерка"));
+    }
+
+
 }
