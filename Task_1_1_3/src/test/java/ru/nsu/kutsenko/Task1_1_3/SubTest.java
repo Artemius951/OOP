@@ -1,8 +1,10 @@
 package ru.nsu.kutsenko.task113;
 
-import org.junit.jupiter.api.Test;
 import java.util.Map;
+
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 class SubTest {
 
