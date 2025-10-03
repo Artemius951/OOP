@@ -82,6 +82,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">BinaryOperation</span>
 <span class="extends-implements">extends <a href="Expression.html" title="class in ru.nsu.kutsenko.task113">Expression</a></span></div>
+<div class="block">Абстрактный класс для представления бинарных операций.
+ Содержит левое и правое выражения и общую логику для бинарных операций.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -96,10 +98,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>protected <a href="Expression.html" title="class in ru.nsu.kutsenko.task113">Expression</a></code></div>
 <div class="col-second even-row-color"><code><a href="#left" class="member-name-link">left</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Левое выражение</div>
+</div>
 <div class="col-first odd-row-color"><code>protected <a href="Expression.html" title="class in ru.nsu.kutsenko.task113">Expression</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#right" class="member-name-link">right</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Правое выражение</div>
+</div>
 </div>
 </section>
 </li>
@@ -113,7 +119,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.kutsenko.task113.Expression,ru.nsu.kutsenko.task113.Expression)" class="member-name-link">BinaryOperation</a><wbr>(<a href="Expression.html" title="class in ru.nsu.kutsenko.task113">Expression</a>&nbsp;left,
  <a href="Expression.html" title="class in ru.nsu.kutsenko.task113">Expression</a>&nbsp;right)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Конструктор бинарной операции.</div>
+</div>
 </div>
 </section>
 </li>
@@ -130,10 +138,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>protected abstract <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getOperator()" class="member-name-link">getOperator</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Абстрактный метод для получения строкового представления оператора.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает строковое представление бинарной операции в формате (левый_операнд оператор правый_операнд).</div>
+</div>
 </div>
 </div>
 </div>
@@ -158,12 +170,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="left">
 <h3>left</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="Expression.html" title="class in ru.nsu.kutsenko.task113">Expression</a></span>&nbsp;<span class="element-name">left</span></div>
+<div class="block">Левое выражение</div>
 </section>
 </li>
 <li>
 <section class="detail" id="right">
 <h3>right</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="Expression.html" title="class in ru.nsu.kutsenko.task113">Expression</a></span>&nbsp;<span class="element-name">right</span></div>
+<div class="block">Правое выражение</div>
 </section>
 </li>
 </ul>
@@ -179,6 +193,12 @@ loadScripts(document, 'script');</script>
 <h3>BinaryOperation</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">BinaryOperation</span><wbr><span class="parameters">(<a href="Expression.html" title="class in ru.nsu.kutsenko.task113">Expression</a>&nbsp;left,
  <a href="Expression.html" title="class in ru.nsu.kutsenko.task113">Expression</a>&nbsp;right)</span></div>
+<div class="block">Конструктор бинарной операции.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>left</code> - левое выражение</dd>
+<dd><code>right</code> - правое выражение</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -193,15 +213,23 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getOperator()">
 <h3>getOperator</h3>
 <div class="member-signature"><span class="modifiers">protected abstract</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getOperator</span>()</div>
+<div class="block">Абстрактный метод для получения строкового представления оператора.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>строковое представление оператора</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="toString()">
 <h3>toString</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">toString</span>()</div>
+<div class="block">Возвращает строковое представление бинарной операции в формате (левый_операнд оператор правый_операнд).</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Expression.html#toString()">toString</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in ru.nsu.kutsenko.task113">Expression</a></code></dd>
+<dt>Returns:</dt>
+<dd>строковое представление операции</dd>
 </dl>
 </section>
 </li>

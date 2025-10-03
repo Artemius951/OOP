@@ -80,6 +80,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Div</span>
 <span class="extends-implements">extends <a href="BinaryOperation.html" title="class in ru.nsu.kutsenko.task113">BinaryOperation</a></span></div>
+<div class="block">Класс для представления операции деления.
+ Наследуется от BinaryOperation и реализует деление двух выражений.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -102,7 +104,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.kutsenko.task113.Expression,ru.nsu.kutsenko.task113.Expression)" class="member-name-link">Div</a><wbr>(<a href="Expression.html" title="class in ru.nsu.kutsenko.task113">Expression</a>&nbsp;left,
  <a href="Expression.html" title="class in ru.nsu.kutsenko.task113">Expression</a>&nbsp;right)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Конструктор операции деления.</div>
+</div>
 </div>
 </section>
 </li>
@@ -119,13 +123,19 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Expression.html" title="class in ru.nsu.kutsenko.task113">Expression</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#derivative(java.lang.String)" class="member-name-link">derivative</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;variable)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Вычисляет производную операции деления по правилу частного.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#eval(java.util.Map)" class="member-name-link">eval</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;&nbsp;variables)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Вычисляет значение операции деления.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getOperator()" class="member-name-link">getOperator</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает строковое представление оператора деления.</div>
+</div>
 </div>
 </div>
 </div>
@@ -154,6 +164,12 @@ loadScripts(document, 'script');</script>
 <h3>Div</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Div</span><wbr><span class="parameters">(<a href="Expression.html" title="class in ru.nsu.kutsenko.task113">Expression</a>&nbsp;left,
  <a href="Expression.html" title="class in ru.nsu.kutsenko.task113">Expression</a>&nbsp;right)</span></div>
+<div class="block">Конструктор операции деления.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>left</code> - левое выражение (делимое)</dd>
+<dd><code>right</code> - правое выражение (делитель)</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -168,9 +184,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getOperator()">
 <h3>getOperator</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getOperator</span>()</div>
+<div class="block">Возвращает строковое представление оператора деления.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="BinaryOperation.html#getOperator()">getOperator</a></code>&nbsp;in class&nbsp;<code><a href="BinaryOperation.html" title="class in ru.nsu.kutsenko.task113">BinaryOperation</a></code></dd>
+<dt>Returns:</dt>
+<dd>строка "/"</dd>
 </dl>
 </section>
 </li>
@@ -178,9 +197,15 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="derivative(java.lang.String)">
 <h3>derivative</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Expression.html" title="class in ru.nsu.kutsenko.task113">Expression</a></span>&nbsp;<span class="element-name">derivative</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;variable)</span></div>
+<div class="block">Вычисляет производную операции деления по правилу частного.
+ Производная частного: (f/g)' = (f'g - fg') / g²</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Expression.html#derivative(java.lang.String)">derivative</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in ru.nsu.kutsenko.task113">Expression</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>variable</code> - переменная, по которой вычисляется производная</dd>
+<dt>Returns:</dt>
+<dd>выражение, представляющее производную</dd>
 </dl>
 </section>
 </li>
@@ -188,9 +213,16 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="eval(java.util.Map)">
 <h3>eval</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">eval</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;&nbsp;variables)</span></div>
+<div class="block">Вычисляет значение операции деления.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Expression.html#eval(java.util.Map)">eval</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in ru.nsu.kutsenko.task113">Expression</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>variables</code> - карта переменных и их значений</dd>
+<dt>Returns:</dt>
+<dd>результат деления левого выражения на правое</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/ArithmeticException.html" title="class or interface in java.lang" class="external-link">ArithmeticException</a></code> - если происходит деление на ноль</dd>
 </dl>
 </section>
 </li>
