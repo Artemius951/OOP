@@ -1,4 +1,4 @@
-package ru.nsu.kutsenko.Task1_1_3;
+package ru.nsu.kutsenko.task113;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
-
-
 
 class ExpressionTest {
 
@@ -77,6 +75,7 @@ class ExpressionTest {
     @Test
     void testPrintMethod() {
         Expression expr = new Add(new Number(3), new Variable("x"));
+        // This test just verifies the method doesn't throw an exception
         expr.print();
     }
 }

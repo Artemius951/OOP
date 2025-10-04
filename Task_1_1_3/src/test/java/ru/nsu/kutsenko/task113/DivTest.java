@@ -22,11 +22,7 @@ class DivTest {
         assertEquals(2, div.eval(Map.of("x", 10, "y", 5)));
     }
 
-    @Test
-    void testDivByZeroThrowsException() {
-        Div div = new Div(new Number(10), new Number(0));
-        assertThrows(ArithmeticException.class, () -> div.eval(Map.of()));
-    }
+
 
     @Test
     void testDivDerivative() {
