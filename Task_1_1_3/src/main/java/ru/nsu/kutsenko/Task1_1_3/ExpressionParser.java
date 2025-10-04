@@ -1,4 +1,4 @@
-package ru.nsu.kutsenko.task113;
+package ru.nsu.kutsenko.Task1_1_3;
 
 /**
  * Парсер математических выражений.

@@ -1,52 +1,47 @@
 package ru.nsu.kutsenko.task113;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Map;
+import org.junit.jupiter.api.Test;
 
-/**
- * Класс для представления операции сложения.
- * Наследуется от BinaryOperation и реализует сложение двух выражений.
- */
-public class Add extends BinaryOperation {
-    /**
-     * Конструктор операции сложения.
-     *
-     * @param left  левое выражение
-     * @param right правое выражение
-     */
-    public Add(Expression left, Expression right) {
-        super(left, right);
+class MulTest {
+
+    @Test
+    void testMulEval() {
+        Mul mul = new Mul(new Number(3), new Number(2));
+        assertEquals(6, mul.eval(Map.of()));
     }
 
-    /**
-     * Возвращает строковое представление оператора сложения.
-     *
-     * @return строка "+"
-     */
-    @Override
-    protected String getOperator() {
-        return "+";
+    @Test
+    void testMulWithVariables() {
+        Mul mul = new Mul(new Variable("x"), new Variable("y"));
+        assertEquals(50, mul.eval(Map.of("x", 10, "y", 5)));
     }
 
-    /**
-     * Вычисляет производную операции сложения.
-     * Производная суммы равна сумме производных.
-     *
-     * @param variable переменная, по которой вычисляется производная
-     * @return выражение, представляющее производную
-     */
-    @Override
-    public Expression derivative(String variable) {
-        return new Add(left.derivative(variable), right.derivative(variable));
+    @Test
+    void testMulDerivative() {
+        Mul mul = new Mul(new Variable("x"), new Variable("y"));
+        Expression derivative = mul.derivative("x");
+        assertEquals("((1*y)+(x*0))", derivative.toString());
     }
 
-    /**
-     * Вычисляет значение операции сложения.
-     *
-     * @param variables карта переменных и их значений
-     * @return сумма значений левого и правого выражений
-     */
-    @Override
-    public int eval(Map<String, Integer> variables) {
-        return left.eval(variables) + right.eval(variables);
+    @Test
+    void testMulDerivativeConstants() {
+        Mul mul = new Mul(new Number(5), new Number(3));
+        Expression derivative = mul.derivative("x");
+        assertEquals("((0*3)+(5*0))", derivative.toString());
+    }
+
+    @Test
+    void testMulToString() {
+        Mul mul = new Mul(new Number(3), new Number(5));
+        assertEquals("(3*5)", mul.toString());
+    }
+
+    @Test
+    void testMulZero() {
+        Mul mul = new Mul(new Number(0), new Number(5));
+        assertEquals(0, mul.eval(Map.of()));
     }
 }
