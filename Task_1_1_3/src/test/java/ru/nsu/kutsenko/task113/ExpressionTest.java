@@ -1,4 +1,4 @@
-package ru.nsu.kutsenko.task113;
+package ru.nsu.kutsenko.Task1_1_3;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
