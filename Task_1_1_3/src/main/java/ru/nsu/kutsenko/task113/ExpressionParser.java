@@ -25,7 +25,8 @@ public class ExpressionParser {
      * Обрабатывает бинарные операции и выражения в скобках.
      *
      * @return распарсенное выражение
-     * @throws ExpressionParseException если достигнут конец выражения или отсутствует закрывающая скобка
+     * @throws ExpressionParseException если достигнут конец выражения
+     *         или отсутствует закрывающая скобка
      */
     private Expression parseExpression() {
         if (pos >= input.length()) {
@@ -76,7 +77,8 @@ public class ExpressionParser {
 
         String atom = sb.toString();
         if (atom.isEmpty()) {
-            throw new ExpressionParseException("Expected number or variable at position " + pos);
+            throw new ExpressionParseException(
+                "Expected number or variable at position " + pos);
         }
 
         try {
