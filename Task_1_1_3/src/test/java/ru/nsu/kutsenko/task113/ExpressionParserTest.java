@@ -89,6 +89,6 @@ class ExpressionParserTest {
     void testParseDeeplyNestedExpression() {
         Expression expr = ExpressionParser.parse("(((a+b)*(c-d))/(e+f))");
         assertNotNull(expr);
-        assertEquals(6, expr.eval("a=5; b=3; c=10; d=2; e=2; f=2"));
+        assertEquals(16, expr.eval("a=5; b=3; c=10; d=2; e=2; f=2"));
     }
 }
