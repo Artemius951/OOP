@@ -6,80 +6,89 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-
 class ExpressionParserTest {
 
     @Test
     void testParseSimpleAddition() {
-        ExpressionParser parser = new ExpressionParser();
-        Expression expr = parser.parse("(3+5)");
+        Expression expr = ExpressionParser.parse("(3+5)");
         assertNotNull(expr);
         assertEquals(8, expr.eval(""));
     }
 
     @Test
     void testParseComplexExpression() {
-        ExpressionParser parser = new ExpressionParser();
-        Expression expr = parser.parse("((x+y)*(a-b))");
+        Expression expr = ExpressionParser.parse("((x+y)*(a-b))");
         assertNotNull(expr);
         assertEquals(30, expr.eval("x=5; y=5; a=10; b=7"));
     }
 
     @Test
     void testParseWithSpaces() {
-        ExpressionParser parser = new ExpressionParser();
-        Expression expr = parser.parse("(  x  +  y  )");
+        Expression expr = ExpressionParser.parse("(  x  +  y  )");
         assertNotNull(expr);
         assertEquals(15, expr.eval("x=10; y=5"));
     }
 
     @Test
     void testParseNumber() {
-        ExpressionParser parser = new ExpressionParser();
-        Expression expr = parser.parse("42");
+        Expression expr = ExpressionParser.parse("42");
         assertNotNull(expr);
         assertEquals(42, expr.eval(""));
     }
 
     @Test
     void testParseVariable() {
-        ExpressionParser parser = new ExpressionParser();
-        Expression expr = parser.parse("myVar");
+        Expression expr = ExpressionParser.parse("myVar");
         assertNotNull(expr);
         assertEquals(100, expr.eval("myVar=100"));
     }
 
     @Test
     void testParseInvalidExpressionThrowsException() {
-        ExpressionParser parser = new ExpressionParser();
-        assertThrows(RuntimeException.class, () -> parser.parse("(3+5"));
+        assertThrows(ExpressionParseException.class, () -> ExpressionParser.parse("(3+5"));
     }
 
     @Test
     void testParseUnknownOperatorThrowsException() {
-        ExpressionParser parser = new ExpressionParser();
-        assertThrows(RuntimeException.class, () -> parser.parse("(3$5)"));
+        assertThrows(UnknownOperatorException.class, () -> ExpressionParser.parse("(3$5)"));
     }
 
     @Test
     void testParseEmptyExpressionThrowsException() {
-        ExpressionParser parser = new ExpressionParser();
-        assertThrows(RuntimeException.class, () -> parser.parse(""));
+        assertThrows(ExpressionParseException.class, () -> ExpressionParser.parse(""));
     }
 
     @Test
     void testParseMultiDigitNumbers() {
-        ExpressionParser parser = new ExpressionParser();
-        Expression expr = parser.parse("(100+200)");
+        Expression expr = ExpressionParser.parse("(100+200)");
         assertNotNull(expr);
         assertEquals(300, expr.eval(""));
     }
 
     @Test
     void testParseMultiLetterVariables() {
-        ExpressionParser parser = new ExpressionParser();
-        Expression expr = parser.parse("(alpha+beta)");
+        Expression expr = ExpressionParser.parse("(alpha+beta)");
         assertNotNull(expr);
         assertEquals(25, expr.eval("alpha=10; beta=15"));
+    }
+
+    @Test
+    void testParseAllOperations() {
+        Expression add = ExpressionParser.parse("(3+5)");
+        Expression sub = ExpressionParser.parse("(10-3)");
+        Expression mul = ExpressionParser.parse("(4*5)");
+        Expression div = ExpressionParser.parse("(20/4)");
+
+        assertEquals(8, add.eval(""));
+        assertEquals(7, sub.eval(""));
+        assertEquals(20, mul.eval(""));
+        assertEquals(5, div.eval(""));
+    }
+
+    @Test
+    void testParseDeeplyNestedExpression() {
+        Expression expr = ExpressionParser.parse("(((a+b)*(c-d))/(e+f))");
+        assertNotNull(expr);
+        assertEquals(6, expr.eval("a=5; b=3; c=10; d=2; e=2; f=2"));
     }
 }

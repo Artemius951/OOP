@@ -50,8 +50,7 @@ public abstract class Expression {
      * @return объект Expression, представляющий распарсенное выражение
      */
     public static Expression parse(String expression) {
-        ExpressionParser parser = new ExpressionParser();
-        return parser.parse(expression);
+        return ExpressionParser.parse(expression); // Прямой вызов статического метода
     }
 
     /**

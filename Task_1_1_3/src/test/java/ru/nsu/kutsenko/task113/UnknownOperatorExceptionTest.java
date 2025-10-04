@@ -15,10 +15,9 @@ class UnknownOperatorExceptionTest {
 
     @Test
     void testUnknownOperatorExceptionThrownInParser() {
-        ExpressionParser parser = new ExpressionParser();
         UnknownOperatorException exception = assertThrows(
             UnknownOperatorException.class,
-            () -> parser.parse("(3$5)")
+            () -> ExpressionParser.parse("(3$5)")
         );
         assertEquals("Parse error: Unknown operator: '$'", exception.getMessage());
     }

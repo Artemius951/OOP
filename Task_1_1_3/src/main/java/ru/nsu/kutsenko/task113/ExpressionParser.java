@@ -5,8 +5,9 @@ package ru.nsu.kutsenko.task113;
  * Преобразует строковое представление выражения в древовидную структуру.
  */
 public class ExpressionParser {
-    private String input;
-    private int pos;
+
+    // Приватный конструктор - нельзя создавать экземпляры
+    private ExpressionParser() {}
 
     /**
      * Парсит строку с математическим выражением.
@@ -14,10 +15,15 @@ public class ExpressionParser {
      * @param expression строка с выражением
      * @return объект Expression, представляющий распарсенное выражение
      */
-    public Expression parse(String expression) {
-        this.input = expression.replaceAll("\\s+", "");
-        this.pos = 0;
-        return parseExpression();
+    public static Expression parse(String expression) {
+        String cleanedInput = expression.replaceAll("\\s+", "");
+        ParseResult result = parseExpression(cleanedInput, 0);
+
+        if (result.position < cleanedInput.length()) {
+            throw new ExpressionParseException("Unexpected characters at position " + result.position);
+        }
+
+        return result.expression;
     }
 
     /**
@@ -28,34 +34,45 @@ public class ExpressionParser {
      * @throws ExpressionParseException если достигнут конец выражения
      *         или отсутствует закрывающая скобка
      */
-    private Expression parseExpression() {
+    private static ParseResult parseExpression(String input, int pos) {
         if (pos >= input.length()) {
             throw new ExpressionParseException("Unexpected end of expression");
         }
 
         if (input.charAt(pos) == '(') {
             pos++;
-            Expression left = parseExpression();
+            ParseResult leftResult = parseExpression(input, pos);
+            Expression left = leftResult.expression;
+            pos = leftResult.position;
+
+            if (pos >= input.length()) {
+                throw new ExpressionParseException("Unexpected end of expression after left operand");
+            }
 
             final char operator = input.charAt(pos);
             pos++;
 
-            Expression right = parseExpression();
+            ParseResult rightResult = parseExpression(input, pos);
+            Expression right = rightResult.expression;
+            pos = rightResult.position;
 
-            if (input.charAt(pos) != ')') {
+            if (pos >= input.length() || input.charAt(pos) != ')') {
                 throw new ExpressionParseException("Expected ')' at position " + pos);
             }
             pos++;
 
+            Expression operation;
             switch (operator) {
-                case '+': return new Add(left, right);
-                case '-': return new Sub(left, right);
-                case '*': return new Mul(left, right);
-                case '/': return new Div(left, right);
+                case '+': operation = new Add(left, right); break;
+                case '-': operation = new Sub(left, right); break;
+                case '*': operation = new Mul(left, right); break;
+                case '/': operation = new Div(left, right); break;
                 default: throw new UnknownOperatorException(operator);
             }
+
+            return new ParseResult(operation, pos);
         } else {
-            return parseAtom();
+            return parseAtom(input, pos);
         }
     }
 
@@ -65,7 +82,7 @@ public class ExpressionParser {
      * @return Number для чисел или Variable для переменных
      * @throws ExpressionParseException если атом пустой
      */
-    private Expression parseAtom() {
+    private static ParseResult parseAtom(String input, int pos) {
         StringBuilder sb = new StringBuilder();
 
         while (pos < input.length()
@@ -83,9 +100,22 @@ public class ExpressionParser {
 
         try {
             int value = Integer.parseInt(atom);
-            return new Number(value);
+            return new ParseResult(new Number(value), pos);
         } catch (NumberFormatException e) {
-            return new Variable(atom);
+            return new ParseResult(new Variable(atom), pos);
+        }
+    }
+
+    /**
+     * Вспомогательный класс для возврата результата парсинга
+     */
+    private static class ParseResult {
+        final Expression expression;
+        final int position;
+
+        ParseResult(Expression expression, int position) {
+            this.expression = expression;
+            this.position = position;
         }
     }
 }
