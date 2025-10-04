@@ -20,7 +20,8 @@ public class ExpressionParser {
         ParseResult result = parseExpression(cleanedInput, 0);
 
         if (result.position < cleanedInput.length()) {
-            throw new ExpressionParseException("Unexpected characters at position " + result.position);
+            throw new ExpressionParseException(
+                "Unexpected characters at position " + result.position);
         }
 
         return result.expression;
@@ -46,7 +47,8 @@ public class ExpressionParser {
             pos = leftResult.position;
 
             if (pos >= input.length()) {
-                throw new ExpressionParseException("Unexpected end of expression after left operand");
+                throw new ExpressionParseException(
+                    "Unexpected end of expression after left operand");
             }
 
             final char operator = input.charAt(pos);
@@ -63,11 +65,20 @@ public class ExpressionParser {
 
             Expression operation;
             switch (operator) {
-                case '+': operation = new Add(left, right); break;
-                case '-': operation = new Sub(left, right); break;
-                case '*': operation = new Mul(left, right); break;
-                case '/': operation = new Div(left, right); break;
-                default: throw new UnknownOperatorException(operator);
+                case '+':
+                    operation = new Add(left, right);
+                    break;
+                case '-':
+                    operation = new Sub(left, right);
+                    break;
+                case '*':
+                    operation = new Mul(left, right);
+                    break;
+                case '/':
+                    operation = new Div(left, right);
+                    break;
+                default:
+                    throw new UnknownOperatorException(operator);
             }
 
             return new ParseResult(operation, pos);
@@ -107,7 +118,7 @@ public class ExpressionParser {
     }
 
     /**
-     * Вспомогательный класс для возврата результата парсинга
+     * Вспомогательный класс для возврата результата парсинга.
      */
     private static class ParseResult {
         final Expression expression;
