@@ -76,12 +76,15 @@ class ExpressionParserTest {
     @Test
     void testParseAllOperations() {
         Expression add = ExpressionParser.parse("(3+5)");
-        Expression sub = ExpressionParser.parse("(10-3)");
-        Expression mul = ExpressionParser.parse("(4*5)");
-        Expression div = ExpressionParser.parse("(20/4)");
         assertEquals(8, add.eval(""));
+
+        Expression sub = ExpressionParser.parse("(10-3)");
         assertEquals(7, sub.eval(""));
+
+        Expression mul = ExpressionParser.parse("(4*5)");
         assertEquals(20, mul.eval(""));
+
+        Expression div = ExpressionParser.parse("(20/4)");
         assertEquals(5, div.eval(""));
     }
 
@@ -151,12 +154,15 @@ class ExpressionParserTest {
     @Test
     void testParseWithoutParenthesesAllOperations() {
         Expression add = ExpressionParser.parseWithoutParentheses("3+5");
-        Expression sub = ExpressionParser.parseWithoutParentheses("10-3");
-        Expression mul = ExpressionParser.parseWithoutParentheses("4*5");
-        Expression div = ExpressionParser.parseWithoutParentheses("20/4");
         assertEquals(8, add.eval(""));
+
+        Expression sub = ExpressionParser.parseWithoutParentheses("10-3");
         assertEquals(7, sub.eval(""));
+
+        Expression mul = ExpressionParser.parseWithoutParentheses("4*5");
         assertEquals(20, mul.eval(""));
+
+        Expression div = ExpressionParser.parseWithoutParentheses("20/4");
         assertEquals(5, div.eval(""));
     }
 
