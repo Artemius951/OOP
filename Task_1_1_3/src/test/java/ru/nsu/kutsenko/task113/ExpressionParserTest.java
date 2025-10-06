@@ -79,7 +79,6 @@ class ExpressionParserTest {
         Expression sub = ExpressionParser.parse("(10-3)");
         Expression mul = ExpressionParser.parse("(4*5)");
         Expression div = ExpressionParser.parse("(20/4)");
-
         assertEquals(8, add.eval(""));
         assertEquals(7, sub.eval(""));
         assertEquals(20, mul.eval(""));
@@ -155,7 +154,6 @@ class ExpressionParserTest {
         Expression sub = ExpressionParser.parseWithoutParentheses("10-3");
         Expression mul = ExpressionParser.parseWithoutParentheses("4*5");
         Expression div = ExpressionParser.parseWithoutParentheses("20/4");
-
         assertEquals(8, add.eval(""));
         assertEquals(7, sub.eval(""));
         assertEquals(20, mul.eval(""));

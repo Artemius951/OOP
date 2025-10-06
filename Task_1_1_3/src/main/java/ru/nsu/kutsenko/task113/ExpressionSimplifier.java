@@ -42,6 +42,7 @@ public class ExpressionSimplifier {
                 int result = operation.eval(emptyVars);
                 return new Number(result);
             } catch (ExpressionEvaluationException e) {
+
             }
         }
 
@@ -57,7 +58,6 @@ public class ExpressionSimplifier {
 
         return recreateOperation(operation, left, right);
     }
-
     /**
      * Проверяет, можно ли вычислить выражение без переменных.
      */
