@@ -42,7 +42,8 @@ public class ExpressionSimplifier {
                 int result = operation.eval(emptyVars);
                 return new Number(result);
             } catch (ExpressionEvaluationException e) {
-
+                // Игнорируем исключение - продолжаем упрощение другими методами
+                // Был исправлен пустой блок catch
             }
         }
 
@@ -58,6 +59,7 @@ public class ExpressionSimplifier {
 
         return recreateOperation(operation, left, right);
     }
+
     /**
      * Проверяет, можно ли вычислить выражение без переменных.
      */
