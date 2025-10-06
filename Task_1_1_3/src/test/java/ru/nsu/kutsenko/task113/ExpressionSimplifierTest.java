@@ -158,8 +158,6 @@ class ExpressionSimplifierTest {
         assertEquals(0, ((Number) simplified).getValue());
     }
 
-    // ДОПОЛНИТЕЛЬНЫЕ ТЕСТЫ
-
     @Test
     void testSimplifyNumberDoesNotChange() {
         Expression num = new Number(42);
@@ -180,7 +178,8 @@ class ExpressionSimplifierTest {
 
     @Test
     void testSimplifyMultipleZeroMultiplications() {
-        Expression expr = new Mul(new Mul(new Number(0), new Variable("x")), new Variable("y"));
+        Expression expr = new Mul(new Mul(new Number(0), new Variable("x")),
+            new Variable("y"));
         Expression simplified = expr.simplify();
         assertTrue(simplified instanceof Number);
         assertEquals(0, ((Number) simplified).getValue());
@@ -188,7 +187,8 @@ class ExpressionSimplifierTest {
 
     @Test
     void testSimplifyMultipleOneMultiplications() {
-        Expression expr = new Mul(new Mul(new Number(1), new Variable("x")), new Number(1));
+        Expression expr = new Mul(new Mul(new Number(1), new Variable("x")),
+            new Number(1));
         Expression simplified = expr.simplify();
         assertTrue(simplified instanceof Variable);
         assertEquals("x", ((Variable) simplified).getName());
@@ -196,7 +196,8 @@ class ExpressionSimplifierTest {
 
     @Test
     void testSimplifyAdditionWithConstants() {
-        Expression expr = new Add(new Add(new Number(2), new Number(3)), new Number(4));
+        Expression expr = new Add(new Add(new Number(2), new Number(3)),
+            new Number(4));
         Expression simplified = expr.simplify();
         assertTrue(simplified instanceof Number);
         assertEquals(9, ((Number) simplified).getValue());
@@ -204,7 +205,8 @@ class ExpressionSimplifierTest {
 
     @Test
     void testSimplifyMultiplicationWithConstants() {
-        Expression expr = new Mul(new Mul(new Number(2), new Number(3)), new Number(4));
+        Expression expr = new Mul(new Mul(new Number(2), new Number(3)),
+            new Number(4));
         Expression simplified = expr.simplify();
         assertTrue(simplified instanceof Number);
         assertEquals(24, ((Number) simplified).getValue());
@@ -234,7 +236,7 @@ class ExpressionSimplifierTest {
         );
         Expression simplified = expr.simplify();
         assertTrue(simplified instanceof Number);
-        assertEquals(11, ((Number) simplified).getValue()); // 2*3 + 10/2 = 6 + 5 = 11
+        assertEquals(11, ((Number) simplified).getValue());
     }
 
     @Test
@@ -277,10 +279,10 @@ class ExpressionSimplifierTest {
     @Test
     void testSimplifyComplexExpressionWithAllRules() {
         Expression expr = new Add(
-            new Mul(new Number(0), new Variable("a")), // 0 * a = 0
+            new Mul(new Number(0), new Variable("a")),
             new Sub(
-                new Mul(new Number(1), new Variable("b")), // 1 * b = b
-                new Variable("b") // b - b = 0
+                new Mul(new Number(1), new Variable("b")),
+                new Variable("b")
             )
         );
         Expression simplified = expr.simplify();
@@ -291,8 +293,8 @@ class ExpressionSimplifierTest {
     @Test
     void testSimplifyDeeplyNestedExpression() {
         Expression expr = new Mul(
-            new Add(new Number(0), new Variable("x")), // 0 + x = x
-            new Sub(new Variable("y"), new Variable("y")) // y - y = 0
+            new Add(new Number(0), new Variable("x")),
+            new Sub(new Variable("y"), new Variable("y"))
         );
         Expression simplified = expr.simplify();
         assertTrue(simplified instanceof Number);
@@ -303,7 +305,6 @@ class ExpressionSimplifierTest {
     void testSimplifyWithDifferentVariables() {
         Expression expr = new Add(new Variable("x"), new Variable("y"));
         Expression simplified = expr.simplify();
-        // Должно остаться сложением, так как переменные разные
         assertTrue(simplified instanceof Add);
         assertEquals("(x+y)", simplified.toString());
     }
@@ -312,7 +313,6 @@ class ExpressionSimplifierTest {
     void testSimplifyDivisionZeroByZero() {
         Expression expr = new Div(new Number(0), new Number(0));
         Expression simplified = expr.simplify();
-        // Должно остаться делением, так как деление 0/0 не определено
         assertTrue(simplified instanceof Div);
         assertEquals("(0/0)", simplified.toString());
     }
@@ -336,9 +336,7 @@ class ExpressionSimplifierTest {
         );
         Expression simplified = original.simplify();
 
-        // Оригинальное выражение должно вычисляться в 6 + 0 = 6
         assertEquals(6, original.eval(java.util.Map.of("x", 10)));
-        // Упрощенное выражение должно вычисляться в 6
         assertEquals(6, simplified.eval(java.util.Map.of("x", 10)));
     }
 
@@ -350,7 +348,6 @@ class ExpressionSimplifierTest {
         );
         Expression simplified = expr.simplify();
 
-        // Должно упроститься до x
         assertTrue(simplified instanceof Variable);
         assertEquals("x", simplified.toString());
     }
@@ -380,5 +377,236 @@ class ExpressionSimplifierTest {
         Expression simplified = expr.simplify();
         assertTrue(simplified instanceof Number);
         assertEquals(0, ((Number) simplified).getValue());
+    }
+
+    @Test
+    void testSimplifyAdditionBothZero() {
+        Expression expr = new Add(new Number(0), new Number(0));
+        Expression simplified = expr.simplify();
+        assertTrue(simplified instanceof Number);
+        assertEquals(0, ((Number) simplified).getValue());
+    }
+
+    @Test
+    void testSimplifySubtractionBothZero() {
+        Expression expr = new Sub(new Number(0), new Number(0));
+        Expression simplified = expr.simplify();
+        assertTrue(simplified instanceof Number);
+        assertEquals(0, ((Number) simplified).getValue());
+    }
+
+    @Test
+    void testSimplifyMultiplicationBothOne() {
+        Expression expr = new Mul(new Number(1), new Number(1));
+        Expression simplified = expr.simplify();
+        assertTrue(simplified instanceof Number);
+        assertEquals(1, ((Number) simplified).getValue());
+    }
+
+    @Test
+    void testSimplifyDivisionBothOne() {
+        Expression expr = new Div(new Number(1), new Number(1));
+        Expression simplified = expr.simplify();
+        assertTrue(simplified instanceof Number);
+        assertEquals(1, ((Number) simplified).getValue());
+    }
+
+    @Test
+    void testSimplifyComplexExpressionWithMultipleVariables() {
+        Expression expr = new Add(
+            new Mul(new Number(0), new Variable("a")),
+            new Add(
+                new Mul(new Number(1), new Variable("b")),
+                new Sub(new Variable("c"), new Variable("c"))
+            )
+        );
+        Expression simplified = expr.simplify();
+        assertTrue(simplified instanceof Variable);
+        assertEquals("b", ((Variable) simplified).getName());
+    }
+
+    @Test
+    void testSimplifyNestedMultiplicationWithZero() {
+        Expression expr = new Mul(
+            new Mul(new Number(0), new Variable("x")),
+            new Mul(new Variable("y"), new Number(0))
+        );
+        Expression simplified = expr.simplify();
+        assertTrue(simplified instanceof Number);
+        assertEquals(0, ((Number) simplified).getValue());
+    }
+
+    @Test
+    void testSimplifyNestedAdditionWithZero() {
+        Expression expr = new Add(
+            new Add(new Number(0), new Variable("x")),
+            new Add(new Variable("y"), new Number(0))
+        );
+        Expression simplified = expr.simplify();
+        assertTrue(simplified instanceof Add);
+        assertEquals("(x+y)", simplified.toString());
+    }
+
+    @Test
+    void testSimplifyExpressionWithOnlyConstants() {
+        Expression expr = new Add(
+            new Mul(new Number(2), new Number(3)),
+            new Div(new Number(8), new Number(2))
+        );
+        Expression simplified = expr.simplify();
+        assertTrue(simplified instanceof Number);
+        assertEquals(10, ((Number) simplified).getValue());
+    }
+
+    @Test
+    void testSimplifyExpressionWithMixedConstantsAndVariables() {
+        Expression expr = new Add(
+            new Mul(new Number(0), new Variable("x")),
+            new Add(new Number(5), new Number(3))
+        );
+        Expression simplified = expr.simplify();
+        assertTrue(simplified instanceof Number);
+        assertEquals(8, ((Number) simplified).getValue());
+    }
+
+    @Test
+    void testSimplifyDeepNestedComplexExpression() {
+        Expression expr = new Div(
+            new Mul(
+                new Add(new Number(1), new Number(0)),
+                new Sub(new Variable("x"), new Variable("x"))
+            ),
+            new Add(new Number(1), new Number(0))
+        );
+        Expression simplified = expr.simplify();
+        assertTrue(simplified instanceof Number);
+        assertEquals(0, ((Number) simplified).getValue());
+    }
+
+    @Test
+    void testSimplifyExpressionWithRepeatedVariables() {
+        Expression expr = new Add(
+            new Variable("x"),
+            new Add(new Variable("x"), new Variable("x"))
+        );
+        Expression simplified = expr.simplify();
+        assertTrue(simplified instanceof Add);
+        assertEquals("(x+(x+x))", simplified.toString());
+    }
+
+    @Test
+    void testSimplifyBinaryOperationWithConstantsOnBothSides() {
+        Expression expr = new Add(new Number(5), new Number(7));
+        Expression simplified = expr.simplify();
+        assertTrue(simplified instanceof Number);
+        assertEquals(12, ((Number) simplified).getValue());
+    }
+
+    @Test
+    void testSimplifyBinaryOperationWithVariablesOnBothSides() {
+        Expression expr = new Add(new Variable("a"), new Variable("b"));
+        Expression simplified = expr.simplify();
+        assertTrue(simplified instanceof Add);
+        assertEquals("(a+b)", simplified.toString());
+    }
+
+    @Test
+    void testSimplifyBinaryOperationWithMixedSides() {
+        Expression expr = new Add(new Number(5), new Variable("x"));
+        Expression simplified = expr.simplify();
+        assertTrue(simplified instanceof Add);
+        assertEquals("(5+x)", simplified.toString());
+    }
+
+    @Test
+    void testSimplifyComplexExpressionWithNoSimplificationPossible() {
+        Expression expr = new Add(
+            new Variable("x"),
+            new Mul(new Variable("y"), new Variable("z"))
+        );
+        Expression simplified = expr.simplify();
+        assertTrue(simplified instanceof Add);
+        assertEquals("(x+(y*z))", simplified.toString());
+    }
+
+    @Test
+    void testSimplifyExpressionWithDivisionByNonOneConstant() {
+        Expression expr = new Div(new Variable("x"), new Number(2));
+        Expression simplified = expr.simplify();
+        assertTrue(simplified instanceof Div);
+        assertEquals("(x/2)", simplified.toString());
+    }
+
+    @Test
+    void testSimplifyExpressionWithSubtractionNonZero() {
+        Expression expr = new Sub(new Variable("x"), new Number(2));
+        Expression simplified = expr.simplify();
+        assertTrue(simplified instanceof Sub);
+        assertEquals("(x-2)", simplified.toString());
+    }
+
+    @Test
+    void testSimplifyExpressionWithAdditionNonZero() {
+        Expression expr = new Add(new Variable("x"), new Number(2));
+        Expression simplified = expr.simplify();
+        assertTrue(simplified instanceof Add);
+        assertEquals("(x+2)", simplified.toString());
+    }
+
+    @Test
+    void testSimplifyExpressionWithMultiplicationNonOneOrZero() {
+        Expression expr = new Mul(new Variable("x"), new Number(2));
+        Expression simplified = expr.simplify();
+        assertTrue(simplified instanceof Mul);
+        assertEquals("(x*2)", simplified.toString());
+    }
+
+    @Test
+    void testSimplifyVeryDeepExpression() {
+        Expression expr = new Number(1);
+        for (int i = 0; i < 5; i++) {
+            expr = new Add(expr, new Number(0));
+        }
+        Expression simplified = expr.simplify();
+        assertTrue(simplified instanceof Number);
+        assertEquals(1, ((Number) simplified).getValue());
+    }
+
+    @Test
+    void testSimplifyExpressionWithAllBinaryOperations() {
+        Expression expr = new Add(
+            new Sub(new Variable("x"), new Variable("x")), // 0
+            new Mul(
+                new Div(new Variable("y"), new Variable("y")), // 1
+                new Number(5)
+            )
+        );
+        Expression simplified = expr.simplify();
+        assertTrue(simplified instanceof Number);
+        assertEquals(5, ((Number) simplified).getValue());
+    }
+
+    @Test
+    void testSimplifyExpressionEvaluationWithVariables() {
+        Expression expr = new Add(
+            new Mul(new Number(2), new Variable("x")),
+            new Sub(new Variable("x"), new Variable("x"))
+        );
+        Expression simplified = expr.simplify();
+        assertEquals(20, simplified.eval(java.util.Map.of("x", 10)));
+    }
+
+    @Test
+    void testSimplifyComplexMixedExpression() {
+        Expression expr = new Mul(
+            new Add(new Number(1), new Number(0)), 
+            new Sub(
+                new Div(new Variable("x"), new Number(1)),
+                new Mul(new Number(0), new Variable("y"))
+            )
+        );
+        Expression simplified = expr.simplify();
+        assertTrue(simplified instanceof Variable);
+        assertEquals("x", ((Variable) simplified).getName());
     }
 }
