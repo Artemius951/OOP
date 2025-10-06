@@ -355,13 +355,15 @@ class ExpressionSimplifierTest {
     @Test
     void testSimplifyPreservesExpressionType() {
         Expression add = new Add(new Variable("x"), new Number(0)).simplify();
-        Expression sub = new Sub(new Variable("x"), new Number(0)).simplify();
-        Expression mul = new Mul(new Variable("x"), new Number(1)).simplify();
-        Expression div = new Div(new Variable("x"), new Number(1)).simplify();
-
         assertTrue(add instanceof Variable);
+
+        Expression sub = new Sub(new Variable("x"), new Number(0)).simplify();
         assertTrue(sub instanceof Variable);
+
+        Expression mul = new Mul(new Variable("x"), new Number(1)).simplify();
         assertTrue(mul instanceof Variable);
+
+        Expression div = new Div(new Variable("x"), new Number(1)).simplify();
         assertTrue(div instanceof Variable);
     }
 
@@ -599,7 +601,7 @@ class ExpressionSimplifierTest {
     @Test
     void testSimplifyComplexMixedExpression() {
         Expression expr = new Mul(
-            new Add(new Number(1), new Number(0)), 
+            new Add(new Number(1), new Number(0)),
             new Sub(
                 new Div(new Variable("x"), new Number(1)),
                 new Mul(new Number(0), new Variable("y"))

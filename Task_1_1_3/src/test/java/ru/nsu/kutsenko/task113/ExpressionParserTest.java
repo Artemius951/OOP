@@ -78,7 +78,7 @@ class ExpressionParserTest {
         Expression add = ExpressionParser.parse("(3+5)");
         Expression sub = ExpressionParser.parse("(10-3)");
         Expression mul = ExpressionParser.parse("(4*5)");
-        final Expression div = ExpressionParser.parse("(20/4)");
+        Expression div = ExpressionParser.parse("(20/4)");
 
         assertEquals(8, add.eval(""));
         assertEquals(7, sub.eval(""));

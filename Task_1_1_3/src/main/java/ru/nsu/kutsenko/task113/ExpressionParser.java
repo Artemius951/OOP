@@ -9,7 +9,6 @@ import java.util.List;
  */
 public class ExpressionParser {
 
-    // Приватный конструктор - нельзя создавать экземпляры
     private ExpressionParser() {}
 
     /**
