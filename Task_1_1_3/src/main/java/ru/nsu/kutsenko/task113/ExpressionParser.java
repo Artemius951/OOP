@@ -1,5 +1,8 @@
 package ru.nsu.kutsenko.task113;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Парсер математических выражений.
  * Преобразует строковое представление выражения в древовидную структуру.
@@ -25,6 +28,124 @@ public class ExpressionParser {
         }
 
         return result.expression;
+    }
+
+    /**
+     * Парсит строку с математическим выражением без обязательных скобок.
+     * Поддерживает стандартные приоритеты операций.
+     *
+     * @param expression строка с выражением
+     * @return объект Expression, представляющий распарсенное выражение
+     */
+    public static Expression parseWithoutParentheses(String expression) {
+        String cleanedInput = expression.replaceAll("\\s+", "");
+        return parseExpressionWithoutParentheses(cleanedInput);
+    }
+
+    /**
+     * Парсит выражение без скобок с учетом приоритетов операций.
+     */
+    private static Expression parseExpressionWithoutParentheses(String input) {
+        List<Object> tokens = tokenize(input);
+        return parseExpressionFromTokens(tokens, 0, tokens.size() - 1);
+    }
+
+    /**
+     * Разбивает строку на токены: числа, переменные и операторы.
+     */
+    private static List<Object> tokenize(String input) {
+        List<Object> tokens = new ArrayList<>();
+        int pos = 0;
+
+        while (pos < input.length()) {
+            char c = input.charAt(pos);
+
+            if (Character.isDigit(c)) {
+                StringBuilder sb = new StringBuilder();
+                while (pos < input.length() && Character.isDigit(input.charAt(pos))) {
+                    sb.append(input.charAt(pos));
+                    pos++;
+                }
+                tokens.add(new Number(Integer.parseInt(sb.toString())));
+            } else if (Character.isLetter(c)) {
+                StringBuilder sb = new StringBuilder();
+                while (pos < input.length() && Character.isLetterOrDigit(input.charAt(pos))) {
+                    sb.append(input.charAt(pos));
+                    pos++;
+                }
+                tokens.add(new Variable(sb.toString()));
+            } else if (isOperator(c)) {
+                tokens.add(Character.valueOf(c));
+                pos++;
+            } else {
+                throw new ExpressionParseException("Unexpected character: '" + c + "' at position "
+                    + pos);
+            }
+        }
+
+        return tokens;
+    }
+
+    /**
+     * Парсит выражение из списка токенов с учетом приоритетов.
+     */
+    private static Expression parseExpressionFromTokens(List<Object> tokens, int start, int end) {
+        if (start > end) {
+            throw new ExpressionParseException("Empty expression");
+        }
+        for (int i = end; i >= start; i--) {
+            Object token = tokens.get(i);
+            if (token instanceof Character) {
+                char op = (Character) token;
+                if (op == '+' || op == '-') {
+                    Expression left = parseExpressionFromTokens(tokens, start, i - 1);
+                    Expression right = parseExpressionFromTokens(tokens, i + 1, end);
+                    return createOperation(left, right, op);
+                }
+            }
+        }
+        for (int i = end; i >= start; i--) {
+            Object token = tokens.get(i);
+            if (token instanceof Character) {
+                char op = (Character) token;
+                if (op == '*' || op == '/') {
+                    Expression left = parseExpressionFromTokens(tokens, start, i - 1);
+                    Expression right = parseExpressionFromTokens(tokens, i + 1, end);
+                    return createOperation(left, right, op);
+                }
+            }
+        }
+
+        if (start == end) {
+            Object token = tokens.get(start);
+            if (token instanceof Expression) {
+                return (Expression) token;
+            } else {
+                throw new ExpressionParseException("Expected expression, found: " + token);
+            }
+        }
+
+        throw new ExpressionParseException("Invalid expression structure");
+    }
+
+    /**
+     * Создает операцию на основе оператора.
+     */
+    private static Expression createOperation(Expression left, Expression right, char op) {
+        switch (op) {
+            case '+': return new Add(left, right);
+            case '-': return new Sub(left, right);
+            case '*': return new Mul(left, right);
+            case '/': return new Div(left, right);
+            default: throw new UnknownOperatorException(op);
+        }
+    }
+
+    /**
+     * Проверяет, является ли символ оператором.
+     */
+    private static boolean isOperator(char c) {
+        return c == '+' || c == '-' || c == '*' || c == '/';
     }
 
     /**

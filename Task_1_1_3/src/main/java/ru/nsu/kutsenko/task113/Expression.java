@@ -50,7 +50,26 @@ public abstract class Expression {
      * @return объект Expression, представляющий распарсенное выражение
      */
     public static Expression parse(String expression) {
-        return ExpressionParser.parse(expression); // Прямой вызов статического метода
+        return ExpressionParser.parse(expression);
+    }
+
+    /**
+     * Статический метод для парсинга строки в выражение без скобок.
+     *
+     * @param expression строка с математическим выражением
+     * @return объект Expression, представляющий распарсенное выражение
+     */
+    public static Expression parseWithoutParentheses(String expression) {
+        return ExpressionParser.parseWithoutParentheses(expression);
+    }
+
+    /**
+     * Упрощает выражение по заданным правилам.
+     *
+     * @return новое упрощенное выражение
+     */
+    public Expression simplify() {
+        return ExpressionSimplifier.simplify(this);
     }
 
     /**
