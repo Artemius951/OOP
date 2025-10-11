@@ -38,4 +38,26 @@ public abstract class BinaryOperation extends Expression {
     public String toString() {
         return "(" + left.toString() + getOperator() + right.toString() + ")";
     }
+
+    /**
+     * Упрощает бинарную операцию: сначала упрощает операнды,
+     * затем применяет специфичные для операции правила упрощения.
+     *
+     * @return упрощенное выражение
+     */
+    @Override
+    public Expression simplify() {
+        Expression simplifiedLeft = left.simplify();
+        Expression simplifiedRight = right.simplify();
+        return simplifySpecific(simplifiedLeft, simplifiedRight);
+    }
+
+    /**
+     * Абстрактный метод для применения специфичных правил упрощения операции.
+     *
+     * @param left  упрощенное левое выражение
+     * @param right упрощенное правое выражение
+     * @return упрощенное выражение
+     */
+    protected abstract Expression simplifySpecific(Expression left, Expression right);
 }

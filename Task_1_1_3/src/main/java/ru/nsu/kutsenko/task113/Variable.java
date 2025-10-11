@@ -56,6 +56,16 @@ public class Variable extends Expression {
     }
 
     /**
+     * Упрощает переменную - возвращает саму себя.
+     *
+     * @return this
+     */
+    @Override
+    public Expression simplify() {
+        return this;
+    }
+
+    /**
      * Возвращает имя переменной.
      *
      * @return имя переменной

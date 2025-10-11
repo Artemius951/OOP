@@ -44,6 +44,13 @@ public abstract class Expression {
     public abstract String toString();
 
     /**
+     * Упрощает выражение, применяя правила упрощения.
+     *
+     * @return новое упрощенное выражение
+     */
+    public abstract Expression simplify();
+
+    /**
      * Статический метод для парсинга строки в выражение.
      *
      * @param expression строка с математическим выражением
@@ -61,15 +68,6 @@ public abstract class Expression {
      */
     public static Expression parseWithoutParentheses(String expression) {
         return ExpressionParser.parseWithoutParentheses(expression);
-    }
-
-    /**
-     * Упрощает выражение по заданным правилам.
-     *
-     * @return новое упрощенное выражение
-     */
-    public Expression simplify() {
-        return ExpressionSimplifier.simplify(this);
     }
 
     /**

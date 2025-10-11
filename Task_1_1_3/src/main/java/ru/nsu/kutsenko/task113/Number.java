@@ -51,6 +51,16 @@ public class Number extends Expression {
     }
 
     /**
+     * Упрощает числовую константу - возвращает саму себя.
+     *
+     * @return this
+     */
+    @Override
+    public Expression simplify() {
+        return this;
+    }
+
+    /**
      * Возвращает значение числа.
      *
      * @return числовое значение
