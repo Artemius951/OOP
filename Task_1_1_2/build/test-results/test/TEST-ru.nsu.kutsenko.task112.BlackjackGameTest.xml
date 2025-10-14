@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.nsu.kutsenko.task112.BlackjackGameTest" tests="38" skipped="0" failures="0" errors="0" timestamp="2025-09-18T11:33:08.832Z" hostname="ARTEMIUS951" time="0.123">
+  <properties/>
+  <testcase name="testMainMethodWithValidInput()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.046"/>
+  <testcase name="testNotBlackjackWithThreeCards()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.002"/>
+  <testcase name="testPlayerTurnStand()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.003"/>
+  <testcase name="testDetermineWinnerDealerBust()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.001"/>
+  <testcase name="testDetermineWinnerDealerWins()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.002"/>
+  <testcase name="testPlayerBlackjackWithAceAndTen()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.001"/>
+  <testcase name="testPlayRoundDealerBust()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.002"/>
+  <testcase name="testDetermineWinnerBothBust()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.002"/>
+  <testcase name="testDetermineWinnerPlayerWinsHigherScore()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.001"/>
+  <testcase name="testDetermineWinnerPlayerBust()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.001"/>
+  <testcase name="testDetermineWinnerPlayerWins()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.002"/>
+  <testcase name="testDisplayGameStateDealerRevealed()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.001"/>
+  <testcase name="testPlayRoundPlayerBust()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.002"/>
+  <testcase name="testDetermineWinnerDealerWinsHigherScore()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.0"/>
+  <testcase name="testCheckBlackjackBoth()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.001"/>
+  <testcase name="testCheckBlackjackNone()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.001"/>
+  <testcase name="testPlayerTurnBust()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.001"/>
+  <testcase name="testCheckBlackjackDealer()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.001"/>
+  <testcase name="testPlayRoundWithBothBlackjack()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.001"/>
+  <testcase name="testGameInitialization()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.002"/>
+  <testcase name="testDetermineWinnerTie()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.001"/>
+  <testcase name="testPlayerBlackjackWithAceAndPicture()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.0"/>
+  <testcase name="testCheckBlackjackPlayer()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.001"/>
+  <testcase name="testDealerRevealAllCards()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.001"/>
+  <testcase name="testDealerTurnExact16()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.001"/>
+  <testcase name="testDealerTurnExact17()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.001"/>
+  <testcase name="testHasSoft17False()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.001"/>
+  <testcase name="testDealerTurnBust()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.001"/>
+  <testcase name="testPlayRoundWithPlayerBlackjack()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.002"/>
+  <testcase name="testDealerTurnHard17()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.001"/>
+  <testcase name="testDisplayGameStateDealerHidden()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.001"/>
+  <testcase name="testDealerTurnUnder17()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.001"/>
+  <testcase name="testDealerTurnOver17()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.001"/>
+  <testcase name="testHasSoft17True()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.0"/>
+  <testcase name="testDealerTurnSoft17()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.002"/>
+  <testcase name="testDisplayGameState()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.002"/>
+  <testcase name="testHandValueCalculationOptimalAceUsage()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.002"/>
+  <testcase name="testPlayRoundWithDealerBlackjack()" classname="ru.nsu.kutsenko.task112.BlackjackGameTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Ожидаемое исключение в тесте: NoSuchElementException
+]]></system-err>
+</testsuite>

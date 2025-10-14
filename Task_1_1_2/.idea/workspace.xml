@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ed53dbba-97eb-40a8-b23e-bf7027dd2bdf" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Task_1_1_2" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="32Y1KauJvHLg4PaVRTpNuMYHuBU" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.BlackjackGameTest.executor": "Run",
+    "Gradle.BlackjackGameTest.testBothBlackjack.executor": "Run",
+    "Gradle.BlackjackGameTest.testCheckBlackjackBothHaveBlackjack.executor": "Run",
+    "Gradle.BlackjackGameTest.testCheckBlackjackDealer.executor": "Run",
+    "Gradle.BlackjackGameTest.testCheckBlackjackPlayer.executor": "Run",
+    "Gradle.BlackjackGameTest.testDealerBusts.executor": "Run",
+    "Gradle.BlackjackGameTest.testDealerMultipleAces.executor": "Run",
+    "Gradle.BlackjackGameTest.testDealerTurnSoft17.executor": "Run",
+    "Gradle.BlackjackGameTest.testDeckNumberBoundaries.executor": "Run",
+    "Gradle.BlackjackGameTest.testDeckShuffleWhenLowOnCards.executor": "Run",
+    "Gradle.BlackjackGameTest.testDetermineWinnerDealerBust.executor": "Run",
+    "Gradle.BlackjackGameTest.testDetermineWinnerPlayerBust.executor": "Run",
+    "Gradle.BlackjackGameTest.testDetermineWinnerTie.executor": "Run",
+    "Gradle.BlackjackGameTest.testDetermineWinnerWithEqualScores.executor": "Run",
+    "Gradle.BlackjackGameTest.testHasSoft17WithMultipleAces.executor": "Run",
+    "Gradle.BlackjackGameTest.testInvalidPlayerInput.executor": "Run",
+    "Gradle.BlackjackGameTest.testMainMethodWithInvalidInputThenValid.executor": "Run",
+    "Gradle.BlackjackGameTest.testMainMethodWithValidInput.executor": "Run",
+    "Gradle.BlackjackGameTest.testPlayRound.executor": "Run",
+    "Gradle.BlackjackGameTest.testPlayRoundDealerBust.executor": "Run",
+    "Gradle.BlackjackGameTest.testPlayRoundDealerBusts.executor": "Run",
+    "Gradle.BlackjackGameTest.testPlayRoundPlayerBust.executor": "Run",
+    "Gradle.BlackjackGameTest.testPlayRoundPlayerBusts.executor": "Run",
+    "Gradle.BlackjackGameTest.testPlayerBlackjackWins.executor": "Run",
+    "Gradle.BlackjackGameTest.testPlayerBusts.executor": "Run",
+    "Gradle.BlackjackGameTest.testPlayerTurnAutoStopAt21.executor": "Run",
+    "Gradle.BlackjackGameTest.testPlayerTurnBust.executor": "Run",
+    "Gradle.BlackjackGameTest.testPlayerTurnHit.executor": "Run",
+    "Gradle.BlackjackGameTest.testPlayerTurnHitAndStay.executor": "Run",
+    "Gradle.BlackjackGameTest.testPlayerTurnStand.executor": "Run",
+    "Gradle.BlackjackGameTest.testPlayerTurnStandImmediately.executor": "Run",
+    "Gradle.BlackjackGameTest.testPlayerTurnWithValidInput.executor": "Run",
+    "Gradle.BlackjackGameTest.testStartGameEarlyExit.executor": "Run",
+    "Gradle.BlackjackGameTest.testStartGameSingleRound.executor": "Run",
+    "Gradle.BlackjackGameTest.testTieGame.executor": "Run",
+    "Gradle.CardTest.executor": "Run",
+    "Gradle.CardTest.testCardCreation.executor": "Run",
+    "Gradle.DealerTest.executor": "Run",
+    "Gradle.DealerTest.testToString.executor": "Run",
+    "Gradle.DealerTest.testToStringWithHiddenCards.executor": "Run",
+    "Gradle.DeckTest.executor": "Run",
+    "Gradle.HandTest.executor": "Run",
+    "Gradle.PlayerTest.executor": "Run",
+    "Gradle.Task_1_1_2 [:ru.nsu.kutsenko.task112.BlackjackGame.main()].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "Task__1__1__3",
+    "kotlin-language-version-configured": "true",
+    "onboarding.tips.debug.path": "C:/OOP/task-1-1-2/Task_1_1_2/src/main/java/ru/nsu/kutsenko/task112/Main.java",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="ru.nsu.kutsenko.task112" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.BlackjackGameTest">
+    <configuration name="BlackjackGameTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;ru.nsu.kutsenko.task112.BlackjackGameTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="BlackjackGameTest.testMainMethodWithValidInput" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;ru.nsu.kutsenko.task112.BlackjackGameTest.testMainMethodWithValidInput&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="BlackjackGameTest.testPlayRoundDealerBust" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;ru.nsu.kutsenko.task112.BlackjackGameTest.testPlayRoundDealerBust&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="BlackjackGameTest.testPlayRoundPlayerBust" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;ru.nsu.kutsenko.task112.BlackjackGameTest.testPlayRoundPlayerBust&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="BlackjackGameTest.testStartGameEarlyExit" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;ru.nsu.kutsenko.task112.BlackjackGameTest.testStartGameEarlyExit&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.BlackjackGameTest" />
+        <item itemvalue="Gradle.BlackjackGameTest.testMainMethodWithValidInput" />
+        <item itemvalue="Gradle.BlackjackGameTest.testPlayRoundPlayerBust" />
+        <item itemvalue="Gradle.BlackjackGameTest.testPlayRoundDealerBust" />
+        <item itemvalue="Gradle.BlackjackGameTest.testStartGameEarlyExit" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ed53dbba-97eb-40a8-b23e-bf7027dd2bdf" name="Changes" comment="" />
+      <created>1757582629434</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1757582629434</updated>
+    </task>
+    <servers />
+  </component>
+</project>
