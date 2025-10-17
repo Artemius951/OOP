@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 /**
- * Тестовый класс для проверки алгоритма топологической сортировки
+ * Тестовый класс для проверки алгоритма топологической сортировки.
  */
 public class TopSortTest {
 

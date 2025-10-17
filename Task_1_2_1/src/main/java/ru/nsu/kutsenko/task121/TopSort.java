@@ -28,8 +28,8 @@ public class TopSort {
         for (int vertex : graph.getVertices()) {
             if (!visited.contains(vertex)) {
                 if (!dfs(vertex, graph, visited, recursionStack, result)) {
-                    throw new IllegalArgumentException("Graph contains cycles, topsort" +
-                        " is impossible");
+                    throw new IllegalArgumentException("Graph contains cycles, topsort"
+                        + " is impossible");
                 }
             }
         }
