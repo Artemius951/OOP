@@ -129,7 +129,9 @@ public class AdjacencyMatrix implements Graph {
 
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
-                if (line.isEmpty()) continue;
+                if (line.isEmpty()) {
+                    continue;
+                }
 
                 if (firstLine) {
                     firstLine = false;
@@ -216,13 +218,21 @@ public class AdjacencyMatrix implements Graph {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
 
         AdjacencyMatrix other = (AdjacencyMatrix) obj;
 
-        if (size != other.size) return false;
-        if (!new HashSet<>(vertices).equals(new HashSet<>(other.vertices))) return false;
+        if (size != other.size) {
+            return false;
+        }
+        if (!new HashSet<>(vertices).equals(new HashSet<>(other.vertices))) {
+            return false;
+        }
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
