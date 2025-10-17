@@ -1,10 +1,15 @@
 package ru.nsu.kutsenko.task121;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
-import static org.junit.jupiter.api.Assertions.*;
-import java.io.*;
-import java.util.*;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 public class AdjacencyListGraphTest {
     private AdjacencyListGraph graph;
@@ -120,7 +125,6 @@ public class AdjacencyListGraphTest {
         graph2.addEdge(3, 4);
         assertNotEquals(graph1, graph2);
     }
-
 
     @Test
     void testIsolatedVertices() {
