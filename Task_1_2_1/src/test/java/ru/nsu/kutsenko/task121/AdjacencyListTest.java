@@ -15,12 +15,12 @@ import org.junit.jupiter.api.Test;
 /**
  *  Тестовый класс для проверки реализации графа на основе списка смежности.
  */
-public class AdjacencyListGraphTest {
-    private AdjacencyListGraph graph;
+public class AdjacencyListTest {
+    private AdjacencyList graph;
 
     @BeforeEach
     void setUp() {
-        graph = new AdjacencyListGraph();
+        graph = new AdjacencyList();
     }
 
     @Test
@@ -114,8 +114,8 @@ public class AdjacencyListGraphTest {
 
     @Test
     void testEqualsAndHashCode() {
-        AdjacencyListGraph graph1 = new AdjacencyListGraph();
-        AdjacencyListGraph graph2 = new AdjacencyListGraph();
+        AdjacencyList graph1 = new AdjacencyList();
+        AdjacencyList graph2 = new AdjacencyList();
 
         graph1.addEdge(1, 2);
         graph1.addEdge(2, 3);

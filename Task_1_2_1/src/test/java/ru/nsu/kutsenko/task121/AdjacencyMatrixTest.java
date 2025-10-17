@@ -15,12 +15,12 @@ import org.junit.jupiter.api.Test;
 /**
  * Тестовый класс для проверки реализации графа на основе матрицы смежности.
  */
-public class AdjacencyMatrixGraphTest {
-    private AdjacencyMatrixGraph graph;
+public class AdjacencyMatrixTest {
+    private AdjacencyMatrix graph;
 
     @BeforeEach
     void setUp() {
-        graph = new AdjacencyMatrixGraph();
+        graph = new AdjacencyMatrix();
     }
 
     @Test
@@ -104,8 +104,8 @@ public class AdjacencyMatrixGraphTest {
 
     @Test
     void testEqualsAndHashCode() {
-        AdjacencyMatrixGraph graph1 = new AdjacencyMatrixGraph();
-        AdjacencyMatrixGraph graph2 = new AdjacencyMatrixGraph();
+        AdjacencyMatrix graph1 = new AdjacencyMatrix();
+        AdjacencyMatrix graph2 = new AdjacencyMatrix();
 
         graph1.addEdge(1, 2);
         graph1.addEdge(2, 3);

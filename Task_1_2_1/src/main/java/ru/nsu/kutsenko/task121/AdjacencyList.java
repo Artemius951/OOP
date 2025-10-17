@@ -15,13 +15,13 @@ import java.util.Set;
  * Реализация графа на основе списка смежности.
  * Хранит граф в виде отображения вершины в список ее соседей.
  */
-public class AdjacencyListGraph implements Graph {
+public class AdjacencyList implements Graph {
     private Map<Integer, List<Integer>> adjacencyList;
 
     /**
      * Создает пустой граф со списком смежности.
      */
-    public AdjacencyListGraph() {
+    public AdjacencyList() {
         this.adjacencyList = new HashMap<>();
     }
 
@@ -160,7 +160,7 @@ public class AdjacencyListGraph implements Graph {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
 
-        AdjacencyListGraph other = (AdjacencyListGraph) obj;
+        AdjacencyList other = (AdjacencyList) obj;
         return adjacencyList.equals(other.adjacencyList);
     }
 

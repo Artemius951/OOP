@@ -15,7 +15,7 @@ import java.util.Set;
  * Реализация графа на основе матрицы смежности.
  * Хранит граф в виде двумерного булевого массива, где true означает наличие ребра.
  */
-public class AdjacencyMatrixGraph implements Graph {
+public class AdjacencyMatrix implements Graph {
     private Map<Integer, Integer> vertexIndexMap;
     private List<Integer> vertices;
     private boolean[][] adjacencyMatrix;
@@ -24,7 +24,7 @@ public class AdjacencyMatrixGraph implements Graph {
     /**
      * Создает пустой граф с матрицей смежности.
      */
-    public AdjacencyMatrixGraph() {
+    public AdjacencyMatrix() {
         this.vertexIndexMap = new HashMap<>();
         this.vertices = new ArrayList<>();
         this.adjacencyMatrix = new boolean[0][0];
@@ -219,7 +219,7 @@ public class AdjacencyMatrixGraph implements Graph {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
 
-        AdjacencyMatrixGraph other = (AdjacencyMatrixGraph) obj;
+        AdjacencyMatrix other = (AdjacencyMatrix) obj;
 
         if (size != other.size) return false;
         if (!new HashSet<>(vertices).equals(new HashSet<>(other.vertices))) return false;

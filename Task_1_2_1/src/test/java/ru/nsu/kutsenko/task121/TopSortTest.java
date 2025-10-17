@@ -14,7 +14,7 @@ public class TopSortTest {
 
     @Test
     void testTopologicalSortAcyclicGraph() {
-        Graph graph = new AdjacencyListGraph();
+        Graph graph = new AdjacencyList();
 
         graph.addEdge(1, 2);
         graph.addEdge(2, 3);
@@ -29,7 +29,7 @@ public class TopSortTest {
 
     @Test
     void testTopologicalSortMultiplePaths() {
-        Graph graph = new AdjacencyMatrixGraph();
+        Graph graph = new AdjacencyMatrix();
 
         graph.addEdge(1, 2);
         graph.addEdge(1, 3);
@@ -47,7 +47,7 @@ public class TopSortTest {
 
     @Test
     void testTopologicalSortWithCycle() {
-        Graph graph = new IncidenceMatrixGraph();
+        Graph graph = new IncidenceMatrix();
 
         graph.addEdge(1, 2);
         graph.addEdge(2, 3);
@@ -60,7 +60,7 @@ public class TopSortTest {
 
     @Test
     void testTopologicalSortEmptyGraph() {
-        Graph graph = new AdjacencyListGraph();
+        Graph graph = new AdjacencyList();
 
         List<Integer> result = TopSort.topologicalSort(graph);
 
@@ -69,7 +69,7 @@ public class TopSortTest {
 
     @Test
     void testTopologicalSortSingleVertex() {
-        Graph graph = new AdjacencyMatrixGraph();
+        Graph graph = new AdjacencyMatrix();
         graph.addVertex(1);
 
         List<Integer> result = TopSort.topologicalSort(graph);
@@ -80,7 +80,7 @@ public class TopSortTest {
 
     @Test
     void testTopologicalSortDisconnectedGraph() {
-        Graph graph = new AdjacencyListGraph();
+        Graph graph = new AdjacencyList();
 
         graph.addEdge(1, 2);
         graph.addEdge(3, 4);
@@ -95,9 +95,9 @@ public class TopSortTest {
     @Test
     void testTopologicalSortWithAllGraphImplementations() {
         Graph[] graphs = {
-            new AdjacencyMatrixGraph(),
-            new IncidenceMatrixGraph(),
-            new AdjacencyListGraph()
+            new AdjacencyMatrix(),
+            new IncidenceMatrix(),
+            new AdjacencyList()
         };
 
         for (Graph graph : graphs) {
@@ -116,7 +116,7 @@ public class TopSortTest {
 
     @Test
     void testTopologicalSortComplexAcyclicGraph() {
-        Graph graph = new AdjacencyListGraph();
+        Graph graph = new AdjacencyList();
 
         graph.addEdge(5, 11);
         graph.addEdge(7, 11);

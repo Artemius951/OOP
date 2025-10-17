@@ -15,7 +15,7 @@ import java.util.Set;
  * Хранит граф в виде матрицы, где строки соответствуют вершинам, а столбцы - ребрам.
  * Значение 1 означает исходящее ребро, -1 - входящее ребро.
  */
-public class IncidenceMatrixGraph implements Graph {
+public class IncidenceMatrix implements Graph {
     private Map<Integer, Integer> vertexIndexMap;
     private List<Integer> vertices;
     private List<Edge> edges;
@@ -52,7 +52,7 @@ public class IncidenceMatrixGraph implements Graph {
     /**
      * Создает пустой граф с матрицей инцидентности.
      */
-    public IncidenceMatrixGraph() {
+    public IncidenceMatrix() {
         this.vertexIndexMap = new HashMap<>();
         this.vertices = new ArrayList<>();
         this.edges = new ArrayList<>();
@@ -267,7 +267,7 @@ public class IncidenceMatrixGraph implements Graph {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
 
-        IncidenceMatrixGraph other = (IncidenceMatrixGraph) obj;
+        IncidenceMatrix other = (IncidenceMatrix) obj;
 
         if (vertexCount != other.vertexCount || edgeCount != other.edgeCount)
             return false;

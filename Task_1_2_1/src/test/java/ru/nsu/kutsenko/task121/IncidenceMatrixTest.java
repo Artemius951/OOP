@@ -15,12 +15,12 @@ import org.junit.jupiter.api.Test;
 /**
  * Тестовый класс для проверки реализации графа на основе матрицы инцидентности.
  */
-public class IncidenceMatrixGraphTest {
-    private IncidenceMatrixGraph graph;
+public class IncidenceMatrixTest {
+    private IncidenceMatrix graph;
 
     @BeforeEach
     void setUp() {
-        graph = new IncidenceMatrixGraph();
+        graph = new IncidenceMatrix();
     }
 
     @Test
@@ -118,8 +118,8 @@ public class IncidenceMatrixGraphTest {
 
     @Test
     void testEqualsAndHashCode() {
-        IncidenceMatrixGraph graph1 = new IncidenceMatrixGraph();
-        IncidenceMatrixGraph graph2 = new IncidenceMatrixGraph();
+        IncidenceMatrix graph1 = new IncidenceMatrix();
+        IncidenceMatrix graph2 = new IncidenceMatrix();
 
         graph1.addEdge(1, 2);
         graph1.addEdge(2, 3);
