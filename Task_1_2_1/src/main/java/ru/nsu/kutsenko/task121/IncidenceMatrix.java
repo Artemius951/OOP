@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+
 /**
  * Реализация графа на основе матрицы инцидентности.
  * Хранит граф в виде матрицы, где строки соответствуют вершинам, а столбцы - ребрам.
