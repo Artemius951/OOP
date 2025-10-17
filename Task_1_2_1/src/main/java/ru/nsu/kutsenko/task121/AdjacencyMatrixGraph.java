@@ -1,0 +1,258 @@
+package ru.nsu.kutsenko.task121;
+
+import java.util.*;
+import java.io.*;
+
+/**
+ * Реализация графа на основе матрицы смежности.
+ * Хранит граф в виде двумерного булевого массива, где true означает наличие ребра.
+ */
+public class AdjacencyMatrixGraph implements Graph {
+    private Map<Integer, Integer> vertexIndexMap;
+    private List<Integer> vertices;
+    private boolean[][] adjacencyMatrix;
+    private int size;
+
+    /**
+     * Создает пустой граф с матрицей смежности.
+     */
+    public AdjacencyMatrixGraph() {
+        this.vertexIndexMap = new HashMap<>();
+        this.vertices = new ArrayList<>();
+        this.adjacencyMatrix = new boolean[0][0];
+        this.size = 0;
+    }
+
+    @Override
+    public boolean addVertex(int vertex) {
+        if (vertexIndexMap.containsKey(vertex)) {
+            return false;
+        }
+        ensureCapacity();
+        vertexIndexMap.put(vertex, size);
+        vertices.add(vertex);
+        size++;
+        return true;
+    }
+
+    @Override
+    public boolean removeVertex(int vertex) {
+        if (!vertexIndexMap.containsKey(vertex)) {
+            return false;
+        }
+
+        int index = vertexIndexMap.get(vertex);
+
+        for (int i = index; i < size - 1; i++) {
+            int currentVertex = vertices.get(i + 1);
+            vertices.set(i, currentVertex);
+            vertexIndexMap.put(currentVertex, i);
+        }
+
+        for (int i = 0; i < size; i++) {
+            for (int j = index; j < size - 1; j++) {
+                adjacencyMatrix[i][j] = adjacencyMatrix[i][j + 1];
+            }
+        }
+        for (int i = index; i < size - 1; i++) {
+            for (int j = 0; j < size; j++) {
+                adjacencyMatrix[i][j] = adjacencyMatrix[i + 1][j];
+            }
+        }
+
+        vertices.remove(size - 1);
+        vertexIndexMap.remove(vertex);
+        size--;
+        return true;
+    }
+
+    @Override
+    public boolean addEdge(int from, int to) {
+        addVertex(from);
+        addVertex(to);
+
+        int fromIndex = vertexIndexMap.get(from);
+        int toIndex = vertexIndexMap.get(to);
+
+        if (adjacencyMatrix[fromIndex][toIndex]) {
+            return false;
+        }
+
+        adjacencyMatrix[fromIndex][toIndex] = true;
+        return true;
+    }
+
+    @Override
+    public boolean removeEdge(int from, int to) {
+        if (!hasVertex(from) || !hasVertex(to)) {
+            return false;
+        }
+
+        int fromIndex = vertexIndexMap.get(from);
+        int toIndex = vertexIndexMap.get(to);
+
+        if (!adjacencyMatrix[fromIndex][toIndex]) {
+            return false;
+        }
+
+        adjacencyMatrix[fromIndex][toIndex] = false;
+        return true;
+    }
+
+    @Override
+    public List<Integer> getNeighbors(int vertex) {
+        List<Integer> neighbors = new ArrayList<>();
+        if (hasVertex(vertex)) {
+            int vertexIndex = vertexIndexMap.get(vertex);
+            for (int i = 0; i < size; i++) {
+                if (adjacencyMatrix[vertexIndex][i]) {
+                    neighbors.add(vertices.get(i));
+                }
+            }
+        }
+        return neighbors;
+    }
+
+    @Override
+    public void readFromFile(String filename) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line;
+            boolean firstLine = true;
+
+            while ((line = reader.readLine()) != null) {
+                line = line.trim();
+                if (line.isEmpty()) continue;
+
+                if (firstLine) {
+                    firstLine = false;
+                    continue;
+                }
+
+                String[] parts = line.split("\\s+");
+                if (parts.length >= 2) {
+                    try {
+                        int from = Integer.parseInt(parts[0]);
+                        int to = Integer.parseInt(parts[1]);
+                        addEdge(from, to);
+                    } catch (NumberFormatException e) {
+                        System.err.println("Invalid number format in line: " + line);
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public Set<Integer> getVertices() {
+        return new HashSet<>(vertices);
+    }
+
+    @Override
+    public boolean hasVertex(int vertex) {
+        return vertexIndexMap.containsKey(vertex);
+    }
+
+    @Override
+    public boolean hasEdge(int from, int to) {
+        if (!hasVertex(from) || !hasVertex(to)) {
+            return false;
+        }
+        int fromIndex = vertexIndexMap.get(from);
+        int toIndex = vertexIndexMap.get(to);
+        return adjacencyMatrix[fromIndex][toIndex];
+    }
+
+    @Override
+    public int getVertexCount() {
+        return size;
+    }
+
+    @Override
+    public int getEdgeCount() {
+        int count = 0;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (adjacencyMatrix[i][j]) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Adjacency Matrix Graph (size: ").append(size).append(")\n");
+
+        if (size == 0) {
+            return sb.toString();
+        }
+
+        sb.append("    ");
+        for (int i = 0; i < size; i++) {
+            sb.append(String.format("%-4d", vertices.get(i)));
+        }
+        sb.append("\n");
+
+        for (int i = 0; i < size; i++) {
+            sb.append(String.format("%-4d", vertices.get(i)));
+            for (int j = 0; j < size; j++) {
+                sb.append(adjacencyMatrix[i][j] ? "1   " : "0   ");
+            }
+            sb.append("\n");
+        }
+
+        return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        AdjacencyMatrixGraph other = (AdjacencyMatrixGraph) obj;
+
+        if (size != other.size) return false;
+        if (!new HashSet<>(vertices).equals(new HashSet<>(other.vertices))) return false;
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (adjacencyMatrix[i][j] != other.adjacencyMatrix[i][j]) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(size);
+        result = 31 * result + vertices.hashCode();
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (adjacencyMatrix[i][j]) {
+                    result = 31 * result + Objects.hash(i, j);
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Увеличивает емкость матрицы смежности при необходимости.
+     * Удваивает размер матрицы, если текущий размер недостаточен.
+     */
+    private void ensureCapacity() {
+        if (size >= adjacencyMatrix.length) {
+            int newCapacity = size == 0 ? 1 : size * 2;
+            boolean[][] newMatrix = new boolean[newCapacity][newCapacity];
+            for (int i = 0; i < size; i++) {
+                System.arraycopy(adjacencyMatrix[i], 0, newMatrix[i], 0, size);
+            }
+            adjacencyMatrix = newMatrix;
+        }
+    }
+}
