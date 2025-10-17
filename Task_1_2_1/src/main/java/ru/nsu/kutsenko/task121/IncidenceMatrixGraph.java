@@ -90,8 +90,7 @@ public class IncidenceMatrixGraph implements Graph {
             vertices.set(i, currentVertex);
             vertexIndexMap.put(currentVertex, i);
 
-            System.arraycopy(incidenceMatrix[i + 1], 0, incidenceMatrix[i],
-                0, edgeCount);
+            System.arraycopy(incidenceMatrix[i + 1], 0, incidenceMatrix[i], 0, edgeCount);
         }
 
         vertices.remove(vertexCount - 1);
@@ -301,8 +300,7 @@ public class IncidenceMatrixGraph implements Graph {
             int[][] newMatrix = new int[newVertexCapacity][newEdgeCapacity];
             for (int i = 0; i < vertexCount; i++) {
                 if (edgeCount > 0) {
-                    System.arraycopy(incidenceMatrix[i],
-                        0, newMatrix[i], 0, edgeCount);
+                    System.arraycopy(incidenceMatrix[i], 0, newMatrix[i], 0, edgeCount);
                 }
             }
             incidenceMatrix = newMatrix;
