@@ -1,6 +1,10 @@
 package ru.nsu.kutsenko.task121;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Класс для топологической сортировки ориентированных графов.

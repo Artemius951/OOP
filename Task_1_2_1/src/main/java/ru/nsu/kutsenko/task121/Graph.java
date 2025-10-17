@@ -1,7 +1,8 @@
 package ru.nsu.kutsenko.task121;
 
-import java.util.*;
-import java.io.*;
+import java.io.IOException;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Интерфейс для представления ориентированного графа.
