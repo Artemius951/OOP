@@ -86,7 +86,9 @@ public class AdjacencyList implements Graph {
 
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
-                if (line.isEmpty()) continue;
+                if (line.isEmpty()) {
+                    continue;
+                }
 
                 if (firstLine) {
                     firstLine = false;
@@ -119,8 +121,8 @@ public class AdjacencyList implements Graph {
 
     @Override
     public boolean hasEdge(int from, int to) {
-        return adjacencyList.containsKey(from) &&
-            adjacencyList.get(from).contains(to);
+        return adjacencyList.containsKey(from)
+            && adjacencyList.get(from).contains(to);
     }
 
     @Override
@@ -157,8 +159,12 @@ public class AdjacencyList implements Graph {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
 
         AdjacencyList other = (AdjacencyList) obj;
         return adjacencyList.equals(other.adjacencyList);

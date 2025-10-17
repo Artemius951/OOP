@@ -38,8 +38,12 @@ public class IncidenceMatrix implements Graph {
 
         @Override
         public boolean equals(Object obj) {
-            if (this == obj) return true;
-            if (obj == null || getClass() != obj.getClass()) return false;
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null || getClass() != obj.getClass()) {
+                return false;
+            }
             Edge edge = (Edge) obj;
             return from == edge.from && to == edge.to;
         }
@@ -190,7 +194,9 @@ public class IncidenceMatrix implements Graph {
 
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
-                if (line.isEmpty()) continue;
+                if (line.isEmpty()) {
+                    continue;
+                }
 
                 if (firstLine) {
                     firstLine = false;
@@ -265,16 +271,21 @@ public class IncidenceMatrix implements Graph {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
 
         IncidenceMatrix other = (IncidenceMatrix) obj;
 
-        if (vertexCount != other.vertexCount || edgeCount != other.edgeCount)
+        if (vertexCount != other.vertexCount || edgeCount != other.edgeCount) {
             return false;
+        }
 
-        return new HashSet<>(vertices).equals(new HashSet<>(other.vertices)) &&
-            new HashSet<>(edges).equals(new HashSet<>(other.edges));
+        return new HashSet<>(vertices).equals(new HashSet<>(other.vertices))
+            && new HashSet<>(edges).equals(new HashSet<>(other.edges));
     }
 
     @Override
