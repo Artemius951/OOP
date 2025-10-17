@@ -12,6 +12,9 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Тестовый класс для проверки реализации графа на основе матрицы инцидентности.
+ */
 public class IncidenceMatrixGraphTest {
     private IncidenceMatrixGraph graph;
 
