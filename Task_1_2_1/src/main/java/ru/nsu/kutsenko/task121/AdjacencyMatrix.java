@@ -145,7 +145,7 @@ public class AdjacencyMatrix implements Graph {
                         int to = Integer.parseInt(parts[1]);
                         addEdge(from, to);
                     } catch (NumberFormatException e) {
-                        System.err.println("Invalid number format in line: " + line);
+                        throw new NumberFormatException("Invalid number format in line: " + line);
                     }
                 }
             }
