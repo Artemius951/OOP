@@ -14,7 +14,7 @@ import java.util.Set;
 /**
  * Реализация графа на основе матрицы инцидентности.
  * Хранит граф в виде матрицы, где строки соответствуют вершинам, а столбцы - ребрам.
- * Значение 1 означает исходящее ребро, -1 - входящее ребро.
+ * Значение OUTGOING_EDGE - исходящее ребро, INCOMING_EDGE - входящее ребро.
  */
 public class IncidenceMatrix implements Graph {
     private Map<Integer, Integer> vertexIndexMap;
@@ -23,6 +23,10 @@ public class IncidenceMatrix implements Graph {
     private int[][] incidenceMatrix;
     private int vertexCount;
     private int edgeCount;
+
+    private static final int OUTGOING_EDGE = 1;
+    private static final int INCOMING_EDGE = -1;
+    private static final int NO_EDGE = 0;
 
     /**
      * Внутренний класс для представления ребра графа.
@@ -102,7 +106,8 @@ public class IncidenceMatrix implements Graph {
             vertices.set(i, currentVertex);
             vertexIndexMap.put(currentVertex, i);
 
-            System.arraycopy(incidenceMatrix[i + 1], 0, incidenceMatrix[i], 0, edgeCount);
+            System.arraycopy(incidenceMatrix[i + 1], 0, incidenceMatrix[i],
+                0, edgeCount);
         }
 
         vertices.remove(vertexCount - 1);
@@ -129,8 +134,8 @@ public class IncidenceMatrix implements Graph {
         int toIndex = vertexIndexMap.get(to);
         int edgeIndex = edgeCount;
 
-        incidenceMatrix[fromIndex][edgeIndex] = 1;
-        incidenceMatrix[toIndex][edgeIndex] = -1;
+        incidenceMatrix[fromIndex][edgeIndex] = OUTGOING_EDGE;
+        incidenceMatrix[toIndex][edgeIndex] = INCOMING_EDGE;
 
         edgeCount++;
         return true;
@@ -152,13 +157,12 @@ public class IncidenceMatrix implements Graph {
             return false;
         }
 
-
         for (int i = 0; i < vertexCount; i++) {
             for (int j = edgeIndex; j < edgeCount - 1; j++) {
                 incidenceMatrix[i][j] = incidenceMatrix[i][j + 1];
             }
             if (edgeCount > 0) {
-                incidenceMatrix[i][edgeCount - 1] = 0;
+                incidenceMatrix[i][edgeCount - 1] = NO_EDGE;
             }
         }
 
@@ -174,9 +178,9 @@ public class IncidenceMatrix implements Graph {
             int vertexIndex = vertexIndexMap.get(vertex);
 
             for (int j = 0; j < edgeCount; j++) {
-                if (incidenceMatrix[vertexIndex][j] == 1) {
+                if (incidenceMatrix[vertexIndex][j] == OUTGOING_EDGE) {
                     for (int i = 0; i < vertexCount; i++) {
-                        if (incidenceMatrix[i][j] == -1) {
+                        if (incidenceMatrix[i][j] == INCOMING_EDGE) {
                             neighbors.add(vertices.get(i));
                         }
                     }
@@ -319,7 +323,8 @@ public class IncidenceMatrix implements Graph {
             int[][] newMatrix = new int[newVertexCapacity][newEdgeCapacity];
             for (int i = 0; i < vertexCount; i++) {
                 if (edgeCount > 0) {
-                    System.arraycopy(incidenceMatrix[i], 0, newMatrix[i], 0, edgeCount);
+                    System.arraycopy(incidenceMatrix[i], 0, newMatrix[i], 0,
+                        edgeCount);
                 }
             }
             incidenceMatrix = newMatrix;
