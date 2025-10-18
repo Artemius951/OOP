@@ -1,5 +1,6 @@
 package ru.nsu.kutsenko.task121;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -75,13 +76,18 @@ public class IncidenceMatrixTest {
         graph.addEdge(2, 4);
 
         List<Integer> neighbors1 = graph.getNeighbors(1);
-        assertEquals(2, neighbors1.size());
-        assertTrue(neighbors1.contains(2));
-        assertTrue(neighbors1.contains(3));
-
         List<Integer> neighbors2 = graph.getNeighbors(2);
-        assertEquals(1, neighbors2.size());
-        assertTrue(neighbors2.contains(4));
+
+        assertAll(
+            () -> assertEquals(2, neighbors1.size()),
+            () -> assertTrue(neighbors1.contains(2)),
+            () -> assertTrue(neighbors1.contains(3))
+        );
+
+        assertAll(
+            () -> assertEquals(1, neighbors2.size()),
+            () -> assertTrue(neighbors2.contains(4))
+        );
     }
 
     @Test

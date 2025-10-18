@@ -13,7 +13,7 @@ import java.util.Set;
 
 /**
  * Реализация графа на основе матрицы смежности.
- * Хранит граф в виде двумерного булевого массива, где true означает наличие ребра.
+ * Хранит граф в виде двумерного boolean массива, где true - ребро есть.
  */
 public class AdjacencyMatrix implements Graph {
     private Map<Integer, Integer> vertexIndexMap;

@@ -1,10 +1,11 @@
 package ru.nsu.kutsenko.task121;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
+import java.util.Queue;
 
 /**
  * Класс для топологической сортировки ориентированных графов.
@@ -13,8 +14,8 @@ import java.util.Set;
 public class TopSort {
 
     /**
-     * Алгоритм DFS-based топологической сортировки (алгоритм Тарьяна).
-     * Работает с любой реализацией интерфейса Graph.
+     * Алгоритм Тарьяна для топологической сортировки.
+     * Использует подход на основе подсчета входящих степеней вершин.
      *
      * @param graph граф для сортировки
      * @return список вершин в топологическом порядке
@@ -22,54 +23,43 @@ public class TopSort {
      */
     public static List<Integer> topologicalSort(Graph graph) {
         List<Integer> result = new ArrayList<>();
-        Set<Integer> visited = new HashSet<>();
-        Set<Integer> recursionStack = new HashSet<>();
+        Map<Integer, Integer> inDegree = new HashMap<>();
+        Queue<Integer> queue = new LinkedList<>();
 
         for (int vertex : graph.getVertices()) {
-            if (!visited.contains(vertex)) {
-                if (!dfs(vertex, graph, visited, recursionStack, result)) {
-                    throw new IllegalArgumentException("Graph contains cycles, topsort"
-                        + " is impossible");
+            inDegree.put(vertex, 0);
+        }
+
+        for (int vertex : graph.getVertices()) {
+            for (int neighbor : graph.getNeighbors(vertex)) {
+                inDegree.put(neighbor, inDegree.get(neighbor) + 1);
+            }
+        }
+
+        for (int vertex : graph.getVertices()) {
+            if (inDegree.get(vertex) == 0) {
+                queue.offer(vertex);
+            }
+        }
+
+        while (!queue.isEmpty()) {
+            int currentVertex = queue.poll();
+            result.add(currentVertex);
+
+            for (int neighbor : graph.getNeighbors(currentVertex)) {
+                int newDegree = inDegree.get(neighbor) - 1;
+                inDegree.put(neighbor, newDegree);
+
+                if (newDegree == 0) {
+                    queue.offer(neighbor);
                 }
             }
         }
 
-        Collections.reverse(result);
+        if (result.size() != graph.getVertices().size()) {
+            throw new IllegalArgumentException("Graph contains cycles, topsort is impossible");
+        }
+
         return result;
-    }
-
-    /**
-     * Вспомогательный метод для обхода графа в глубину.
-     *
-     * @param vertex текущая вершина
-     * @param graph граф для обхода
-     * @param visited множество посещенных вершин
-     * @param recursionStack стек рекурсии для обнаружения циклов
-     * @param result список для сохранения результата
-     * @return true если обход завершен успешно, false если обнаружен цикл
-     */
-    private static boolean dfs(int vertex, Graph graph, Set<Integer> visited,
-                               Set<Integer> recursionStack, List<Integer> result) {
-        if (recursionStack.contains(vertex)) {
-            return false;
-        }
-
-        if (visited.contains(vertex)) {
-            return true;
-        }
-
-        visited.add(vertex);
-        recursionStack.add(vertex);
-
-        for (int neighbor : graph.getNeighbors(vertex)) {
-            if (!dfs(neighbor, graph, visited, recursionStack, result)) {
-                return false;
-            }
-        }
-
-        recursionStack.remove(vertex);
-        result.add(vertex);
-
-        return true;
     }
 }

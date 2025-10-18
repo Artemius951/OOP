@@ -12,7 +12,7 @@ public interface Graph {
     /**
      * Добавляет вершину в граф.
      *
-     * @param vertex вершина для добавления
+     * @param vertex вершина, которую будем добавлять
      * @return true если вершина была добавлена, false если вершина уже существует
      */
     boolean addVertex(int vertex);
@@ -20,7 +20,7 @@ public interface Graph {
     /**
      * Удаляет вершину из графа.
      *
-     * @param vertex вершина для удаления
+     * @param vertex вершина, которую будем удалять
      * @return true если вершина была удалена, false если вершина не существует
      */
     boolean removeVertex(int vertex);
