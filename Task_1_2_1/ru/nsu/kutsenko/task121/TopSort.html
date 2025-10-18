@@ -146,7 +146,10 @@ loadScripts(document, 'script');</script>
 <h3>topologicalSort</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</span>&nbsp;<span class="element-name">topologicalSort</span><wbr><span class="parameters">(<a href="Graph.html" title="interface in ru.nsu.kutsenko.task121">Graph</a>&nbsp;graph)</span></div>
 <div class="block">Алгоритм Тарьяна для топологической сортировки.
- Использует подход на основе подсчета входящих степеней вершин.</div>
+ Использует подход на основе подсчета входящих степеней вершин.
+ Работает только с ациклическими ориентированными графами.
+ Иначе выбрасывает исключение.
+ Временная сложность алгоритма: О(V+E), где V - кол-во вершин, E - кол-во ребёр.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>graph</code> - граф для сортировки</dd>
