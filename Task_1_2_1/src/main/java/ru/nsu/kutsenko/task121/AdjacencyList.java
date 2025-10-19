@@ -15,9 +15,9 @@ import java.util.Set;
  * Реализация графа на основе списка смежности.
  * Хранит граф в виде отображения вершины в список ее соседей.
  */
-public class AdjacencyList<Data> implements Graph<Data> {
+public class AdjacencyList<DataT> implements Graph<DataT> {
     private Map<Integer, List<Integer>> adjacencyList;
-    private Map<Integer, Data> vertexData;
+    private Map<Integer, DataT> vertexData;
 
     /**
      * Создает пустой граф со списком смежности.
@@ -28,7 +28,7 @@ public class AdjacencyList<Data> implements Graph<Data> {
     }
 
     @Override
-    public boolean addVertex(int vertex, Data data) {
+    public boolean addVertex(int vertex, DataT data) {
         if (adjacencyList.containsKey(vertex)) {
             return false;
         }
@@ -87,7 +87,7 @@ public class AdjacencyList<Data> implements Graph<Data> {
     }
 
     @Override
-    public void readFromFile(String filename, DataParser<Data> dataParser) throws IOException {
+    public void readFromFile(String filename, DataParser<DataT> dataParser) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             boolean firstLine = true;
@@ -108,8 +108,8 @@ public class AdjacencyList<Data> implements Graph<Data> {
                     try {
                         int from = Integer.parseInt(parts[0]);
                         int to = Integer.parseInt(parts[1]);
-                        Data fromData = dataParser != null ? dataParser.parse(parts[0]) : null;
-                        Data toData = dataParser != null ? dataParser.parse(parts[1]) : null;
+                        DataT fromData = dataParser != null ? dataParser.parse(parts[0]) : null;
+                        DataT toData = dataParser != null ? dataParser.parse(parts[1]) : null;
                         if (!hasVertex(from)) {
                             addVertex(from, fromData);
                         }
@@ -156,7 +156,7 @@ public class AdjacencyList<Data> implements Graph<Data> {
     }
 
     @Override
-    public Data getVertexData(int vertex) {
+    public DataT getVertexData(int vertex) {
         return vertexData.get(vertex);
     }
 
@@ -172,7 +172,7 @@ public class AdjacencyList<Data> implements Graph<Data> {
         for (int vertex : sortedVertices) {
             List<Integer> neighbors = new ArrayList<>(adjacencyList.get(vertex));
             Collections.sort(neighbors);
-            Data data = vertexData.get(vertex);
+            DataT data = vertexData.get(vertex);
             sb.append(vertex).append(" [").append(data != null ? data : "null").append("] -> ");
             sb.append(neighbors).append("\n");
         }

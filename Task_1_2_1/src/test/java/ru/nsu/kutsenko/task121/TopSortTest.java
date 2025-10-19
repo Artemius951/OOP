@@ -17,7 +17,7 @@ public class TopSortTest {
         Graph<String> graph = new AdjacencyList<>();
         graph.addEdge(1, 2);
         graph.addEdge(2, 3);
-        List<Integer> result = TopSort.topologicalSortDFS(graph);
+        List<Integer> result = TopSort.topologicalSortDfs(graph);
         assertEquals(3, result.size());
         assertTrue(result.indexOf(1) < result.indexOf(2));
         assertTrue(result.indexOf(2) < result.indexOf(3));
@@ -30,7 +30,7 @@ public class TopSortTest {
         graph.addEdge(1, 3);
         graph.addEdge(2, 4);
         graph.addEdge(3, 4);
-        List<Integer> result = TopSort.topologicalSortDFS(graph);
+        List<Integer> result = TopSort.topologicalSortDfs(graph);
         assertEquals(4, result.size());
         assertTrue(result.indexOf(1) < result.indexOf(2));
         assertTrue(result.indexOf(1) < result.indexOf(3));
@@ -45,14 +45,14 @@ public class TopSortTest {
         graph.addEdge(2, 3);
         graph.addEdge(3, 1);
         assertThrows(IllegalArgumentException.class, () -> {
-            TopSort.topologicalSortDFS(graph);
+            TopSort.topologicalSortDfs(graph);
         });
     }
 
     @Test
     void testTopologicalSortEmptyGraph() {
         Graph<String> graph = new AdjacencyList<>();
-        List<Integer> result = TopSort.topologicalSortDFS(graph);
+        List<Integer> result = TopSort.topologicalSortDfs(graph);
         assertTrue(result.isEmpty());
     }
 
@@ -60,7 +60,7 @@ public class TopSortTest {
     void testTopologicalSortSingleVertex() {
         Graph<String> graph = new AdjacencyMatrix<>();
         graph.addVertex(1, "single");
-        List<Integer> result = TopSort.topologicalSortDFS(graph);
+        List<Integer> result = TopSort.topologicalSortDfs(graph);
         assertEquals(1, result.size());
         assertEquals(1, result.get(0));
     }
@@ -70,7 +70,7 @@ public class TopSortTest {
         Graph<String> graph = new AdjacencyList<>();
         graph.addEdge(1, 2);
         graph.addEdge(3, 4);
-        List<Integer> result = TopSort.topologicalSortDFS(graph);
+        List<Integer> result = TopSort.topologicalSortDfs(graph);
         assertEquals(4, result.size());
         assertTrue(result.indexOf(1) < result.indexOf(2));
         assertTrue(result.indexOf(3) < result.indexOf(4));
@@ -87,7 +87,7 @@ public class TopSortTest {
             graph.addEdge(1, 2);
             graph.addEdge(2, 3);
             graph.addEdge(1, 3);
-            List<Integer> result = TopSort.topologicalSortDFS(graph);
+            List<Integer> result = TopSort.topologicalSortDfs(graph);
             assertEquals(3, result.size());
             assertTrue(result.indexOf(1) < result.indexOf(2));
             assertTrue(result.indexOf(2) < result.indexOf(3));
@@ -107,7 +107,7 @@ public class TopSortTest {
         graph.addEdge(11, 9);
         graph.addEdge(11, 10);
         graph.addEdge(8, 9);
-        List<Integer> result = TopSort.topologicalSortDFS(graph);
+        List<Integer> result = TopSort.topologicalSortDfs(graph);
         assertEquals(8, result.size());
         assertTrue(result.indexOf(5) < result.indexOf(11));
         assertTrue(result.indexOf(7) < result.indexOf(11));
@@ -128,7 +128,7 @@ public class TopSortTest {
         graph.addVertex(3, "third");
         graph.addEdge(1, 2);
         graph.addEdge(2, 3);
-        List<Integer> result = TopSort.topologicalSortDFS(graph);
+        List<Integer> result = TopSort.topologicalSortDfs(graph);
         assertEquals(3, result.size());
         assertEquals("first", graph.getVertexData(1));
         assertEquals("second", graph.getVertexData(2));

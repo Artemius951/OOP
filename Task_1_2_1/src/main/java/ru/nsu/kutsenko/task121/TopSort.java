@@ -23,7 +23,7 @@ public class TopSort {
      * @return список вершин в топологическом порядке
      * @throws IllegalArgumentException если граф содержит циклы
      */
-    public static List<Integer> topologicalSortDFS(Graph<?> graph) {
+    public static List<Integer> topologicalSortDfs(Graph<?> graph) {
         List<Integer> result = new ArrayList<>();
         Map<Integer, Integer> visited = new HashMap<>();
 

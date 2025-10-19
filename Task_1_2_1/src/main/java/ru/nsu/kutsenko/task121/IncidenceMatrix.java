@@ -327,7 +327,8 @@ public class IncidenceMatrix<DataT> implements Graph<DataT> {
 
         for (int vertex : sortedVertices) {
             result = 31 * result + vertex;
-            result = 31 * result + (vertexData.get(vertex) != null ? vertexData.get(vertex).hashCode() : 0);
+            result = 31 * result
+                + (vertexData.get(vertex) != null ? vertexData.get(vertex).hashCode() : 0);
         }
 
         List<Edge> sortedEdges = new ArrayList<>(edges);
