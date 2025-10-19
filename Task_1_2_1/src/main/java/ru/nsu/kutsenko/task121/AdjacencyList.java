@@ -218,7 +218,8 @@ public class AdjacencyList<DataT> implements Graph<DataT> {
         Collections.sort(sortedVertices);
         for (int vertex : sortedVertices) {
             result = 31 * result + vertex;
-            result = 31 * result + (vertexData.get(vertex) != null ? vertexData.get(vertex).hashCode() : 0);
+            result = 31 * result
+                + (vertexData.get(vertex) != null ? vertexData.get(vertex).hashCode() : 0);
             List<Integer> neighbors = new ArrayList<>(adjacencyList.get(vertex));
             Collections.sort(neighbors);
             result = 31 * result + neighbors.hashCode();

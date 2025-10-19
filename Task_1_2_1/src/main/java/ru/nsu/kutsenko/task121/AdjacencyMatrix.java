@@ -15,10 +15,10 @@ import java.util.Set;
  * Реализация графа на основе матрицы смежности.
  * Хранит граф в виде двумерного boolean массива, где true - ребро есть.
  */
-public class AdjacencyMatrix<Data> implements Graph<Data> {
+public class AdjacencyMatrix<DataT> implements Graph<DataT> {
     private Map<Integer, Integer> vertexIndexMap;
     private List<Integer> vertices;
-    private Map<Integer, Data> vertexData;
+    private Map<Integer, DataT> vertexData;
     private boolean[][] adjacencyMatrix;
     private int size;
 
@@ -34,7 +34,7 @@ public class AdjacencyMatrix<Data> implements Graph<Data> {
     }
 
     @Override
-    public boolean addVertex(int vertex, Data data) {
+    public boolean addVertex(int vertex, DataT data) {
         if (vertexIndexMap.containsKey(vertex)) {
             return false;
         }
@@ -130,7 +130,7 @@ public class AdjacencyMatrix<Data> implements Graph<Data> {
     }
 
     @Override
-    public void readFromFile(String filename, DataParser<Data> dataParser) throws IOException {
+    public void readFromFile(String filename, DataParser<DataT> dataParser) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             boolean firstLine = true;
@@ -151,8 +151,8 @@ public class AdjacencyMatrix<Data> implements Graph<Data> {
                     try {
                         int from = Integer.parseInt(parts[0]);
                         int to = Integer.parseInt(parts[1]);
-                        Data fromData = dataParser != null ? dataParser.parse(parts[0]) : null;
-                        Data toData = dataParser != null ? dataParser.parse(parts[1]) : null;
+                        DataT fromData = dataParser != null ? dataParser.parse(parts[0]) : null;
+                        DataT toData = dataParser != null ? dataParser.parse(parts[1]) : null;
                         if (!hasVertex(from)) {
                             addVertex(from, fromData);
                         }
@@ -207,7 +207,7 @@ public class AdjacencyMatrix<Data> implements Graph<Data> {
     }
 
     @Override
-    public Data getVertexData(int vertex) {
+    public DataT getVertexData(int vertex) {
         return vertexData.get(vertex);
     }
 
@@ -228,7 +228,7 @@ public class AdjacencyMatrix<Data> implements Graph<Data> {
 
         for (int i = 0; i < size; i++) {
             int vertex = vertices.get(i);
-            Data data = vertexData.get(vertex);
+            DataT data = vertexData.get(vertex);
             sb.append(String.format("%-4d", vertex)).append("[");
             sb.append(data != null ? data : "null").append("]");
             for (int j = 0; j < size; j++) {
