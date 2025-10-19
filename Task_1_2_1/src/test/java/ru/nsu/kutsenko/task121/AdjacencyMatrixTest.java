@@ -135,12 +135,12 @@ public class AdjacencyMatrixTest {
     @Test
     void testEquals() {
         AdjacencyMatrix<String> graph1 = new AdjacencyMatrix<>();
-        AdjacencyMatrix<String> graph2 = new AdjacencyMatrix<>();
         graph1.addVertex(1, "A");
         graph1.addVertex(2, "B");
         graph1.addVertex(3, "C");
         graph1.addEdge(1, 2);
         graph1.addEdge(2, 3);
+        AdjacencyMatrix<String> graph2 = new AdjacencyMatrix<>();
         graph2.addVertex(1, "A");
         graph2.addVertex(2, "B");
         graph2.addVertex(3, "C");
@@ -159,12 +159,12 @@ public class AdjacencyMatrixTest {
     @Test
     void testEqualsWithDifferentStructure() {
         AdjacencyMatrix<String> graph1 = new AdjacencyMatrix<>();
-        AdjacencyMatrix<String> graph2 = new AdjacencyMatrix<>();
         graph1.addVertex(1, "data");
         graph1.addVertex(2, "data");
         graph1.addVertex(3, "data");
         graph1.addEdge(1, 2);
         graph1.addEdge(2, 3);
+        AdjacencyMatrix<String> graph2 = new AdjacencyMatrix<>();
         graph2.addVertex(1, "data");
         graph2.addVertex(2, "data");
         graph2.addVertex(3, "data");

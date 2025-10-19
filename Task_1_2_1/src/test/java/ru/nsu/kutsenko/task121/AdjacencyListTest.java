@@ -141,12 +141,12 @@ public class AdjacencyListTest {
     @Test
     void testEquals() {
         AdjacencyList<String> graph1 = new AdjacencyList<>();
-        AdjacencyList<String> graph2 = new AdjacencyList<>();
         graph1.addVertex(1, "data1");
         graph1.addVertex(2, "data2");
         graph1.addVertex(3, "data3");
         graph1.addEdge(1, 2);
         graph1.addEdge(2, 3);
+        AdjacencyList<String> graph2 = new AdjacencyList<>();
         graph2.addVertex(1, "data1");
         graph2.addVertex(2, "data2");
         graph2.addVertex(3, "data3");

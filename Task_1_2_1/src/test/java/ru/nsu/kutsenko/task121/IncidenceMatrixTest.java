@@ -129,13 +129,13 @@ public class IncidenceMatrixTest {
     @Test
     void testEqualsWithDifferentEdges() {
         IncidenceMatrix<String> graph1 = new IncidenceMatrix<>();
-        IncidenceMatrix<String> graph2 = new IncidenceMatrix<>();
         graph1.addVertex(1, "A");
         graph1.addVertex(2, "B");
         graph1.addVertex(3, "C");
         graph1.addEdge(1, 2);
         graph1.addEdge(1, 3);
         graph1.addEdge(2, 3);
+        IncidenceMatrix<String> graph2 = new IncidenceMatrix<>();
         graph2.addVertex(1, "A");
         graph2.addVertex(2, "B");
         graph2.addVertex(3, "C");
