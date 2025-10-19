@@ -16,10 +16,10 @@ import java.util.Set;
  * Хранит граф в виде матрицы, где строки соответствуют вершинам, а столбцы - ребрам.
  * Значение OUTGOING_EDGE - исходящее ребро, INCOMING_EDGE - входящее ребро.
  */
-public class IncidenceMatrix<Data> implements Graph<Data> {
+public class IncidenceMatrix<DataT> implements Graph<DataT> {
     private Map<Integer, Integer> vertexIndexMap;
     private List<Integer> vertices;
-    private Map<Integer, Data> vertexData;
+    private Map<Integer, DataT> vertexData;
     private List<Edge> edges;
     private int[][] incidenceMatrix;
     private int vertexCount;
@@ -68,7 +68,7 @@ public class IncidenceMatrix<Data> implements Graph<Data> {
     }
 
     @Override
-    public boolean addVertex(int vertex, Data data) {
+    public boolean addVertex(int vertex, DataT data) {
         if (vertexIndexMap.containsKey(vertex)) {
             return false;
         }
@@ -194,7 +194,7 @@ public class IncidenceMatrix<Data> implements Graph<Data> {
     }
 
     @Override
-    public void readFromFile(String filename, DataParser<Data> dataParser) throws IOException {
+    public void readFromFile(String filename, DataParser<DataT> dataParser) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             boolean firstLine = true;
@@ -215,8 +215,8 @@ public class IncidenceMatrix<Data> implements Graph<Data> {
                     try {
                         int from = Integer.parseInt(parts[0]);
                         int to = Integer.parseInt(parts[1]);
-                        Data fromData = dataParser != null ? dataParser.parse(parts[0]) : null;
-                        Data toData = dataParser != null ? dataParser.parse(parts[1]) : null;
+                        DataT fromData = dataParser != null ? dataParser.parse(parts[0]) : null;
+                        DataT toData = dataParser != null ? dataParser.parse(parts[1]) : null;
                         if (!hasVertex(from)) {
                             addVertex(from, fromData);
                         }
@@ -258,7 +258,7 @@ public class IncidenceMatrix<Data> implements Graph<Data> {
     }
 
     @Override
-    public Data getVertexData(int vertex) {
+    public DataT getVertexData(int vertex) {
         return vertexData.get(vertex);
     }
 
@@ -280,7 +280,7 @@ public class IncidenceMatrix<Data> implements Graph<Data> {
 
         for (int i = 0; i < vertexCount; i++) {
             int vertex = vertices.get(i);
-            Data data = vertexData.get(vertex);
+            DataT data = vertexData.get(vertex);
             sb.append(String.format("%-4d", vertex)).append("[");
             sb.append(data != null ? data : "null").append("]");
             for (int j = 0; j < edgeCount; j++) {

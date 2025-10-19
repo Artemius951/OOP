@@ -8,7 +8,7 @@ import java.util.Set;
  * Интерфейс для представления ориентированного графа.
  * Определяет основные операции для работы с графом.
  */
-public interface Graph<Data> {
+public interface Graph<DataT> {
     /**
      * Добавляет вершину в граф.
      *
@@ -16,7 +16,7 @@ public interface Graph<Data> {
      * @param data данные, хранящиеся в вершине
      * @return true если вершина была добавлена, false если вершина уже существует
      */
-    boolean addVertex(int vertex, Data data);
+    boolean addVertex(int vertex, DataT data);
 
     /**
      * Удаляет вершину из графа.
@@ -70,7 +70,7 @@ public interface Graph<Data> {
      * @param dataParser парсер для преобразования строки в данные вершины
      * @throws IOException если произошла ошибка ввода-вывода
      */
-    void readFromFile(String filename, DataParser<Data> dataParser) throws IOException;
+    void readFromFile(String filename, DataParser<DataT> dataParser) throws IOException;
 
     /**
      * Возвращает строковое представление графа.
@@ -122,5 +122,5 @@ public interface Graph<Data> {
      * @param vertex вершина
      * @return данные вершины или null, если вершина не существует
      */
-    Data getVertexData(int vertex);
+    DataT getVertexData(int vertex);
 }

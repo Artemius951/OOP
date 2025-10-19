@@ -285,7 +285,8 @@ public class AdjacencyMatrix<Data> implements Graph<Data> {
 
         for (int vertex : sortedVertices) {
             result = 31 * result + vertex;
-            result = 31 * result + (vertexData.get(vertex) != null ? vertexData.get(vertex).hashCode() : 0);
+            result = 31 * result
+                + (vertexData.get(vertex) != null ? vertexData.get(vertex).hashCode() : 0);
         }
 
         for (int i = 0; i < size; i++) {
