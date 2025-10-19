@@ -77,7 +77,7 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">TopSort</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
 <div class="block">Класс для топологической сортировки ориентированных графов.
- Реализует алгоритм Тарьяна для топологической сортировки.</div>
+ Реализует DFS-алгоритм для топологической сортировки.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -106,9 +106,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#topologicalSort(ru.nsu.kutsenko.task121.Graph)" class="member-name-link">topologicalSort</a><wbr>(<a href="Graph.html" title="interface in ru.nsu.kutsenko.task121">Graph</a>&nbsp;graph)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#topologicalSortDFS(ru.nsu.kutsenko.task121.Graph)" class="member-name-link">topologicalSortDFS</a><wbr>(<a href="Graph.html" title="interface in ru.nsu.kutsenko.task121">Graph</a>&lt;?&gt;&nbsp;graph)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Алгоритм Тарьяна для топологической сортировки.</div>
+<div class="block">DFS-алгоритм для топологической сортировки.</div>
 </div>
 </div>
 </div>
@@ -142,11 +142,11 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="topologicalSort(ru.nsu.kutsenko.task121.Graph)">
-<h3>topologicalSort</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</span>&nbsp;<span class="element-name">topologicalSort</span><wbr><span class="parameters">(<a href="Graph.html" title="interface in ru.nsu.kutsenko.task121">Graph</a>&nbsp;graph)</span></div>
-<div class="block">Алгоритм Тарьяна для топологической сортировки.
- Использует подход на основе подсчета входящих степеней вершин.
+<section class="detail" id="topologicalSortDFS(ru.nsu.kutsenko.task121.Graph)">
+<h3>topologicalSortDFS</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</span>&nbsp;<span class="element-name">topologicalSortDFS</span><wbr><span class="parameters">(<a href="Graph.html" title="interface in ru.nsu.kutsenko.task121">Graph</a>&lt;?&gt;&nbsp;graph)</span></div>
+<div class="block">DFS-алгоритм для топологической сортировки.
+ Использует подход на основе DFS.
  Работает только с ациклическими ориентированными графами.
  Иначе выбрасывает исключение.
  Временная сложность алгоритма: О(V+E), где V - кол-во вершин, E - кол-во ребёр.</div>

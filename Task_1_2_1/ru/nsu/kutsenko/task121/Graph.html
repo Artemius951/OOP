@@ -67,7 +67,7 @@ loadScripts(document, 'script');</script>
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">ru.nsu.kutsenko.task121</a></div>
-<h1 title="Interface Graph" class="title">Interface Graph</h1>
+<h1 title="Interface Graph" class="title">Interface Graph&lt;Data&gt;</h1>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
@@ -75,7 +75,7 @@ loadScripts(document, 'script');</script>
 <dd><code><a href="AdjacencyList.html" title="class in ru.nsu.kutsenko.task121">AdjacencyList</a></code>, <code><a href="AdjacencyMatrix.html" title="class in ru.nsu.kutsenko.task121">AdjacencyMatrix</a></code>, <code><a href="IncidenceMatrix.html" title="class in ru.nsu.kutsenko.task121">IncidenceMatrix</a></code></dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">Graph</span></div>
+<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">Graph&lt;Data&gt;</span></div>
 <div class="block">Интерфейс для представления ориентированного графа.
  Определяет основные операции для работы с графом.</div>
 </section>
@@ -99,7 +99,8 @@ loadScripts(document, 'script');</script>
 <div class="block">Добавляет ориентированное ребро между вершинами.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#addVertex(int)" class="member-name-link">addVertex</a><wbr>(int&nbsp;vertex)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#addVertex(int,Data)" class="member-name-link">addVertex</a><wbr>(int&nbsp;vertex,
+ <a href="Graph.html" title="type parameter in Graph">Data</a>&nbsp;data)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Добавляет вершину в граф.</div>
 </div>
@@ -123,21 +124,21 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Возвращает количество вершин в графе.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getVertices()" class="member-name-link">getVertices</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="Graph.html" title="type parameter in Graph">Data</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getVertexData(int)" class="member-name-link">getVertexData</a><wbr>(int&nbsp;vertex)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Возвращает данные, хранящиеся в вершине.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getVertices()" class="member-name-link">getVertices</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Возвращает множество всех вершин графа.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#hasEdge(int,int)" class="member-name-link">hasEdge</a><wbr>(int&nbsp;from,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#hasEdge(int,int)" class="member-name-link">hasEdge</a><wbr>(int&nbsp;from,
  int&nbsp;to)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Проверяет наличие ребра между вершинами.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#hashCode()" class="member-name-link">hashCode</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Возвращает хэш-код графа.</div>
+<div class="block">Проверяет наличие ребра между вершинами.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#hasVertex(int)" class="member-name-link">hasVertex</a><wbr>(int&nbsp;vertex)</code></div>
@@ -145,7 +146,8 @@ loadScripts(document, 'script');</script>
 <div class="block">Проверяет наличие вершины в графе.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#readFromFile(java.lang.String)" class="member-name-link">readFromFile</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;filename)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#readFromFile(java.lang.String,ru.nsu.kutsenko.task121.DataParser)" class="member-name-link">readFromFile</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;filename,
+ <a href="DataParser.html" title="interface in ru.nsu.kutsenko.task121">DataParser</a>&lt;<a href="Graph.html" title="type parameter in Graph">Data</a>&gt;&nbsp;dataParser)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Читает граф из файла.</div>
 </div>
@@ -180,13 +182,15 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="addVertex(int)">
-<h3>addVertex</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">addVertex</span><wbr><span class="parameters">(int&nbsp;vertex)</span></div>
+<section class="detail" id="addVertex(int,Data)">
+<h3 id="addVertex(int,java.lang.Object)">addVertex</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">addVertex</span><wbr><span class="parameters">(int&nbsp;vertex,
+ <a href="Graph.html" title="type parameter in Graph">Data</a>&nbsp;data)</span></div>
 <div class="block">Добавляет вершину в граф.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>vertex</code> - вершина, которую будем добавлять</dd>
+<dd><code>data</code> - данные, хранящиеся в вершине</dd>
 <dt>Returns:</dt>
 <dd>true если вершина была добавлена, false если вершина уже существует</dd>
 </dl>
@@ -232,6 +236,80 @@ loadScripts(document, 'script');</script>
 <dd><code>to</code> - конечная вершина ребра</dd>
 <dt>Returns:</dt>
 <dd>true если ребро было удалено, false если ребро не существует</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="hasVertex(int)">
+<h3>hasVertex</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">hasVertex</span><wbr><span class="parameters">(int&nbsp;vertex)</span></div>
+<div class="block">Проверяет наличие вершины в графе.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>vertex</code> - вершина для проверки</dd>
+<dt>Returns:</dt>
+<dd>true если вершина существует, false в противном случае</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="hasEdge(int,int)">
+<h3>hasEdge</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">hasEdge</span><wbr><span class="parameters">(int&nbsp;from,
+ int&nbsp;to)</span></div>
+<div class="block">Проверяет наличие ребра между вершинами.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>from</code> - начальная вершина ребра</dd>
+<dd><code>to</code> - конечная вершина ребра</dd>
+<dt>Returns:</dt>
+<dd>true если ребро существует, false в противном случае</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="readFromFile(java.lang.String,ru.nsu.kutsenko.task121.DataParser)">
+<h3>readFromFile</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">readFromFile</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;filename,
+ <a href="DataParser.html" title="interface in ru.nsu.kutsenko.task121">DataParser</a>&lt;<a href="Graph.html" title="type parameter in Graph">Data</a>&gt;&nbsp;dataParser)</span>
+           throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></span></div>
+<div class="block">Читает граф из файла.
+ Формат файла: первая строка игнорируется, последующие строки содержат пары чисел,
+ представляющие ориентированные ребра.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>filename</code> - имя файла для чтения</dd>
+<dd><code>dataParser</code> - парсер для преобразования строки в данные вершины</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - если произошла ошибка ввода-вывода</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="toString()">
+<h3>toString</h3>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">toString</span>()</div>
+<div class="block">Возвращает строковое представление графа.</div>
+<dl class="notes">
+<dt>Overrides:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
+<dt>Returns:</dt>
+<dd>строковое представление графа</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="equals(java.lang.Object)">
+<h3>equals</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">equals</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;obj)</span></div>
+<div class="block">Сравнивает данный граф с другим графом на равенство.</div>
+<dl class="notes">
+<dt>Overrides:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>obj</code> - объект для сравнения</dd>
+<dt>Returns:</dt>
+<dd>true если графы равны, false в противном случае</dd>
 </dl>
 </section>
 </li>
@@ -282,87 +360,15 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="hasVertex(int)">
-<h3>hasVertex</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">hasVertex</span><wbr><span class="parameters">(int&nbsp;vertex)</span></div>
-<div class="block">Проверяет наличие вершины в графе.</div>
+<section class="detail" id="getVertexData(int)">
+<h3>getVertexData</h3>
+<div class="member-signature"><span class="return-type"><a href="Graph.html" title="type parameter in Graph">Data</a></span>&nbsp;<span class="element-name">getVertexData</span><wbr><span class="parameters">(int&nbsp;vertex)</span></div>
+<div class="block">Возвращает данные, хранящиеся в вершине.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>vertex</code> - вершина для проверки</dd>
+<dd><code>vertex</code> - вершина</dd>
 <dt>Returns:</dt>
-<dd>true если вершина существует, false в противном случае</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="hasEdge(int,int)">
-<h3>hasEdge</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">hasEdge</span><wbr><span class="parameters">(int&nbsp;from,
- int&nbsp;to)</span></div>
-<div class="block">Проверяет наличие ребра между вершинами.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>from</code> - начальная вершина ребра</dd>
-<dd><code>to</code> - конечная вершина ребра</dd>
-<dt>Returns:</dt>
-<dd>true если ребро существует, false в противном случае</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="readFromFile(java.lang.String)">
-<h3>readFromFile</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">readFromFile</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;filename)</span>
-           throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></span></div>
-<div class="block">Читает граф из файла.
- Формат файла: первая строка игнорируется, последующие строки содержат пары чисел,
- представляющие ориентированные ребра.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>filename</code> - имя файла для чтения</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - если произошла ошибка ввода-вывода</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="toString()">
-<h3>toString</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">toString</span>()</div>
-<div class="block">Возвращает строковое представление графа.</div>
-<dl class="notes">
-<dt>Overrides:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
-<dt>Returns:</dt>
-<dd>строковое представление графа</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="equals(java.lang.Object)">
-<h3>equals</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">equals</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;obj)</span></div>
-<div class="block">Сравнивает данный граф с другим графом на равенство.</div>
-<dl class="notes">
-<dt>Overrides:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>obj</code> - объект для сравнения</dd>
-<dt>Returns:</dt>
-<dd>true если графы равны, false в противном случае</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="hashCode()">
-<h3>hashCode</h3>
-<div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">hashCode</span>()</div>
-<div class="block">Возвращает хэш-код графа.</div>
-<dl class="notes">
-<dt>Overrides:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
-<dt>Returns:</dt>
-<dd>хэш-код графа</dd>
+<dd>данные вершины или null, если вершина не существует</dd>
 </dl>
 </section>
 </li>
