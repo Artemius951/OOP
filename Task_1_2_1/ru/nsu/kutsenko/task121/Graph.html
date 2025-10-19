@@ -67,7 +67,7 @@ loadScripts(document, 'script');</script>
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">ru.nsu.kutsenko.task121</a></div>
-<h1 title="Interface Graph" class="title">Interface Graph&lt;Data&gt;</h1>
+<h1 title="Interface Graph" class="title">Interface Graph&lt;DataT&gt;</h1>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
@@ -75,7 +75,7 @@ loadScripts(document, 'script');</script>
 <dd><code><a href="AdjacencyList.html" title="class in ru.nsu.kutsenko.task121">AdjacencyList</a></code>, <code><a href="AdjacencyMatrix.html" title="class in ru.nsu.kutsenko.task121">AdjacencyMatrix</a></code>, <code><a href="IncidenceMatrix.html" title="class in ru.nsu.kutsenko.task121">IncidenceMatrix</a></code></dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">Graph&lt;Data&gt;</span></div>
+<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">Graph&lt;DataT&gt;</span></div>
 <div class="block">Интерфейс для представления ориентированного графа.
  Определяет основные операции для работы с графом.</div>
 </section>
@@ -99,8 +99,8 @@ loadScripts(document, 'script');</script>
 <div class="block">Добавляет ориентированное ребро между вершинами.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#addVertex(int,Data)" class="member-name-link">addVertex</a><wbr>(int&nbsp;vertex,
- <a href="Graph.html" title="type parameter in Graph">Data</a>&nbsp;data)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#addVertex(int,DataT)" class="member-name-link">addVertex</a><wbr>(int&nbsp;vertex,
+ <a href="Graph.html" title="type parameter in Graph">DataT</a>&nbsp;data)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Добавляет вершину в граф.</div>
 </div>
@@ -124,7 +124,7 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Возвращает количество вершин в графе.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="Graph.html" title="type parameter in Graph">Data</a></code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="Graph.html" title="type parameter in Graph">DataT</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getVertexData(int)" class="member-name-link">getVertexData</a><wbr>(int&nbsp;vertex)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Возвращает данные, хранящиеся в вершине.</div>
@@ -147,7 +147,7 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#readFromFile(java.lang.String,ru.nsu.kutsenko.task121.DataParser)" class="member-name-link">readFromFile</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;filename,
- <a href="DataParser.html" title="interface in ru.nsu.kutsenko.task121">DataParser</a>&lt;<a href="Graph.html" title="type parameter in Graph">Data</a>&gt;&nbsp;dataParser)</code></div>
+ <a href="DataParser.html" title="interface in ru.nsu.kutsenko.task121">DataParser</a>&lt;<a href="Graph.html" title="type parameter in Graph">DataT</a>&gt;&nbsp;dataParser)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Читает граф из файла.</div>
 </div>
@@ -182,10 +182,10 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="addVertex(int,Data)">
+<section class="detail" id="addVertex(int,DataT)">
 <h3 id="addVertex(int,java.lang.Object)">addVertex</h3>
 <div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">addVertex</span><wbr><span class="parameters">(int&nbsp;vertex,
- <a href="Graph.html" title="type parameter in Graph">Data</a>&nbsp;data)</span></div>
+ <a href="Graph.html" title="type parameter in Graph">DataT</a>&nbsp;data)</span></div>
 <div class="block">Добавляет вершину в граф.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -271,7 +271,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="readFromFile(java.lang.String,ru.nsu.kutsenko.task121.DataParser)">
 <h3>readFromFile</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">readFromFile</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;filename,
- <a href="DataParser.html" title="interface in ru.nsu.kutsenko.task121">DataParser</a>&lt;<a href="Graph.html" title="type parameter in Graph">Data</a>&gt;&nbsp;dataParser)</span>
+ <a href="DataParser.html" title="interface in ru.nsu.kutsenko.task121">DataParser</a>&lt;<a href="Graph.html" title="type parameter in Graph">DataT</a>&gt;&nbsp;dataParser)</span>
            throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></span></div>
 <div class="block">Читает граф из файла.
  Формат файла: первая строка игнорируется, последующие строки содержат пары чисел,
@@ -362,7 +362,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getVertexData(int)">
 <h3>getVertexData</h3>
-<div class="member-signature"><span class="return-type"><a href="Graph.html" title="type parameter in Graph">Data</a></span>&nbsp;<span class="element-name">getVertexData</span><wbr><span class="parameters">(int&nbsp;vertex)</span></div>
+<div class="member-signature"><span class="return-type"><a href="Graph.html" title="type parameter in Graph">DataT</a></span>&nbsp;<span class="element-name">getVertexData</span><wbr><span class="parameters">(int&nbsp;vertex)</span></div>
 <div class="block">Возвращает данные, хранящиеся в вершине.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
