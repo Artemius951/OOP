@@ -4,20 +4,21 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
 /**
  * Реализация графа на основе матрицы смежности.
  * Хранит граф в виде двумерного boolean массива, где true - ребро есть.
  */
-public class AdjacencyMatrix implements Graph {
+public class AdjacencyMatrix<Data> implements Graph<Data> {
     private Map<Integer, Integer> vertexIndexMap;
     private List<Integer> vertices;
+    private Map<Integer, Data> vertexData;
     private boolean[][] adjacencyMatrix;
     private int size;
 
@@ -27,18 +28,20 @@ public class AdjacencyMatrix implements Graph {
     public AdjacencyMatrix() {
         this.vertexIndexMap = new HashMap<>();
         this.vertices = new ArrayList<>();
+        this.vertexData = new HashMap<>();
         this.adjacencyMatrix = new boolean[0][0];
         this.size = 0;
     }
 
     @Override
-    public boolean addVertex(int vertex) {
+    public boolean addVertex(int vertex, Data data) {
         if (vertexIndexMap.containsKey(vertex)) {
             return false;
         }
         ensureCapacity();
         vertexIndexMap.put(vertex, size);
         vertices.add(vertex);
+        vertexData.put(vertex, data);
         size++;
         return true;
     }
@@ -70,14 +73,19 @@ public class AdjacencyMatrix implements Graph {
 
         vertices.remove(size - 1);
         vertexIndexMap.remove(vertex);
+        vertexData.remove(vertex);
         size--;
         return true;
     }
 
     @Override
     public boolean addEdge(int from, int to) {
-        addVertex(from);
-        addVertex(to);
+        if (!vertexIndexMap.containsKey(from)) {
+            addVertex(from, null);
+        }
+        if (!vertexIndexMap.containsKey(to)) {
+            addVertex(to, null);
+        }
 
         int fromIndex = vertexIndexMap.get(from);
         int toIndex = vertexIndexMap.get(to);
@@ -122,7 +130,7 @@ public class AdjacencyMatrix implements Graph {
     }
 
     @Override
-    public void readFromFile(String filename) throws IOException {
+    public void readFromFile(String filename, DataParser<Data> dataParser) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             boolean firstLine = true;
@@ -143,6 +151,14 @@ public class AdjacencyMatrix implements Graph {
                     try {
                         int from = Integer.parseInt(parts[0]);
                         int to = Integer.parseInt(parts[1]);
+                        Data fromData = dataParser != null ? dataParser.parse(parts[0]) : null;
+                        Data toData = dataParser != null ? dataParser.parse(parts[1]) : null;
+                        if (!hasVertex(from)) {
+                            addVertex(from, fromData);
+                        }
+                        if (!hasVertex(to)) {
+                            addVertex(to, toData);
+                        }
                         addEdge(from, to);
                     } catch (NumberFormatException e) {
                         throw new NumberFormatException("Invalid number format in line: " + line);
@@ -191,6 +207,11 @@ public class AdjacencyMatrix implements Graph {
     }
 
     @Override
+    public Data getVertexData(int vertex) {
+        return vertexData.get(vertex);
+    }
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Adjacency Matrix Graph (size: ").append(size).append(")\n");
@@ -206,7 +227,10 @@ public class AdjacencyMatrix implements Graph {
         sb.append("\n");
 
         for (int i = 0; i < size; i++) {
-            sb.append(String.format("%-4d", vertices.get(i)));
+            int vertex = vertices.get(i);
+            Data data = vertexData.get(vertex);
+            sb.append(String.format("%-4d", vertex)).append("[");
+            sb.append(data != null ? data : "null").append("]");
             for (int j = 0; j < size; j++) {
                 sb.append(adjacencyMatrix[i][j] ? "1   " : "0   ");
             }
@@ -225,18 +249,26 @@ public class AdjacencyMatrix implements Graph {
             return false;
         }
 
-        AdjacencyMatrix other = (AdjacencyMatrix) obj;
+        AdjacencyMatrix<?> other = (AdjacencyMatrix<?>) obj;
 
         if (size != other.size) {
             return false;
         }
+
         if (!new HashSet<>(vertices).equals(new HashSet<>(other.vertices))) {
+            return false;
+        }
+        if (!vertexData.equals(other.vertexData)) {
             return false;
         }
 
         for (int i = 0; i < size; i++) {
+            int vertex1 = vertices.get(i);
             for (int j = 0; j < size; j++) {
-                if (adjacencyMatrix[i][j] != other.adjacencyMatrix[i][j]) {
+                int vertex2 = vertices.get(j);
+                boolean thisEdge = hasEdge(vertex1, vertex2);
+                boolean otherEdge = other.hasEdge(vertex1, vertex2);
+                if (thisEdge != otherEdge) {
                     return false;
                 }
             }
@@ -247,21 +279,30 @@ public class AdjacencyMatrix implements Graph {
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(size);
-        result = 31 * result + vertices.hashCode();
+        int result = 17;
+        List<Integer> sortedVertices = new ArrayList<>(vertices);
+        Collections.sort(sortedVertices);
+
+        for (int vertex : sortedVertices) {
+            result = 31 * result + vertex;
+            result = 31 * result + (vertexData.get(vertex) != null ? vertexData.get(vertex).hashCode() : 0);
+        }
+
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (adjacencyMatrix[i][j]) {
-                    result = 31 * result + Objects.hash(i, j);
+                    result = 31 * result + vertices.get(i);
+                    result = 31 * result + vertices.get(j);
                 }
             }
         }
+
         return result;
     }
 
     /**
      * Увеличивает емкость матрицы смежности при необходимости.
-     * Удваивает размер матрицы, если текущий размер недостаточен.
+     * Удваивает размер матрицы, если текульный размер недостаточен.
      */
     private void ensureCapacity() {
         if (size >= adjacencyMatrix.length) {

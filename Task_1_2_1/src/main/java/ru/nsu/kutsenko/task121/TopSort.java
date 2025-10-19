@@ -1,21 +1,20 @@
 package ru.nsu.kutsenko.task121;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 
 /**
  * Класс для топологической сортировки ориентированных графов.
- * Реализует алгоритм Тарьяна для топологической сортировки.
+ * Реализует DFS-алгоритм для топологической сортировки.
  */
 public class TopSort {
 
     /**
-     * Алгоритм Тарьяна для топологической сортировки.
-     * Использует подход на основе подсчета входящих степеней вершин.
+     * DFS-алгоритм для топологической сортировки.
+     * Использует подход на основе DFS.
      * Работает только с ациклическими ориентированными графами.
      * Иначе выбрасывает исключение.
      * Временная сложность алгоритма: О(V+E), где V - кол-во вершин, E - кол-во ребёр.
@@ -24,45 +23,43 @@ public class TopSort {
      * @return список вершин в топологическом порядке
      * @throws IllegalArgumentException если граф содержит циклы
      */
-    public static List<Integer> topologicalSort(Graph graph) {
+    public static List<Integer> topologicalSortDFS(Graph<?> graph) {
         List<Integer> result = new ArrayList<>();
-        Map<Integer, Integer> inDegree = new HashMap<>();
-        Queue<Integer> queue = new LinkedList<>();
+        Map<Integer, Integer> visited = new HashMap<>();
 
         for (int vertex : graph.getVertices()) {
-            inDegree.put(vertex, 0);
+            visited.put(vertex, 0);
         }
 
         for (int vertex : graph.getVertices()) {
-            for (int neighbor : graph.getNeighbors(vertex)) {
-                inDegree.put(neighbor, inDegree.get(neighbor) + 1);
-            }
-        }
-
-        for (int vertex : graph.getVertices()) {
-            if (inDegree.get(vertex) == 0) {
-                queue.offer(vertex);
-            }
-        }
-
-        while (!queue.isEmpty()) {
-            int currentVertex = queue.poll();
-            result.add(currentVertex);
-
-            for (int neighbor : graph.getNeighbors(currentVertex)) {
-                int newDegree = inDegree.get(neighbor) - 1;
-                inDegree.put(neighbor, newDegree);
-
-                if (newDegree == 0) {
-                    queue.offer(neighbor);
+            if (visited.get(vertex) == 0) {
+                if (!dfs(vertex, graph, visited, result)) {
+                    throw new IllegalArgumentException("Graph contains cycles");
                 }
             }
         }
 
-        if (result.size() != graph.getVertices().size()) {
-            throw new IllegalArgumentException("Graph contains cycles, topsort is impossible");
+        Collections.reverse(result);
+        return result;
+    }
+
+    private static boolean dfs(int vertex, Graph<?> graph, Map<Integer, Integer> visited,
+                               List<Integer> result) {
+        visited.put(vertex, 1);
+
+        for (int neighbor : graph.getNeighbors(vertex)) {
+            if (visited.get(neighbor) == 1) {
+                return false;
+            }
+            if (visited.get(neighbor) == 0) {
+                if (!dfs(neighbor, graph, visited, result)) {
+                    return false;
+                }
+            }
         }
 
-        return result;
+        visited.put(vertex, 2);
+        result.add(vertex);
+        return true;
     }
 }

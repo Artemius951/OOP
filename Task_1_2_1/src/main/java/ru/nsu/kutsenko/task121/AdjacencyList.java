@@ -15,22 +15,25 @@ import java.util.Set;
  * Реализация графа на основе списка смежности.
  * Хранит граф в виде отображения вершины в список ее соседей.
  */
-public class AdjacencyList implements Graph {
+public class AdjacencyList<Data> implements Graph<Data> {
     private Map<Integer, List<Integer>> adjacencyList;
+    private Map<Integer, Data> vertexData;
 
     /**
      * Создает пустой граф со списком смежности.
      */
     public AdjacencyList() {
         this.adjacencyList = new HashMap<>();
+        this.vertexData = new HashMap<>();
     }
 
     @Override
-    public boolean addVertex(int vertex) {
+    public boolean addVertex(int vertex, Data data) {
         if (adjacencyList.containsKey(vertex)) {
             return false;
         }
         adjacencyList.put(vertex, new ArrayList<>());
+        vertexData.put(vertex, data);
         return true;
     }
 
@@ -45,13 +48,18 @@ public class AdjacencyList implements Graph {
         }
 
         adjacencyList.remove(vertex);
+        vertexData.remove(vertex);
         return true;
     }
 
     @Override
     public boolean addEdge(int from, int to) {
-        addVertex(from);
-        addVertex(to);
+        if (!adjacencyList.containsKey(from)) {
+            addVertex(from, null);
+        }
+        if (!adjacencyList.containsKey(to)) {
+            addVertex(to, null);
+        }
 
         List<Integer> neighbors = adjacencyList.get(from);
         if (neighbors.contains(to)) {
@@ -79,7 +87,7 @@ public class AdjacencyList implements Graph {
     }
 
     @Override
-    public void readFromFile(String filename) throws IOException {
+    public void readFromFile(String filename, DataParser<Data> dataParser) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             boolean firstLine = true;
@@ -100,6 +108,14 @@ public class AdjacencyList implements Graph {
                     try {
                         int from = Integer.parseInt(parts[0]);
                         int to = Integer.parseInt(parts[1]);
+                        Data fromData = dataParser != null ? dataParser.parse(parts[0]) : null;
+                        Data toData = dataParser != null ? dataParser.parse(parts[1]) : null;
+                        if (!hasVertex(from)) {
+                            addVertex(from, fromData);
+                        }
+                        if (!hasVertex(to)) {
+                            addVertex(to, toData);
+                        }
                         addEdge(from, to);
                     } catch (NumberFormatException e) {
                         throw new NumberFormatException("Invalid number format in line: " + line);
@@ -140,6 +156,11 @@ public class AdjacencyList implements Graph {
     }
 
     @Override
+    public Data getVertexData(int vertex) {
+        return vertexData.get(vertex);
+    }
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Adjacency List Graph (vertices: ").append(getVertexCount())
@@ -151,7 +172,9 @@ public class AdjacencyList implements Graph {
         for (int vertex : sortedVertices) {
             List<Integer> neighbors = new ArrayList<>(adjacencyList.get(vertex));
             Collections.sort(neighbors);
-            sb.append(vertex).append(" -> ").append(neighbors).append("\n");
+            Data data = vertexData.get(vertex);
+            sb.append(vertex).append(" [").append(data != null ? data : "null").append("] -> ");
+            sb.append(neighbors).append("\n");
         }
 
         return sb.toString();
@@ -166,12 +189,40 @@ public class AdjacencyList implements Graph {
             return false;
         }
 
-        AdjacencyList other = (AdjacencyList) obj;
-        return adjacencyList.equals(other.adjacencyList);
+        AdjacencyList<?> other = (AdjacencyList<?>) obj;
+
+        if (!adjacencyList.keySet().equals(other.adjacencyList.keySet())) {
+            return false;
+        }
+
+        if (!vertexData.equals(other.vertexData)) {
+            return false;
+        }
+
+        for (int vertex : adjacencyList.keySet()) {
+            List<Integer> thisNeighbors = new ArrayList<>(adjacencyList.get(vertex));
+            List<Integer> otherNeighbors = new ArrayList<>(other.adjacencyList.get(vertex));
+            Collections.sort(thisNeighbors);
+            Collections.sort(otherNeighbors);
+            if (!thisNeighbors.equals(otherNeighbors)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return adjacencyList.hashCode();
+        int result = 17;
+        List<Integer> sortedVertices = new ArrayList<>(adjacencyList.keySet());
+        Collections.sort(sortedVertices);
+        for (int vertex : sortedVertices) {
+            result = 31 * result + vertex;
+            result = 31 * result + (vertexData.get(vertex) != null ? vertexData.get(vertex).hashCode() : 0);
+            List<Integer> neighbors = new ArrayList<>(adjacencyList.get(vertex));
+            Collections.sort(neighbors);
+            result = 31 * result + neighbors.hashCode();
+        }
+        return result;
     }
 }

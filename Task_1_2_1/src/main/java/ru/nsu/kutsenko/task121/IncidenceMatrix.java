@@ -4,11 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -16,9 +16,10 @@ import java.util.Set;
  * Хранит граф в виде матрицы, где строки соответствуют вершинам, а столбцы - ребрам.
  * Значение OUTGOING_EDGE - исходящее ребро, INCOMING_EDGE - входящее ребро.
  */
-public class IncidenceMatrix implements Graph {
+public class IncidenceMatrix<Data> implements Graph<Data> {
     private Map<Integer, Integer> vertexIndexMap;
     private List<Integer> vertices;
+    private Map<Integer, Data> vertexData;
     private List<Edge> edges;
     private int[][] incidenceMatrix;
     private int vertexCount;
@@ -51,11 +52,6 @@ public class IncidenceMatrix implements Graph {
             Edge edge = (Edge) obj;
             return from == edge.from && to == edge.to;
         }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(from, to);
-        }
     }
 
     /**
@@ -64,6 +60,7 @@ public class IncidenceMatrix implements Graph {
     public IncidenceMatrix() {
         this.vertexIndexMap = new HashMap<>();
         this.vertices = new ArrayList<>();
+        this.vertexData = new HashMap<>();
         this.edges = new ArrayList<>();
         this.incidenceMatrix = new int[0][0];
         this.vertexCount = 0;
@@ -71,13 +68,14 @@ public class IncidenceMatrix implements Graph {
     }
 
     @Override
-    public boolean addVertex(int vertex) {
+    public boolean addVertex(int vertex, Data data) {
         if (vertexIndexMap.containsKey(vertex)) {
             return false;
         }
         ensureCapacity();
         vertexIndexMap.put(vertex, vertexCount);
         vertices.add(vertex);
+        vertexData.put(vertex, data);
         vertexCount++;
         return true;
     }
@@ -112,6 +110,7 @@ public class IncidenceMatrix implements Graph {
 
         vertices.remove(vertexCount - 1);
         vertexIndexMap.remove(vertex);
+        vertexData.remove(vertex);
         vertexCount--;
 
         return true;
@@ -119,8 +118,12 @@ public class IncidenceMatrix implements Graph {
 
     @Override
     public boolean addEdge(int from, int to) {
-        addVertex(from);
-        addVertex(to);
+        if (!vertexIndexMap.containsKey(from)) {
+            addVertex(from, null);
+        }
+        if (!vertexIndexMap.containsKey(to)) {
+            addVertex(to, null);
+        }
 
         Edge edge = new Edge(from, to);
         if (edges.contains(edge)) {
@@ -191,7 +194,7 @@ public class IncidenceMatrix implements Graph {
     }
 
     @Override
-    public void readFromFile(String filename) throws IOException {
+    public void readFromFile(String filename, DataParser<Data> dataParser) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             boolean firstLine = true;
@@ -212,6 +215,14 @@ public class IncidenceMatrix implements Graph {
                     try {
                         int from = Integer.parseInt(parts[0]);
                         int to = Integer.parseInt(parts[1]);
+                        Data fromData = dataParser != null ? dataParser.parse(parts[0]) : null;
+                        Data toData = dataParser != null ? dataParser.parse(parts[1]) : null;
+                        if (!hasVertex(from)) {
+                            addVertex(from, fromData);
+                        }
+                        if (!hasVertex(to)) {
+                            addVertex(to, toData);
+                        }
                         addEdge(from, to);
                     } catch (NumberFormatException e) {
                         throw new NumberFormatException("Invalid number format in line: " + line);
@@ -247,6 +258,11 @@ public class IncidenceMatrix implements Graph {
     }
 
     @Override
+    public Data getVertexData(int vertex) {
+        return vertexData.get(vertex);
+    }
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Incidence Matrix Graph (vertices: ").append(vertexCount)
@@ -263,7 +279,10 @@ public class IncidenceMatrix implements Graph {
         sb.append("\n");
 
         for (int i = 0; i < vertexCount; i++) {
-            sb.append(String.format("%-4d", vertices.get(i)));
+            int vertex = vertices.get(i);
+            Data data = vertexData.get(vertex);
+            sb.append(String.format("%-4d", vertex)).append("[");
+            sb.append(data != null ? data : "null").append("]");
             for (int j = 0; j < edgeCount; j++) {
                 sb.append(String.format("%-4d", incidenceMatrix[i][j]));
             }
@@ -282,21 +301,46 @@ public class IncidenceMatrix implements Graph {
             return false;
         }
 
-        IncidenceMatrix other = (IncidenceMatrix) obj;
+        IncidenceMatrix<?> other = (IncidenceMatrix<?>) obj;
 
-        if (vertexCount != other.vertexCount || edgeCount != other.edgeCount) {
+        // Проверяем одинаковые наборы вершин и данные
+        if (!getVertices().equals(other.getVertices())) {
+            return false;
+        }
+        if (!vertexData.equals(other.vertexData)) {
             return false;
         }
 
-        return new HashSet<>(vertices).equals(new HashSet<>(other.vertices))
-            && new HashSet<>(edges).equals(new HashSet<>(other.edges));
+        // Проверяем одинаковые рёбра
+        if (edgeCount != other.edgeCount) {
+            return false;
+        }
+
+        return new HashSet<>(edges).equals(new HashSet<>(other.edges));
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(vertexCount, edgeCount);
-        result = 31 * result + vertices.hashCode();
-        result = 31 * result + edges.hashCode();
+        int result = 17;
+        List<Integer> sortedVertices = new ArrayList<>(vertices);
+        Collections.sort(sortedVertices);
+
+        for (int vertex : sortedVertices) {
+            result = 31 * result + vertex;
+            result = 31 * result + (vertexData.get(vertex) != null ? vertexData.get(vertex).hashCode() : 0);
+        }
+
+        List<Edge> sortedEdges = new ArrayList<>(edges);
+        sortedEdges.sort((e1, e2) -> {
+            int fromCompare = Integer.compare(e1.from, e2.from);
+            return fromCompare != 0 ? fromCompare : Integer.compare(e1.to, e2.to);
+        });
+
+        for (Edge edge : sortedEdges) {
+            result = 31 * result + edge.from;
+            result = 31 * result + edge.to;
+        }
+
         return result;
     }
 
