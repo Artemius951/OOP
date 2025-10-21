@@ -161,7 +161,7 @@ public class AdjacencyMatrix<DataT> implements Graph<DataT> {
                         }
                         addEdge(from, to);
                     } catch (NumberFormatException e) {
-                        throw new NumberFormatException("Invalid number format in line: " + line);
+                        throw new GParsException("Invalid number format in line: " + line, e);
                     }
                 }
             }
