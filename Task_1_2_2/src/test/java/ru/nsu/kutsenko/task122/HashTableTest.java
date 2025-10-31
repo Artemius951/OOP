@@ -193,7 +193,7 @@ public class HashTableTest {
         assertNull(table.get("any"));
         assertFalse(table.containsKey("any"));
         assertFalse(table.remove("any"));
-        assertEquals(0, table.toString().length() - 2); // только {}
+        assertEquals(0, table.toString().length() - 2);
     }
 
 
