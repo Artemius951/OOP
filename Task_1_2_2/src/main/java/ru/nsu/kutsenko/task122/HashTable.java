@@ -222,9 +222,15 @@ public class HashTable<K, V> implements Iterable<HashTable.Pair<K, V>> {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof HashTable<?, ?> other)) return false;
-        if (this.size != other.size) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof HashTable<?, ?> other)) {
+            return false;
+        }
+        if (this.size != other.size) {
+            return false;
+        }
         for (int i = 0; i < table.length; i++) {
             Pair<K, V> current = table[i];
             while (current != null) {
