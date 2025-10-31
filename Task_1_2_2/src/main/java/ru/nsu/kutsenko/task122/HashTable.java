@@ -7,15 +7,15 @@ import java.util.Iterator;
  * поиска и итерации по парам ключ-значение. Обрабатывает коллизии
  * методом цепочек и поддерживает fail-fast итератор.
  */
-public class HashTable<K, V> implements Iterable<HashTable.Pair<K,V>>{
+public class HashTable<K, V> implements Iterable<HashTable.Pair<K, V>> {
 
     /**
      * Узел цепочки для бакета: хранит ключ, значение и ссылку на следующий узел.
      */
-    public static class Pair<K,V> {
+    public static class Pair<K, V> {
         final K key;
         V value;
-        Pair<K,V> next;
+        Pair<K, V> next;
 
         /**
          * Создаёт узел пары.
@@ -31,7 +31,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Pair<K,V>>{
         }
     }
 
-    private Pair<K,V>[]table;
+    private Pair<K, V>[] table;
     private int size;
     private static final int DEF_CAPACITY = 16;
     private static final double LOAD_FACTOR = 0.75;
@@ -111,7 +111,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Pair<K,V>>{
      */
     public boolean update(K key, V value) {
         int id = hash(key);
-        Pair<K,V> cur = table[id];
+        Pair<K, V> cur = table[id];
         while (cur != null) {
             if (equalsKey(key, cur.key)) {
                 cur.value = value;
@@ -131,7 +131,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Pair<K,V>>{
      * @return true, если элемент добавлен или обновлён
      */
     public boolean put(K key, V value) {
-        if ((double)size / table.length >= LOAD_FACTOR) {
+        if ((double) size / table.length >= LOAD_FACTOR) {
             resize();
         }
         if (update(key, value)) {
@@ -183,7 +183,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Pair<K,V>>{
      */
     public V get(K key) {
         int id = hash(key);
-        Pair<K,V> cur = table[id];
+        Pair<K, V> cur = table[id];
         while (cur != null) {
             if (equalsKey(key, cur.key)) {
                 return cur.value;
@@ -202,7 +202,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Pair<K,V>>{
      */
     public boolean containsKey(K key) {
         int id = hash(key);
-        Pair<K,V> cur = table[id];
+        Pair<K, V> cur = table[id];
         while (cur != null) {
             if (equalsKey(key, cur.key)) {
                 return true;
