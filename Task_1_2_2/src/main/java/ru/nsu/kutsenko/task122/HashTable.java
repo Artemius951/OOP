@@ -19,6 +19,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Pair<K,V>>{
 
         /**
          * Создаёт узел пары.
+         *
          * @param key ключ
          * @param value значение
          * @param next следующий узел в цепочке
@@ -46,7 +47,9 @@ public class HashTable<K, V> implements Iterable<HashTable.Pair<K,V>>{
 
     /**
      * Вычисляет индекс бакета для ключа по текущей ёмкости таблицы.
+     *
      * @param key ключ (может быть null)
+     *
      * @return индекс бакета
      */
     private int hash(K key) {
@@ -55,8 +58,10 @@ public class HashTable<K, V> implements Iterable<HashTable.Pair<K,V>>{
 
     /**
      * Вычисляет индекс бакета для ключа по заданному модулю.
+     *
      * @param key ключ (может быть null)
      * @param mod модуль (ёмкость массива бакетов)
+     *
      * @return индекс бакета
      */
     private int hash(K key, int mod) {
@@ -86,8 +91,10 @@ public class HashTable<K, V> implements Iterable<HashTable.Pair<K,V>>{
 
     /**
      * Сравнивает ключи с учётом null.
+     *
      * @param k1 первый ключ
      * @param k2 второй ключ
+     *
      * @return true, если ключи равны
      */
     private boolean equalsKey(K k1, K k2) {
@@ -96,8 +103,10 @@ public class HashTable<K, V> implements Iterable<HashTable.Pair<K,V>>{
 
     /**
      * Обновляет значение по ключу, если ключ уже существует.
+     *
      * @param key ключ (может быть null)
      * @param value новое значение
+     *
      * @return true, если значение было обновлено; false, если ключ не найден
      */
     public boolean update(K key, V value) {
@@ -115,8 +124,10 @@ public class HashTable<K, V> implements Iterable<HashTable.Pair<K,V>>{
 
     /**
      * Добавляет пару ключ-значение. Если ключ уже существует, обновляет значение.
+     *
      * @param key ключ (может быть null)
      * @param value значение
+     *
      * @return true, если элемент добавлен или обновлён
      */
     public boolean put(K key, V value) {
@@ -137,7 +148,9 @@ public class HashTable<K, V> implements Iterable<HashTable.Pair<K,V>>{
 
     /**
      * Удаляет пару по ключу.
+     *
      * @param key ключ (может быть null)
+     *
      * @return true, если элемент был удалён; false, если ключ не найден
      */
     public boolean remove(K key) {
@@ -163,7 +176,9 @@ public class HashTable<K, V> implements Iterable<HashTable.Pair<K,V>>{
 
     /**
      * Возвращает значение по ключу или null, если ключ не найден.
+     *
      * @param key ключ (может быть null)
+     *
      * @return значение или null
      */
     public V get(K key) {
@@ -180,7 +195,9 @@ public class HashTable<K, V> implements Iterable<HashTable.Pair<K,V>>{
 
     /**
      * Проверяет наличие ключа в таблице.
+     *
      * @param key ключ (может быть null)
+     *
      * @return true, если ключ присутствует
      */
     public boolean containsKey(K key) {
@@ -198,7 +215,9 @@ public class HashTable<K, V> implements Iterable<HashTable.Pair<K,V>>{
     /**
      * Сравнивает таблицы на логическое равенство по множеству пар (k, v).
      * Выполняет симметричную проверку включения пар this и other.
+     *
      * @param o другая таблица
+     *
      * @return true, если таблицы логически равны
      */
     @Override
@@ -229,9 +248,11 @@ public class HashTable<K, V> implements Iterable<HashTable.Pair<K,V>>{
 
     /**
      * Проверяет наличие пары (key, value) в указанной таблице.
+     *
      * @param other другая таблица
      * @param key ключ
      * @param value значение
+     *
      * @return true, если пара найдена
      */
     private static boolean hasEntry(HashTable<?, ?> other, Object key, Object value) {
@@ -250,6 +271,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Pair<K,V>>{
     /**
      * Вычисляет хэш всей таблицы как сумму хэшей пар (k, v),
      * не зависящий от порядка обхода.
+     *
      * @return хэш-код таблицы
      */
     @Override
@@ -330,6 +352,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Pair<K,V>>{
 
         /**
          * Есть ли следующий элемент.
+         *
          * @return true, если следующий элемент существует
          */
         @Override
@@ -342,7 +365,9 @@ public class HashTable<K, V> implements Iterable<HashTable.Pair<K,V>>{
 
         /**
          * Возвращает следующий элемент и продвигает итератор.
+         *
          * @return следующая пара
+         *
          * @throws java.util.ConcurrentModificationException при модификации коллекции
          * @throws java.util.NoSuchElementException если элементов больше нет
          */
