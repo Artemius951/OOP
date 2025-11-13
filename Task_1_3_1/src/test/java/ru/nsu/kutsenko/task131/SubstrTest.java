@@ -167,6 +167,7 @@ public class SubstrTest {
         int[] result = Substr.find(testFile.getAbsolutePath(), pattern);
         assertTrue(result.length > 1000);
     }
+    
     @Test
     void testPatternAtVeryEnd() throws IOException {
         writeToFile("start end");
@@ -176,7 +177,8 @@ public class SubstrTest {
     @Test
     void testFileWithOnlyNewlines() throws IOException {
         writeToFile("\n\n\n\n\n");
-        assertArrayEquals(new int[]{0,1,2,3,4}, Substr.find(testFile.getAbsolutePath(), "\n"));
+        assertArrayEquals(new int[]{0, 1, 2, 3, 4}, Substr.find(testFile.getAbsolutePath(),
+            "\n"));
     }
 
     @Test
