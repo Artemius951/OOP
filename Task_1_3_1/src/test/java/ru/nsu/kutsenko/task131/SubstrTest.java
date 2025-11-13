@@ -129,7 +129,7 @@ public class SubstrTest {
     void testGreek() throws IOException {
         writeToFile("Οδυσσέας ο ήρως της Οδύσσειας");
         assertArrayEquals(new int[]{0}, Substr.find(testFile.getAbsolutePath(), "Οδυσ"));
-        assertArrayEquals(new int[]{20}, Substr.find(testFile.getAbsolutePath(),"Οδύσ"));
+        assertArrayEquals(new int[]{20}, Substr.find(testFile.getAbsolutePath(), "Οδύσ"));
     }
 
     @Test
