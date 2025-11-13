@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"ru.nsu.kutsenko.task131","c":"Substr","l":"find(String, String)","u":"find(java.lang.String,java.lang.String)"},{"p":"ru.nsu.kutsenko.task131","c":"Substr","l":"Substr()","u":"%3Cinit%3E()"}];updateSearchResults();
