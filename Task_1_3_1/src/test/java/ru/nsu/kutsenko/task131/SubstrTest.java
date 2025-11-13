@@ -156,7 +156,8 @@ public class SubstrTest {
     }
 
     @Test
-    void testVeryLargeFile() throws IOException {StringBuilder largeContent = new StringBuilder();
+    void testVeryLargeFile() throws IOException {
+        StringBuilder largeContent = new StringBuilder();
         for (int i = 0; i < 100000; i++) {
             largeContent.append("abcde");
         }
@@ -166,7 +167,6 @@ public class SubstrTest {
         int[] result = Substr.find(testFile.getAbsolutePath(), pattern);
         assertTrue(result.length > 1000);
     }
-
     @Test
     void testPatternAtVeryEnd() throws IOException {
         writeToFile("start end");
