@@ -48,6 +48,7 @@ public class SubstrTest {
      * @param content содержимое для записи в файл
      * @throws IOException если произошла ошибка записи
      */
+    
     private void writeToFile(String content) throws IOException {
         try (Writer writer = new OutputStreamWriter(
             new FileOutputStream(testFile), StandardCharsets.UTF_8)) {
