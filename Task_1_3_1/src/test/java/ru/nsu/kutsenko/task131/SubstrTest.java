@@ -170,7 +170,7 @@ public class SubstrTest {
     }
 
     @Test
-    void testVeryLargeFileOver4GB() throws IOException {
+    void testVeryLargeFileOver4gb() throws IOException {
         File largeFile = File.createTempFile("largeholyfile", ".txt");
         largeFile.deleteOnExit();
         String pattern = "helpitstoobig";
