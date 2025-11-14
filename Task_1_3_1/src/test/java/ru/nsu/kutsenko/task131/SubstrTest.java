@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -167,7 +168,37 @@ public class SubstrTest {
         int[] result = Substr.find(testFile.getAbsolutePath(), pattern);
         assertTrue(result.length > 1000);
     }
-    
+
+    @Test
+    void testVeryLargeFileOver4GB() throws IOException {
+        File largeFile = File.createTempFile("largeholyfile", ".txt");
+        largeFile.deleteOnExit();
+        String pattern = "helpitstoobig";
+        long targetSize = 4L * 1024 * 1024 * 1024 + 100;
+        try (Writer writer = new OutputStreamWriter(
+            new FileOutputStream(largeFile), StandardCharsets.UTF_8)) {
+            char[] buffer = new char[1024 * 1024];
+            Arrays.fill(buffer, 'x');
+            while (largeFile.length() < targetSize) {
+                writer.write(buffer);
+                writer.flush();
+                if (largeFile.length() % (100L * 1024 * 1024) == 0) {
+                    writer.write(pattern);
+                    writer.flush();
+                }
+            }
+            while (largeFile.length() < targetSize) {
+                writer.write('x');
+                writer.flush();
+            }
+            writer.write(pattern);
+            writer.flush();
+        }
+        int[] result = Substr.find(largeFile.getAbsolutePath(), pattern);
+        assertTrue(result.length >= 2);
+        largeFile.delete(); // от греха подальше
+    }
+
     @Test
     void testPatternAtVeryEnd() throws IOException {
         writeToFile("start end");
