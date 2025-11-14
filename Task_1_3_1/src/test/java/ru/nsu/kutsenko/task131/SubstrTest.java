@@ -37,12 +37,11 @@ public class SubstrTest {
 
     @Test
     void testBasicSubstringSearch() throws IOException {
-        // Тест: "абракадабра" и "бра"
+        // Тот самый абракадабрабра
         writeToFile("абракадабра");
-        int[] result = Substr.find(testFile.getAbsolutePath(), "бра");
-        assertArrayEquals(new int[]{1, 8}, result);
+        long[] result = Substr.find(testFile.getAbsolutePath(), "бра");
+        assertArrayEquals(new long[]{1, 8}, result);
     }
-
     /**
      * Вспомогательный метод для записи строки в тестовый файл.
      *
@@ -59,32 +58,33 @@ public class SubstrTest {
     @Test
     void testWholeFileMatch() throws IOException {
         writeToFile("abra");
-        assertArrayEquals(new int[]{0}, Substr.find(testFile.getAbsolutePath(), "abra"));
+        assertArrayEquals(new long[]{0}, Substr.find(testFile.getAbsolutePath(), "abra"));
     }
 
     @Test
     void testPatternLongerThanFile() throws IOException {
         writeToFile("абра");
-        assertArrayEquals(new int[0], Substr.find(testFile.getAbsolutePath(), "кадабра"));
+        assertArrayEquals(new long[0], Substr.find(testFile.getAbsolutePath(), "кадабра"));
     }
+
 
     @Test
     void testPatternNotFound() throws IOException {
         writeToFile("абракадабра");
-        assertArrayEquals(new int[0], Substr.find(testFile.getAbsolutePath(), "злогин"));
+        assertArrayEquals(new long[0], Substr.find(testFile.getAbsolutePath(), "злогин"));
     }
 
     @Test
     void testOverlappingOccurrences() throws IOException {
         writeToFile("aaaaa");
-        assertArrayEquals(new int[]{0, 1, 2, 3}, Substr.find(testFile.getAbsolutePath(),
+        assertArrayEquals(new long[]{0, 1, 2, 3}, Substr.find(testFile.getAbsolutePath(),
             "aa"));
     }
 
     @Test
     void testSingleCharacterPattern() throws IOException {
         writeToFile("абракадабра");
-        assertArrayEquals(new int[]{0, 3, 5, 7, 10}, Substr.find(testFile.getAbsolutePath(),
+        assertArrayEquals(new long[]{0, 3, 5, 7, 10}, Substr.find(testFile.getAbsolutePath(),
             "а"));
     }
 
@@ -92,7 +92,7 @@ public class SubstrTest {
     @Test
     void testEmptyPattern() throws IOException {
         writeToFile("абра");
-        assertArrayEquals(new int[0], Substr.find(testFile.getAbsolutePath(), ""));
+        assertArrayEquals(new long[0], Substr.find(testFile.getAbsolutePath(), ""));
     }
 
     @Test
@@ -105,55 +105,55 @@ public class SubstrTest {
     @Test
     void testArabic() throws IOException {
         writeToFile("اللغة العربية جميلة");
-        assertArrayEquals(new int[]{8}, Substr.find(testFile.getAbsolutePath(), "عربية"));
+        assertArrayEquals(new long[]{8}, Substr.find(testFile.getAbsolutePath(), "عربية"));
     }
 
     @Test
     void testChinese() throws IOException {
         writeToFile("中文测试很有趣");
-        assertArrayEquals(new int[]{2}, Substr.find(testFile.getAbsolutePath(), "测试"));
+        assertArrayEquals(new long[]{2}, Substr.find(testFile.getAbsolutePath(), "测试"));
     }
 
     @Test
     void testJapanese() throws IOException {
         writeToFile("日本語のテストです");
-        assertArrayEquals(new int[]{4}, Substr.find(testFile.getAbsolutePath(), "テスト"));
+        assertArrayEquals(new long[]{4}, Substr.find(testFile.getAbsolutePath(), "テスト"));
     }
 
     @Test
     void testKorean() throws IOException {
         writeToFile("한국어 테스트입니다");
-        assertArrayEquals(new int[]{4}, Substr.find(testFile.getAbsolutePath(), "테스트"));
+        assertArrayEquals(new long[]{4}, Substr.find(testFile.getAbsolutePath(), "테스트"));
     }
 
     @Test
     void testGreek() throws IOException {
         writeToFile("Οδυσσέας ο ήρως της Οδύσσειας");
-        assertArrayEquals(new int[]{0}, Substr.find(testFile.getAbsolutePath(), "Οδυσ"));
-        assertArrayEquals(new int[]{20}, Substr.find(testFile.getAbsolutePath(), "Οδύσ"));
+        assertArrayEquals(new long[]{0}, Substr.find(testFile.getAbsolutePath(), "Οδυσ"));
+        assertArrayEquals(new long[]{20}, Substr.find(testFile.getAbsolutePath(), "Οδύσ"));
     }
 
     @Test
     void testVikingCall() throws IOException {
         writeToFile("Valhall väntar, älgar skriar");
-        assertArrayEquals(new int[]{0}, Substr.find(testFile.getAbsolutePath(), "Valhall"));
-        assertArrayEquals(new int[]{16}, Substr.find(testFile.getAbsolutePath(), "älgar"));
+        assertArrayEquals(new long[]{0}, Substr.find(testFile.getAbsolutePath(), "Valhall"));
+        assertArrayEquals(new long[]{16}, Substr.find(testFile.getAbsolutePath(), "älgar"));
     }
 
     @Test
     void testGermanUmlauts() throws IOException {
         writeToFile("München Füße Über");
-        assertArrayEquals(new int[]{0}, Substr.find(testFile.getAbsolutePath(), "München"));
-        assertArrayEquals(new int[]{8}, Substr.find(testFile.getAbsolutePath(), "Füße"));
+        assertArrayEquals(new long[]{0}, Substr.find(testFile.getAbsolutePath(), "München"));
+        assertArrayEquals(new long[]{8}, Substr.find(testFile.getAbsolutePath(), "Füße"));
     }
 
     @Test
     void testMoriaGateInscription() throws IOException {
         writeToFile("Ennyn Durin Aran Moria. Pedo mellon a minno.");
-        assertArrayEquals(new int[]{0}, Substr.find(testFile.getAbsolutePath(), "Ennyn"));
-        assertArrayEquals(new int[]{6}, Substr.find(testFile.getAbsolutePath(), "Durin"));
-        assertArrayEquals(new int[]{12}, Substr.find(testFile.getAbsolutePath(), "Aran"));
-        assertArrayEquals(new int[]{17}, Substr.find(testFile.getAbsolutePath(), "Moria"));
+        assertArrayEquals(new long[]{0}, Substr.find(testFile.getAbsolutePath(), "Ennyn"));
+        assertArrayEquals(new long[]{6}, Substr.find(testFile.getAbsolutePath(), "Durin"));
+        assertArrayEquals(new long[]{12}, Substr.find(testFile.getAbsolutePath(), "Aran"));
+        assertArrayEquals(new long[]{17}, Substr.find(testFile.getAbsolutePath(), "Moria"));
     }
 
     @Test
@@ -165,7 +165,7 @@ public class SubstrTest {
         String pattern = "cde";
         writeToFile(largeContent.toString());
 
-        int[] result = Substr.find(testFile.getAbsolutePath(), pattern);
+        long[] result = Substr.find(testFile.getAbsolutePath(), pattern);
         assertTrue(result.length > 1000);
     }
 
@@ -194,7 +194,7 @@ public class SubstrTest {
             writer.write(pattern);
             writer.flush();
         }
-        int[] result = Substr.find(largeFile.getAbsolutePath(), pattern);
+        long[] result = Substr.find(largeFile.getAbsolutePath(), pattern);
         assertTrue(result.length >= 2);
         largeFile.delete(); // от греха подальше
     }
@@ -202,26 +202,26 @@ public class SubstrTest {
     @Test
     void testPatternAtVeryEnd() throws IOException {
         writeToFile("start end");
-        assertArrayEquals(new int[]{6}, Substr.find(testFile.getAbsolutePath(), "end"));
+        assertArrayEquals(new long[]{6}, Substr.find(testFile.getAbsolutePath(), "end"));
     }
 
     @Test
     void testFileWithOnlyNewlines() throws IOException {
         writeToFile("\n\n\n\n\n");
-        assertArrayEquals(new int[]{0, 1, 2, 3, 4}, Substr.find(testFile.getAbsolutePath(),
+        assertArrayEquals(new long[]{0, 1, 2, 3, 4}, Substr.find(testFile.getAbsolutePath(),
             "\n"));
     }
 
     @Test
     void testEmptyFileWithPattern() throws IOException {
         writeToFile("");
-        assertArrayEquals(new int[0], Substr.find(testFile.getAbsolutePath(), "any"));
+        assertArrayEquals(new long[0], Substr.find(testFile.getAbsolutePath(), "any"));
     }
 
     @Test
     void testMultipleEncodingsMixed() throws IOException {
         writeToFile("ASCII 中文 ελληνικά العربية");
-        assertArrayEquals(new int[]{6}, Substr.find(testFile.getAbsolutePath(), "中文"));
-        assertArrayEquals(new int[]{9}, Substr.find(testFile.getAbsolutePath(), "ελλην"));
+        assertArrayEquals(new long[]{6}, Substr.find(testFile.getAbsolutePath(), "中文"));
+        assertArrayEquals(new long[]{9}, Substr.find(testFile.getAbsolutePath(), "ελλην"));
     }
 }

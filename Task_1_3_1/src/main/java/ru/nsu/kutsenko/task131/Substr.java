@@ -24,9 +24,9 @@ public class Substr {
      * @return массив индексов начала каждого вхождения (0-based)
      * @throws IOException если произошла ошибка при чтении файла
      */
-    public static int[] find(String filename, String pattern) throws IOException {
+    public static long[] find(String filename, String pattern) throws IOException {
         if (pattern == null || pattern.isEmpty()) {
-            return new int[0];
+            return new long[0];
         }
 
         int patternLength = pattern.length();
@@ -36,14 +36,14 @@ public class Substr {
             basePower = (basePower * BASE) % MODULUS;
         }
 
-        List<Integer> indices = new ArrayList<>();
+        List<Long> indices = new ArrayList<>();
 
         try (Reader reader = new InputStreamReader(
             new FileInputStream(filename), StandardCharsets.UTF_8)) {
             int[] window = new int[patternLength];
             long windowHash = 0;
             int windowSize = 0;
-            int position = 0;
+            long position = 0;
 
             int codePoint;
             while ((codePoint = reader.read()) != -1) {
@@ -74,7 +74,7 @@ public class Substr {
             }
         }
 
-        int[] result = new int[indices.size()];
+        long[] result = new long[indices.size()];
         for (int i = 0; i < indices.size(); i++) {
             result[i] = indices.get(i);
         }
