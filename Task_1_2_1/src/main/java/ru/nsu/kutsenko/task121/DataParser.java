@@ -7,8 +7,8 @@ public interface DataParser<DataT> {
     /**
      * Преобразует строку в данные вершины.
      *
-     * @param vString строковое представление вершины
+     * @param vstring строковое представление вершины
      * @return данные вершины
      */
-    DataT parse(String vString);
+    DataT parse(String vstring);
 }
