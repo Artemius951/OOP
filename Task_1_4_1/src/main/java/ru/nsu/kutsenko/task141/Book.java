@@ -180,10 +180,10 @@ public class Book {
             .filter(grade -> grade.getType().isVKRDefense())
             .allMatch(grade -> grade.getGrade().isExcellent());
 
-        boolean hasVKR = diplomaGrades.stream()
+        boolean hasVkr = diplomaGrades.stream()
             .anyMatch(grade -> grade.getType().isVKRDefense());
 
-        if (hasVKR && !vkrIsExcellent) {
+        if (hasVkr && !vkrIsExcellent) {
             return false;
         }
 

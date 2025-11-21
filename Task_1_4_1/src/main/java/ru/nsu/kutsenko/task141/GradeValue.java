@@ -47,6 +47,13 @@ public class GradeValue {
             return this == UNSATISFACTORY;
         }
 
+        /**
+         * Получает значение оценки по числовому представлению.
+         *
+         * @param value числовое значение оценки
+         * @return соответствующее значение оценки
+         * @throws IllegalArgumentException если числовое значение не поддерживается
+         */
         public static Value fromNumeric(int value) {
             for (Value grade : values()) {
                 if (grade.numericValue == value) {

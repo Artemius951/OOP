@@ -10,6 +10,16 @@ public class Grade {
     private final Semester.Number semester;
     private final int year;
 
+    /**
+     * Конструктор для создания оценки по предмету.
+     *
+     * @param subjectName название предмета
+     * @param grade оценка
+     * @param type тип контроля
+     * @param semester семестр
+     * @param year учебный год
+     * @throws IllegalArgumentException если любой из параметров null или subjectName пустой
+     */
     public Grade(String subjectName, GradeValue.Value grade,
                  GradeType.Type type, Semester.Number semester, int year) {
         if (subjectName == null || subjectName.trim().isEmpty()) {
