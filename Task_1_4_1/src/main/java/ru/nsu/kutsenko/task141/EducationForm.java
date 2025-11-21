@@ -12,16 +12,21 @@ public class EducationForm {
     public enum Form {
         BUDGET("бюджетная"),
         PAID("платная");
+
         private final String description;
+
         Form(String description) {
             this.description = description;
         }
+
         public String getDescription() {
             return description;
         }
+
         public boolean isBudget() {
             return this == BUDGET;
         }
+
         public boolean isPaid() {
             return this == PAID;
         }

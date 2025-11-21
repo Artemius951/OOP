@@ -41,7 +41,7 @@ public class GradeType {
             return this == CREDIT;
         }
 
-        public boolean isVKRDefense() {
+        public boolean isVkrDefense() {
             return this == VKR_DEFENSE;
         }
 

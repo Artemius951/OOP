@@ -49,9 +49,9 @@ public class GradeTypeTest {
 
     @Test
     void testIsVkrDefense() {
-        assertTrue(GradeType.Type.VKR_DEFENSE.isVKRDefense());
-        assertFalse(GradeType.Type.PRACTICE_REPORT_DEFENSE.isVKRDefense());
-        assertFalse(GradeType.Type.EXAM.isVKRDefense());
+        assertTrue(GradeType.Type.VKR_DEFENSE.isVkrDefense());
+        assertFalse(GradeType.Type.PRACTICE_REPORT_DEFENSE.isVkrDefense());
+        assertFalse(GradeType.Type.EXAM.isVkrDefense());
     }
 
     @Test
@@ -105,7 +105,7 @@ public class GradeTypeTest {
         assertEquals("защита отчёта по практике", practiceDefense.getDescription());
         assertFalse(practiceDefense.isExam());
         assertFalse(practiceDefense.isGradedType());
-        assertFalse(practiceDefense.isVKRDefense());
+        assertFalse(practiceDefense.isVkrDefense());
     }
 
     @Test
