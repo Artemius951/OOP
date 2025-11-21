@@ -96,13 +96,13 @@ public class BookTest {
     @Test
     void testAverageOnlyNumberGrades() {
         book.addGrade(new Grade("Математика", GradeValue.Value.EXCELLENT,
-            GradeType.Type.EXAM, Semester.Number.FIRST, 2023)); // 5
+            GradeType.Type.EXAM, Semester.Number.FIRST, 2023));
         book.addGrade(new Grade("Физика", GradeValue.Value.GOOD,
-            GradeType.Type.DIFFERENTIATED_CREDIT, Semester.Number.FIRST, 2023)); // 4
+            GradeType.Type.DIFFERENTIATED_CREDIT, Semester.Number.FIRST, 2023));
         book.addGrade(new Grade("Химия", GradeValue.Value.SATISFACTORY,
-            GradeType.Type.COLLOQUIUM, Semester.Number.FIRST, 2023)); // 3
+            GradeType.Type.COLLOQUIUM, Semester.Number.FIRST, 2023));
         book.addGrade(new Grade("Физра", GradeValue.Value.EXCELLENT,
-            GradeType.Type.CREDIT, Semester.Number.FIRST, 2023)); // Не учитывается
+            GradeType.Type.CREDIT, Semester.Number.FIRST, 2023));
 
         assertEquals(4.0, book.getAverageGrade(), 0.001);
     }
@@ -185,11 +185,11 @@ public class BookTest {
     @Test
     void testAverageWithMixedGrades() {
         book.addGrade(new Grade("Математика", GradeValue.Value.EXCELLENT,
-            GradeType.Type.EXAM, Semester.Number.FIRST, 2023)); // 5
+            GradeType.Type.EXAM, Semester.Number.FIRST, 2023));
         book.addGrade(new Grade("Физика", GradeValue.Value.GOOD,
-            GradeType.Type.EXAM, Semester.Number.FIRST, 2023)); // 4
+            GradeType.Type.EXAM, Semester.Number.FIRST, 2023));
         book.addGrade(new Grade("Химия", GradeValue.Value.GOOD,
-            GradeType.Type.EXAM, Semester.Number.FIRST, 2023)); // 4
+            GradeType.Type.EXAM, Semester.Number.FIRST, 2023));
 
         assertEquals(4.333, book.getAverageGrade(), 0.001);
     }

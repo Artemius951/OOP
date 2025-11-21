@@ -27,7 +27,8 @@ public class GradeTest {
         testSemester = Semester.Number.FIRST;
         testYear = 2023;
 
-        validGrade = new Grade(testSubjectName, testGradeValue, testGradeType, testSemester, testYear);
+        validGrade = new Grade(testSubjectName, testGradeValue, testGradeType, testSemester,
+            testYear);
     }
 
     @Test
@@ -96,16 +97,17 @@ public class GradeTest {
     void testGetNumericGrade() {
         assertEquals(5, validGrade.getNumericGrade());
 
-        Grade goodGrade = new Grade("Физика", GradeValue.Value.GOOD, GradeType.Type.EXAM,
-            Semester.Number.FIRST, 2023);
+        Grade goodGrade = new Grade("Физика", GradeValue.Value.GOOD,
+            GradeType.Type.EXAM, Semester.Number.FIRST, 2023);
         assertEquals(4, goodGrade.getNumericGrade());
 
         Grade satisfactoryGrade = new Grade("Химия", GradeValue.Value.SATISFACTORY,
             GradeType.Type.CREDIT, Semester.Number.FIRST, 2023);
         assertEquals(3, satisfactoryGrade.getNumericGrade());
 
-        Grade unsatisfactoryGrade = new Grade("История", GradeValue.Value.UNSATISFACTORY,
-            GradeType.Type.TEST, Semester.Number.FIRST, 2023);
+        Grade unsatisfactoryGrade = new Grade("История",
+            GradeValue.Value.UNSATISFACTORY, GradeType.Type.TEST,
+            Semester.Number.FIRST, 2023);
         assertEquals(2, unsatisfactoryGrade.getNumericGrade());
     }
 

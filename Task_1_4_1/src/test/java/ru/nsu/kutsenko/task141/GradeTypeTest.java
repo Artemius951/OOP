@@ -18,9 +18,11 @@ public class GradeTypeTest {
         assertEquals("контрольная", GradeType.Type.TEST.getDescription());
         assertEquals("коллоквиум", GradeType.Type.COLLOQUIUM.getDescription());
         assertEquals("экзамен", GradeType.Type.EXAM.getDescription());
-        assertEquals("дифференцированный зачет", GradeType.Type.DIFFERENTIATED_CREDIT.getDescription());
+        assertEquals("дифференцированный зачет",
+            GradeType.Type.DIFFERENTIATED_CREDIT.getDescription());
         assertEquals("зачет", GradeType.Type.CREDIT.getDescription());
-        assertEquals("защита отчёта по практике", GradeType.Type.PRACTICE_REPORT_DEFENSE.getDescription());
+        assertEquals("защита отчёта по практике",
+            GradeType.Type.PRACTICE_REPORT_DEFENSE.getDescription());
         assertEquals("защита ВКР", GradeType.Type.VKR_DEFENSE.getDescription());
     }
 
@@ -80,14 +82,15 @@ public class GradeTypeTest {
 
     @Test
     void testFromDescriptionInvalid() {
-        assertThrows(IllegalArgumentException.class, () -> GradeType.fromDescription("неизвестный тип"));
+        assertThrows(IllegalArgumentException.class,
+            () -> GradeType.fromDescription("неизвестный тип"));
         assertThrows(IllegalArgumentException.class, () -> GradeType.fromDescription(""));
         assertThrows(IllegalArgumentException.class, () -> GradeType.fromDescription(null));
     }
 
     @Test
     void testAllTypesHaveUniqueDescriptions() {
-        // Проверяем, что все описания уникальны
+
         long uniqueDescriptions = java.util.Arrays.stream(GradeType.Type.values())
             .map(GradeType.Type::getDescription)
             .distinct()
