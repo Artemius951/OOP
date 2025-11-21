@@ -1,12 +1,12 @@
 package ru.nsu.kutsenko.task141;
 
 /**
- * Класс для типов контроля знаний
- * Содержит enum Type для представления различных типов контроля
+ * Класс для типов контроля знаний.
+ * Содержит enum Type для представления различных типов контроля.
  */
 public class GradeType {
     /**
-     * Enum для типов контроля знаний
+     * Enum для типов контроля знаний.
      */
     public enum Type {
         ASSIGNMENT("задание"),
@@ -54,7 +54,7 @@ public class GradeType {
     }
 
     /**
-     * Получает тип контроля по строковому описанию
+     * Получает тип контроля по строковому описанию.
      */
     public static Type fromDescription(String description) {
         for (Type type : Type.values()) {

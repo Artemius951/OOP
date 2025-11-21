@@ -1,14 +1,14 @@
 package ru.nsu.kutsenko.task141;
 
 /**
- * Класс для представления оценки по предмету
+ * Класс для представления оценки по предмету.
  */
 public class Grade {
     private final String subjectName;
     private final GradeValue.Value grade;
     private final GradeType.Type type;
     private final Semester.Number semester;
-    private final int year;            
+    private final int year;
 
     public Grade(String subjectName, GradeValue.Value grade,
                  GradeType.Type type, Semester.Number semester, int year) {
@@ -53,14 +53,14 @@ public class Grade {
     }
 
     /**
-     * Получает числовое значение оценки
+     * Получает числовое значение оценки.
      */
     public int getNumericGrade() {
         return grade.getNumericValue();
     }
 
     /**
-     * Получает числовое значение номера семестра
+     * Получает числовое значение номера семестра.
      */
     public int getSemesterNumber() {
         return semester.getValue();

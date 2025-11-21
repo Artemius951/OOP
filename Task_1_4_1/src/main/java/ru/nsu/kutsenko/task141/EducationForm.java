@@ -1,12 +1,12 @@
 package ru.nsu.kutsenko.task141;
 
 /**
- * Класс для представления формы обучения
- * Содержит enum Form для различных форм обучения
+ * Класс для представления формы обучения.
+ * Содержит enum Form для различных форм обучения.
  */
 public class EducationForm {
     /**
-     * Enum для форм обучения
+     * Enum для форм обучения.
      */
     public enum Form {
         BUDGET("бюджетная"),
@@ -32,7 +32,7 @@ public class EducationForm {
     }
 
     /**
-     * Получает форму обучения по строковому описанию
+     * Получает форму обучения по строковому описанию.
      */
     public static Form fromDescription(String description) {
         for (Form form : Form.values()) {

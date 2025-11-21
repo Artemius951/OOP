@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 /**
- * Тестовый класс для проверки GradeType
+ * Тестовый класс для проверки GradeType.
  */
 public class GradeTypeTest {
 

@@ -1,13 +1,13 @@
 package ru.nsu.kutsenko.task141;
 
 /**
- * Класс для представления номеров семестров
- * Содержит enum Number для семестров от 1 до 8
+ * Класс для представления номеров семестров.
+ * Содержит enum Number для семестров от 1 до 8.
  */
 public class Semester {
 
     /**
-     * Enum для номеров семестров
+     * Enum для номеров семестров.
      */
     public enum Number {
         FIRST(1),
@@ -30,7 +30,7 @@ public class Semester {
         }
 
         /**
-         * Получает номер семестра по числовому значению
+         * Получает номер семестра по числовому значению.
          */
         public static Number fromValue(int value) {
             for (Number semester : values()) {

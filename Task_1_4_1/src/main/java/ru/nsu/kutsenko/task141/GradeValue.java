@@ -1,8 +1,8 @@
 package ru.nsu.kutsenko.task141;
 
 /**
- * Класс для представления оценок
- * Содержит enum Value для различных оценок
+ * Класс для представления оценок.
+ * Содержит enum Value для различных оценок.
  */
 public class GradeValue {
 

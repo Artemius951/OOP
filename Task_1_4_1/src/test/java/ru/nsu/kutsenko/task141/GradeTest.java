@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
 /**
- * Тестовый класс для проверки Grade
+ * Тестовый класс для проверки Grade.
  */
 public class GradeTest {
 
