@@ -93,7 +93,9 @@ loadScripts(document, 'script');</script>
  <a href="GradeType.Type.html" title="enum class in ru.nsu.kutsenko.task141">GradeType.Type</a>&nbsp;type,
  <a href="Semester.Number.html" title="enum class in ru.nsu.kutsenko.task141">Semester.Number</a>&nbsp;semester,
  int&nbsp;year)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Конструктор для создания оценки по предмету.</div>
+</div>
 </div>
 </section>
 </li>
@@ -161,6 +163,17 @@ loadScripts(document, 'script');</script>
  <a href="GradeType.Type.html" title="enum class in ru.nsu.kutsenko.task141">GradeType.Type</a>&nbsp;type,
  <a href="Semester.Number.html" title="enum class in ru.nsu.kutsenko.task141">Semester.Number</a>&nbsp;semester,
  int&nbsp;year)</span></div>
+<div class="block">Конструктор для создания оценки по предмету.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>subjectName</code> - название предмета</dd>
+<dd><code>grade</code> - оценка</dd>
+<dd><code>type</code> - тип контроля</dd>
+<dd><code>semester</code> - семестр</dd>
+<dd><code>year</code> - учебный год</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - если любой из параметров null или subjectName пустой</dd>
+</dl>
 </section>
 </li>
 </ul>
