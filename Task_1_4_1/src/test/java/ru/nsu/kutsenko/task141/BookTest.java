@@ -1,12 +1,17 @@
 package ru.nsu.kutsenko.task141;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
- * Тестовый класс для проверки Book
+ * Тестовый класс для проверки Book.
  */
 public class BookTest {
 
@@ -185,7 +190,7 @@ public class BookTest {
             GradeType.Type.EXAM, Semester.Number.FIRST, 2023)); // 4
         book.addGrade(new Grade("Химия", GradeValue.Value.GOOD,
             GradeType.Type.EXAM, Semester.Number.FIRST, 2023)); // 4
-        
+
         assertEquals(4.333, book.getAverageGrade(), 0.001);
     }
 }
