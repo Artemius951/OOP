@@ -48,7 +48,7 @@ public class GradeTypeTest {
     }
 
     @Test
-    void testIsVKRDefense() {
+    void testIsVkrDefense() {
         assertTrue(GradeType.Type.VKR_DEFENSE.isVKRDefense());
         assertFalse(GradeType.Type.PRACTICE_REPORT_DEFENSE.isVKRDefense());
         assertFalse(GradeType.Type.EXAM.isVKRDefense());

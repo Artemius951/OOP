@@ -15,6 +15,7 @@ public class Book {
 
     /**
      * Конструктор зачетной книжки.
+     *
      * @param educationForm форма обучения (бюджетная или платная).
      */
     public Book(EducationForm.Form educationForm) {
@@ -27,6 +28,7 @@ public class Book {
 
     /**
      * Добавляет оценку в зачетную книжку.
+     *
      * @param grade оценка для добавления.
      */
     public void addGrade(Grade grade) {
@@ -38,6 +40,7 @@ public class Book {
 
     /**
      * Получает список всех оценок.
+     *
      * @return список оценок.
      */
     public List<Grade> getGrades() {
@@ -46,6 +49,7 @@ public class Book {
 
     /**
      * Получает текущую форму обучения.
+     *
      * @return форма обучения.
      */
     public EducationForm.Form getEducationForm() {
@@ -54,6 +58,7 @@ public class Book {
 
     /**
      * Устанавливает форму обучения.
+     *
      * @param educationForm форма обучения.
      */
     public void setEducationForm(EducationForm.Form educationForm) {
@@ -66,6 +71,7 @@ public class Book {
     /**
      * Вычисляет текущий средний балл за все время обучения.
      * Учитываются только оценки с числовым значением.
+     *
      * @return средний балл или 0.0, если нет оценок с числовым значением.
      */
     public double getAverageGrade() {
@@ -88,6 +94,7 @@ public class Book {
      * Проверяет возможность перевода с платной на бюджетную форму обучения.
      * Требование: отсутствие оценок "удовлетворительно" за последние две экзаменационные сессии.
      * (за экзамены, в дифференцированных зачетах допустимы оценки "удовлетворительно").
+     *
      * @return true, если возможен перевод на бюджетную форму обучения.
      */
     public boolean canTransferToBudget() {
@@ -129,6 +136,7 @@ public class Book {
      * - 75% оценок в приложении к диплому (последняя оценка) – "отлично".
      * - отсутствие итоговых оценок "удовлетворительно".
      * - квалификационная работа на "отлично".
+     *
      * @return true, если возможен красный диплом.
      */
     public boolean canGetRedDiploma() {
@@ -185,8 +193,10 @@ public class Book {
     /**
      * Проверяет возможность получения повышенной стипендии в текущем семестре.
      * Обычно требуется средний балл >= 4.5 и отсутствие оценок "удовлетворительно".
+     *
      * @param currentSemester текущий семестр.
      * @param currentYear текущий учебный год.
+     *
      * @return true, если возможна повышенная стипендия.
      */
     public boolean canGetIncreasedScholarship(Semester.Number currentSemester, int currentYear) {

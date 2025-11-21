@@ -5,6 +5,7 @@ package ru.nsu.kutsenko.task141;
  * Содержит enum Type для представления различных типов контроля.
  */
 public class GradeType {
+
     /**
      * Enum для типов контроля знаний.
      */
