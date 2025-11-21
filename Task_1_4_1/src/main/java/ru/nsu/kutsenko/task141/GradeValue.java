@@ -7,7 +7,7 @@ package ru.nsu.kutsenko.task141;
 public class GradeValue {
 
     /**
-     * Enum для оценок
+     * Enum для оценок.
      */
     public enum Value {
         EXCELLENT(5, "отлично"),

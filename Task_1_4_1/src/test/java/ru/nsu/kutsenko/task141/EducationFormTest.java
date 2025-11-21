@@ -39,8 +39,10 @@ public class EducationFormTest {
     @Test
     void testFromDescriptionInvalid() {
         assertThrows(IllegalArgumentException.class, () -> EducationForm.fromDescription(""));
-        assertThrows(IllegalArgumentException.class, () -> EducationForm.fromDescription("бюджет"));
-        assertThrows(IllegalArgumentException.class, () -> EducationForm.fromDescription("платно"));
+        assertThrows(IllegalArgumentException.class,
+            () -> EducationForm.fromDescription("бюджет"));
+        assertThrows(IllegalArgumentException.class,
+            () -> EducationForm.fromDescription("платно"));
         assertThrows(IllegalArgumentException.class, () ->
             EducationForm.fromDescription("unknown"));
         assertThrows(IllegalArgumentException.class, () -> EducationForm.fromDescription(null));

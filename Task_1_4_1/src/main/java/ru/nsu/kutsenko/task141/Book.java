@@ -14,7 +14,7 @@ public class Book {
     private EducationForm.Form educationForm;
 
     /**
-     * Конструктор зачетной книжки
+     * Конструктор зачетной книжки.
      * @param educationForm форма обучения (бюджетная или платная).
      */
     public Book(EducationForm.Form educationForm) {
@@ -125,7 +125,7 @@ public class Book {
 
     /**
      * Проверяет возможность получения «красного» диплома с отличием.
-     * Требования:
+     * Требования.
      * - 75% оценок в приложении к диплому (последняя оценка) – "отлично".
      * - отсутствие итоговых оценок "удовлетворительно".
      * - квалификационная работа на "отлично".
@@ -194,7 +194,6 @@ public class Book {
             throw new IllegalArgumentException("Текущий семестр не может быть null");
         }
 
-
         List<Grade> currentSemesterGrades = grades.stream()
             .filter(grade -> grade.getSemester() == currentSemester
                 && grade.getYear() == currentYear)
@@ -205,7 +204,6 @@ public class Book {
             return false;
         }
 
-
         boolean hasSatisfactory = currentSemesterGrades.stream()
             .anyMatch(grade -> grade.getGrade().isSatisfactory());
 
@@ -213,12 +211,10 @@ public class Book {
             return false;
         }
 
-
         double average = currentSemesterGrades.stream()
             .mapToDouble(Grade::getNumericGrade)
             .average()
             .orElse(0.0);
-
 
         return average >= 4.5;
     }

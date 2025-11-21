@@ -5,27 +5,23 @@ package ru.nsu.kutsenko.task141;
  * Содержит enum Form для различных форм обучения.
  */
 public class EducationForm {
+
     /**
      * Enum для форм обучения.
      */
     public enum Form {
         BUDGET("бюджетная"),
         PAID("платная");
-
         private final String description;
-
         Form(String description) {
             this.description = description;
         }
-
         public String getDescription() {
             return description;
         }
-
         public boolean isBudget() {
             return this == BUDGET;
         }
-
         public boolean isPaid() {
             return this == PAID;
         }

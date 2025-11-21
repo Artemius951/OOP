@@ -75,7 +75,8 @@ public class GradeValueTest {
         assertThrows(IllegalArgumentException.class, () -> GradeValue.Value.fromNumeric(6));
         assertThrows(IllegalArgumentException.class, () -> GradeValue.Value.fromNumeric(0));
         assertThrows(IllegalArgumentException.class, () -> GradeValue.Value.fromNumeric(-1));
-        assertThrows(IllegalArgumentException.class, () -> GradeValue.Value.fromNumeric(100));
+        assertThrows(IllegalArgumentException.class,
+            () -> GradeValue.Value.fromNumeric(100));
     }
 
     @Test

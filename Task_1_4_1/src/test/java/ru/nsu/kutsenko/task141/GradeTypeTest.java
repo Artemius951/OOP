@@ -76,7 +76,8 @@ public class GradeTypeTest {
     @Test
     void testFromDescriptionValid() {
         assertEquals(GradeType.Type.EXAM, GradeType.fromDescription("экзамен"));
-        assertEquals(GradeType.Type.DIFFERENTIATED_CREDIT, GradeType.fromDescription("дифференцированный зачет"));
+        assertEquals(GradeType.Type.DIFFERENTIATED_CREDIT,
+            GradeType.fromDescription("дифференцированный зачет"));
         assertEquals(GradeType.Type.VKR_DEFENSE, GradeType.fromDescription("защита ВКР"));
     }
 
