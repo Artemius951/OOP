@@ -118,9 +118,9 @@ loadScripts(document, 'script');</script>
 <div class="block">Проверяет возможность получения повышенной стипендии в текущем семестре.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#canGetRedDiploma()" class="member-name-link">canGetRedDiploma</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#canGetRedDiploma(int)" class="member-name-link">canGetRedDiploma</a><wbr>(int&nbsp;totalSubjects)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Проверяет возможность получения «красного» диплома с отличием.</div>
+<div class="block">Проверяет теоретическую возможность получения «красного» диплома с отличием в будущем.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#canTransferToBudget()" class="member-name-link">canTransferToBudget</a>()</code></div>
@@ -253,17 +253,20 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="canGetRedDiploma()">
+<section class="detail" id="canGetRedDiploma(int)">
 <h3>canGetRedDiploma</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">canGetRedDiploma</span>()</div>
-<div class="block">Проверяет возможность получения «красного» диплома с отличием.
- Требования.
- - 75% оценок в приложении к диплому (последняя оценка) – "отлично".
- - отсутствие итоговых оценок "удовлетворительно".
- - квалификационная работа на "отлично".</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">canGetRedDiploma</span><wbr><span class="parameters">(int&nbsp;totalSubjects)</span></div>
+<div class="block">Проверяет теоретическую возможность получения «красного» диплома с отличием в будущем.
+ Требования для возможности:
+ - На текущий момент нет ни одной итоговой оценки "удовлетворительно" или "неудовлетворительно"
+ - Квалификационная работа еще не оценена или оценена на "отлично"
+ - Теоретически возможно достичь 75% оценок "отлично" к концу обучения
+   (учитывая, что все будущие оценки будут "отлично")</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>totalSubjects</code> - общее количество дисциплин за весь период обучения</dd>
 <dt>Returns:</dt>
-<dd>true, если возможен красный диплом.</dd>
+<dd>true, если сохранена возможность получения красного диплома</dd>
 </dl>
 </section>
 </li>
