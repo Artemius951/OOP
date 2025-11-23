@@ -63,7 +63,7 @@ public class GradeType {
         return Arrays.stream(Type.values())
             .filter(type -> type.getDescription().equals(description))
             .findFirst()
-            .orElseThrow(() -> new IllegalArgumentException("Неизвестный тип контроля: " +
-                description));
+            .orElseThrow(() -> new IllegalArgumentException("Неизвестный тип контроля: "
+                + description));
     }
 }

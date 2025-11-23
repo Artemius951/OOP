@@ -41,7 +41,7 @@ public class EducationForm {
         return Arrays.stream(Form.values())
             .filter(form -> form.getDescription().equals(description))
             .findFirst()
-            .orElseThrow(() -> new IllegalArgumentException("Неизвестная форма обучения: " +
-                description));
+            .orElseThrow(() -> new IllegalArgumentException("Неизвестная форма обучения: "
+                + description));
     }
 }

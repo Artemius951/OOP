@@ -127,7 +127,8 @@ public class Book {
     /**
      * Проверяет теоретическую возможность получения «красного» диплома с отличием в будущем.
      * Требования для возможности:
-     * - На текущий момент нет ни одной итоговой оценки "удовлетворительно" или "неудовлетворительно"
+     * - На текущий момент нет ни одной итоговой оценки "удовлетворительно" или
+     * "неудовлетворительно"
      * - Квалификационная работа еще не оценена или оценена на "отлично"
      * - Теоретически возможно достичь 75% оценок "отлично" к концу обучения
      *   (учитывая, что все будущие оценки будут "отлично")
@@ -146,8 +147,8 @@ public class Book {
                 grade -> grade,
                 (existing, replacement) -> {
                     int existingKey = existing.getYear() * 10 + existing.getSemesterNumber();
-                    int replacementKey = replacement.getYear() * 10 +
-                        replacement.getSemesterNumber();
+                    int replacementKey = replacement.getYear() * 10
+                        + replacement.getSemesterNumber();
                     return replacementKey > existingKey ? replacement : existing;
                 }
             ));
@@ -156,8 +157,8 @@ public class Book {
 
         boolean hasUnsatisfactoryInFinal = currentFinalGrades.stream()
             .filter(grade -> grade.getType().isExamOrDifferentiatedCredit())
-            .anyMatch(grade -> grade.getGrade().isSatisfactory() ||
-                grade.getGrade().isUnsatisfactory());
+            .anyMatch(grade -> grade.getGrade().isSatisfactory()
+                || grade.getGrade().isUnsatisfactory());
 
         if (hasUnsatisfactoryInFinal) {
             return false;
@@ -177,8 +178,8 @@ public class Book {
         long futureSubjectsCount = totalSubjects - currentFinalGrades.size();
         long potentialExcellentCount = currentExcellentCount + futureSubjectsCount;
 
-        double potentialExcellentPercentage = (double) potentialExcellentCount /
-            totalSubjects * 100;
+        double potentialExcellentPercentage = (double) potentialExcellentCount
+            / totalSubjects * 100;
 
         return potentialExcellentPercentage >= 75.0;
     }
