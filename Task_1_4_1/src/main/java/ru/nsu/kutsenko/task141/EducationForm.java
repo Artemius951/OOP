@@ -1,5 +1,7 @@
 package ru.nsu.kutsenko.task141;
 
+import java.util.Arrays;
+
 /**
  * Класс для представления формы обучения.
  * Содержит enum Form для различных форм обучения.
@@ -36,11 +38,10 @@ public class EducationForm {
      * Получает форму обучения по строковому описанию.
      */
     public static Form fromDescription(String description) {
-        for (Form form : Form.values()) {
-            if (form.getDescription().equals(description)) {
-                return form;
-            }
-        }
-        throw new IllegalArgumentException("Неизвестная форма обучения: " + description);
+        return Arrays.stream(Form.values())
+            .filter(form -> form.getDescription().equals(description))
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException("Неизвестная форма обучения: " +
+                description));
     }
 }

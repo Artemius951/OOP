@@ -1,5 +1,7 @@
 package ru.nsu.kutsenko.task141;
 
+import java.util.Arrays;
+
 /**
  * Класс для представления оценок.
  * Содержит enum Value для различных оценок.
@@ -55,12 +57,12 @@ public class GradeValue {
          * @throws IllegalArgumentException если числовое значение не поддерживается
          */
         public static Value fromNumeric(int value) {
-            for (Value grade : values()) {
-                if (grade.numericValue == value) {
-                    return grade;
-                }
-            }
-            throw new IllegalArgumentException("Неверное числовое значение оценки: " + value);
+            return Arrays.stream(values())
+                .filter(grade -> grade.numericValue == value)
+                .findFirst()
+                .orElseThrow(() ->
+                    new IllegalArgumentException("Неверное числовое значение оценки: "
+                    + value));
         }
     }
 }

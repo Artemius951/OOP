@@ -1,5 +1,7 @@
 package ru.nsu.kutsenko.task141;
 
+import java.util.Arrays;
+
 /**
  * Класс для типов контроля знаний.
  * Содержит enum Type для представления различных типов контроля.
@@ -58,11 +60,10 @@ public class GradeType {
      * Получает тип контроля по строковому описанию.
      */
     public static Type fromDescription(String description) {
-        for (Type type : Type.values()) {
-            if (type.getDescription().equals(description)) {
-                return type;
-            }
-        }
-        throw new IllegalArgumentException("Неизвестный тип контроля: " + description);
+        return Arrays.stream(Type.values())
+            .filter(type -> type.getDescription().equals(description))
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException("Неизвестный тип контроля: " +
+                description));
     }
 }

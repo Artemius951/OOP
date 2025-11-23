@@ -142,8 +142,7 @@ public class BookTest {
             GradeType.Type.DIFFERENTIATED_CREDIT, Semester.Number.SECOND, 2023));
         book.addGrade(new Grade("ВКР", GradeValue.Value.EXCELLENT,
             GradeType.Type.VKR_DEFENSE, Semester.Number.EIGHTH, 2024));
-
-        assertTrue(book.canGetRedDiploma());
+        assertTrue(book.canGetRedDiploma(10));
     }
 
     @Test
@@ -153,7 +152,45 @@ public class BookTest {
         book.addGrade(new Grade("Физика", GradeValue.Value.SATISFACTORY,
             GradeType.Type.EXAM, Semester.Number.SECOND, 2023));
 
-        assertFalse(book.canGetRedDiploma());
+        assertFalse(book.canGetRedDiploma(10));
+    }
+
+    @Test
+    void testCannotGetRedDiplomaWithVkrNotExcellent() {
+        book.addGrade(new Grade("Математика", GradeValue.Value.EXCELLENT,
+            GradeType.Type.EXAM, Semester.Number.FIRST, 2023));
+        book.addGrade(new Grade("ВКР", GradeValue.Value.GOOD,
+            GradeType.Type.VKR_DEFENSE, Semester.Number.EIGHTH, 2024));
+
+        assertFalse(book.canGetRedDiploma(10));
+    }
+
+    @Test
+    void testCannotGetRedDiplomaNotEnoughExcellent() {
+        book.addGrade(new Grade("Математика", GradeValue.Value.EXCELLENT,
+            GradeType.Type.EXAM, Semester.Number.FIRST, 2023));
+        book.addGrade(new Grade("Физика", GradeValue.Value.GOOD,
+            GradeType.Type.EXAM, Semester.Number.SECOND, 2023));
+        book.addGrade(new Grade("ВКР", GradeValue.Value.EXCELLENT,
+            GradeType.Type.VKR_DEFENSE, Semester.Number.EIGHTH, 2024));
+
+        assertTrue(book.canGetRedDiploma(20));
+
+        Book anotherBook = new Book(EducationForm.Form.BUDGET);
+        anotherBook.addGrade(new Grade("Математика", GradeValue.Value.GOOD,
+            GradeType.Type.EXAM, Semester.Number.FIRST, 2023));
+        anotherBook.addGrade(new Grade("Физика", GradeValue.Value.GOOD,
+            GradeType.Type.EXAM, Semester.Number.SECOND, 2023));
+        anotherBook.addGrade(new Grade("ВКР", GradeValue.Value.EXCELLENT,
+            GradeType.Type.VKR_DEFENSE, Semester.Number.EIGHTH, 2024));
+
+        assertFalse(anotherBook.canGetRedDiploma(5));
+    }
+
+    @Test
+    void testCanGetRedDiplomaIllegalArgument() {
+        assertThrows(IllegalArgumentException.class, () -> book.canGetRedDiploma(0));
+        assertThrows(IllegalArgumentException.class, () -> book.canGetRedDiploma(-1));
     }
 
     @Test

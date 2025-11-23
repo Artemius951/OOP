@@ -118,28 +118,27 @@ public class Book {
             return false;
         }
 
-        for (Integer sessionKey : sessionKeys) {
-            List<Grade> sessionGrades = gradesBySemester.get(sessionKey);
-            for (Grade grade : sessionGrades) {
-                if (grade.getType().isExam() && grade.getGrade().isSatisfactory()) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
+        return sessionKeys.stream()
+            .map(gradesBySemester::get)
+            .flatMap(List::stream)
+            .noneMatch(grade -> grade.getType().isExam() && grade.getGrade().isSatisfactory());
     }
 
     /**
-     * Проверяет возможность получения «красного» диплома с отличием.
-     * Требования.
-     * - 75% оценок в приложении к диплому (последняя оценка) – "отлично".
-     * - отсутствие итоговых оценок "удовлетворительно".
-     * - квалификационная работа на "отлично".
+     * Проверяет теоретическую возможность получения «красного» диплома с отличием в будущем.
+     * Требования для возможности:
+     * - На текущий момент нет ни одной итоговой оценки "удовлетворительно" или "неудовлетворительно"
+     * - Квалификационная работа еще не оценена или оценена на "отлично"
+     * - Теоретически возможно достичь 75% оценок "отлично" к концу обучения
+     *   (учитывая, что все будущие оценки будут "отлично")
      *
-     * @return true, если возможен красный диплом.
+     * @param totalSubjects общее количество дисциплин за весь период обучения
+     * @return true, если сохранена возможность получения красного диплома
      */
-    public boolean canGetRedDiploma() {
+    public boolean canGetRedDiploma(int totalSubjects) {
+        if (totalSubjects <= 0) {
+            throw new IllegalArgumentException("Общее количество дисциплин должно быть больше 0");
+        }
 
         Map<String, Grade> lastGradesBySubject = grades.stream()
             .collect(Collectors.toMap(
@@ -147,47 +146,41 @@ public class Book {
                 grade -> grade,
                 (existing, replacement) -> {
                     int existingKey = existing.getYear() * 10 + existing.getSemesterNumber();
-                    int replacementKey = replacement.getYear() * 10
-                        + replacement.getSemesterNumber();
+                    int replacementKey = replacement.getYear() * 10 +
+                        replacement.getSemesterNumber();
                     return replacementKey > existingKey ? replacement : existing;
                 }
             ));
 
-        List<Grade> diplomaGrades = new ArrayList<>(lastGradesBySubject.values());
+        List<Grade> currentFinalGrades = new ArrayList<>(lastGradesBySubject.values());
 
-        if (diplomaGrades.isEmpty()) {
+        boolean hasUnsatisfactoryInFinal = currentFinalGrades.stream()
+            .filter(grade -> grade.getType().isExamOrDifferentiatedCredit())
+            .anyMatch(grade -> grade.getGrade().isSatisfactory() ||
+                grade.getGrade().isUnsatisfactory());
+
+        if (hasUnsatisfactoryInFinal) {
             return false;
         }
 
-        long excellentCount = diplomaGrades.stream()
+        boolean vkrIsNotExcellent = currentFinalGrades.stream()
+            .filter(grade -> grade.getType().isVkrDefense())
+            .anyMatch(grade -> !grade.getGrade().isExcellent());
+
+        if (vkrIsNotExcellent) {
+            return false;
+        }
+        long currentExcellentCount = currentFinalGrades.stream()
             .filter(grade -> grade.getGrade().isExcellent())
             .count();
 
-        double excellentPercentage = (double) excellentCount / diplomaGrades.size() * 100;
-        if (excellentPercentage < 75.0) {
-            return false;
-        }
+        long futureSubjectsCount = totalSubjects - currentFinalGrades.size();
+        long potentialExcellentCount = currentExcellentCount + futureSubjectsCount;
 
-        boolean hasSatisfactoryInFinal = diplomaGrades.stream()
-            .filter(grade -> grade.getType().isExamOrDifferentiatedCredit())
-            .anyMatch(grade -> grade.getGrade().isSatisfactory());
+        double potentialExcellentPercentage = (double) potentialExcellentCount /
+            totalSubjects * 100;
 
-        if (hasSatisfactoryInFinal) {
-            return false;
-        }
-
-        boolean vkrIsExcellent = diplomaGrades.stream()
-            .filter(grade -> grade.getType().isVkrDefense())
-            .allMatch(grade -> grade.getGrade().isExcellent());
-
-        boolean hasVkr = diplomaGrades.stream()
-            .anyMatch(grade -> grade.getType().isVkrDefense());
-
-        if (hasVkr && !vkrIsExcellent) {
-            return false;
-        }
-
-        return true;
+        return potentialExcellentPercentage >= 75.0;
     }
 
     /**
