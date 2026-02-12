@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.kutsenko.task211","l":"ParallPrimeCheckStream"},{"p":"ru.nsu.kutsenko.task211","l":"ParallPrimeCheckThread"},{"p":"ru.nsu.kutsenko.task211","l":"Primality"},{"p":"ru.nsu.kutsenko.task211","l":"SeqPrimeCheck"},{"p":"ru.nsu.kutsenko.task211","l":"TestforGraph"}];updateSearchResults();
