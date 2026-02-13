@@ -6,18 +6,6 @@ package ru.nsu.kutsenko.task211;
  */
 public class SeqPrimeCheck {
 
-    private final int[] numb;
-
-    /**
-     * Создает объект для проверки переданного массива.
-     *
-     * @param numb массив целых чисел для анализа.
-     */
-    public SeqPrimeCheck(int[] numb) {
-
-        this.numb = numb;
-    }
-
     /**
      * Выполняет последовательную проверку элементов массива.
      * При обнаружении первого непростого числа метод завершает работу.
@@ -26,7 +14,7 @@ public class SeqPrimeCheck {
      * @return true, если в массиве есть хотя бы одно непростое число,
      *         false если все числа простые или массив пуст.
      */
-    public boolean withoutPrime() {
+    public static boolean withoutPrime(int[] numb) {
         for (int n : numb) {
             if (!Primality.isPrime(n)) {
                 return true;

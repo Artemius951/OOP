@@ -5,7 +5,7 @@ package ru.nsu.kutsenko.task211;
  * Использует большой массив повторяющихся простых чисел размером 5 млн элементов.
  * Замеряет время выполнения в миллисекундах для каждого подхода.
  */
-public class TestforGraph {
+public class TestforPlot {
 
     /**
      * Создает тестовые данные, последовательно запускает все три реализации
@@ -29,7 +29,7 @@ public class TestforGraph {
         }
 
         long start = System.nanoTime();
-        boolean seq = new SeqPrimeCheck(data).withoutPrime();
+        boolean seq = SeqPrimeCheck.withoutPrime(data);
         long end = System.nanoTime();
         long seqMs = (end - start) / 1_000_000;
         System.out.println("Seq: " + seqMs + " ms, result = " + seq);
