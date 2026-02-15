@@ -1,6 +1,7 @@
 package ru.nsu.kutsenko.task211;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -12,64 +13,55 @@ class ParallPrimeCheckThreadTest {
     @Test
     void testAllPrimesReturnsFalse() throws InterruptedException {
         int[] primes = {2, 3, 5, 7, 11, 13, 17, 19};
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(primes, 4);
-        assertFalse(checker.withoutPrime());
+        assertFalse(ParallPrimeCheckThread.withoutPrime(primes, 4));
     }
 
     @Test
     void testOneNonPrimeReturnsTrue() throws InterruptedException {
         int[] numbers = {2, 3, 5, 7, 8, 11, 13};
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(numbers, 4);
-        assertTrue(checker.withoutPrime());
+        assertTrue(ParallPrimeCheckThread.withoutPrime(numbers, 4));
     }
 
     @Test
     void testAllNonPrimesReturnsTrue() throws InterruptedException {
         int[] nonPrimes = {4, 6, 8, 9, 10, 12, 14, 15};
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(nonPrimes, 4);
-        assertTrue(checker.withoutPrime());
+        assertTrue(ParallPrimeCheckThread.withoutPrime(nonPrimes, 4));
     }
 
     @Test
     void testEmptyArrayReturnsFalse() throws InterruptedException {
         int[] empty = {};
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(empty, 4);
-        assertFalse(checker.withoutPrime());
+        assertFalse(ParallPrimeCheckThread.withoutPrime(empty, 4));
     }
 
     @Test
     void testSinglePrimeReturnsFalse() throws InterruptedException {
         int[] singlePrime = {17};
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(singlePrime, 4);
-        assertFalse(checker.withoutPrime());
+        assertFalse(ParallPrimeCheckThread.withoutPrime(singlePrime, 4));
     }
 
     @Test
     void testSingleNonPrimeReturnsTrue() throws InterruptedException {
         int[] singleNonPrime = {4};
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(singleNonPrime, 4);
-        assertTrue(checker.withoutPrime());
+        assertTrue(ParallPrimeCheckThread.withoutPrime(singleNonPrime, 4));
     }
 
     @Test
     void testArrayWithOneReturnsTrue() throws InterruptedException {
         int[] numbers = {2, 3, 5, 1, 7, 11};
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(numbers, 4);
-        assertTrue(checker.withoutPrime());
+        assertTrue(ParallPrimeCheckThread.withoutPrime(numbers, 4));
     }
 
     @Test
     void testArrayWithZeroReturnsTrue() throws InterruptedException {
         int[] numbers = {2, 3, 5, 0, 7, 11};
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(numbers, 4);
-        assertTrue(checker.withoutPrime());
+        assertTrue(ParallPrimeCheckThread.withoutPrime(numbers, 4));
     }
 
     @Test
     void testArrayWithNegativeReturnsTrue() throws InterruptedException {
         int[] numbers = {2, 3, 5, -7, 11, 13};
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(numbers, 4);
-        assertTrue(checker.withoutPrime());
+        assertTrue(ParallPrimeCheckThread.withoutPrime(numbers, 4));
     }
 
     @Test
@@ -80,80 +72,73 @@ class ParallPrimeCheckThreadTest {
             1_000_000_021,
             1_000_000_033
         };
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(largePrimes, 4);
-        assertFalse(checker.withoutPrime());
+        assertFalse(ParallPrimeCheckThread.withoutPrime(largePrimes, 4));
     }
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 16, 32})
     void testDifferentThreadCountsWithAllPrimes(int threadCount) throws InterruptedException {
         int[] primes = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(primes, threadCount);
-        assertFalse(checker.withoutPrime());
+        assertFalse(ParallPrimeCheckThread.withoutPrime(primes, threadCount));
     }
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 16, 32})
     void testDifferentThreadCountsWithNonPrime(int threadCount) throws InterruptedException {
         int[] numbers = {2, 3, 5, 7, 11, 13, 17, 19, 4, 23, 29, 31};
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(numbers, threadCount);
-        assertTrue(checker.withoutPrime());
+        assertTrue(ParallPrimeCheckThread.withoutPrime(numbers, threadCount));
     }
 
     @Test
-    void testThreadCountZero() throws InterruptedException {
+    void testThreadCountZeroThrowsException() {
         int[] primes = {2, 3, 5, 7, 11};
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(primes, 0);
-        assertFalse(checker.withoutPrime());
+        assertThrows(IllegalArgumentException.class, () -> {
+            ParallPrimeCheckThread.withoutPrime(primes, 0);
+        });
     }
 
     @Test
-    void testThreadCountNegative() throws InterruptedException {
+    void testThreadCountNegativeThrowsException() {
         int[] primes = {2, 3, 5, 7, 11};
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(primes, -5);
-        assertFalse(checker.withoutPrime());
+        assertThrows(IllegalArgumentException.class, () -> {
+            ParallPrimeCheckThread.withoutPrime(primes, -5);
+        });
     }
 
     @Test
     void testMoreThreadsThanElements() throws InterruptedException {
         int[] primes = {2, 3, 5, 7, 11};
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(primes, 10);
-        assertFalse(checker.withoutPrime());
+        assertFalse(ParallPrimeCheckThread.withoutPrime(primes, 10));
     }
 
     @Test
     void testNonPrimeInFirstChunk() throws InterruptedException {
         int[] numbers = {4, 2, 3, 5, 7, 11, 13, 17, 19, 23};
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(numbers, 4);
-        assertTrue(checker.withoutPrime());
+        assertTrue(ParallPrimeCheckThread.withoutPrime(numbers, 4));
     }
 
     @Test
     void testNonPrimeInMiddleChunk() throws InterruptedException {
         int[] numbers = {2, 3, 5, 7, 4, 11, 13, 17, 19, 23};
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(numbers, 4);
-        assertTrue(checker.withoutPrime());
+        assertTrue(ParallPrimeCheckThread.withoutPrime(numbers, 4));
     }
 
     @Test
     void testNonPrimeInLastChunk() throws InterruptedException {
         int[] numbers = {2, 3, 5, 7, 11, 13, 17, 19, 23, 4};
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(numbers, 4);
-        assertTrue(checker.withoutPrime());
+        assertTrue(ParallPrimeCheckThread.withoutPrime(numbers, 4));
     }
 
     @Test
     void testArraySizeExactlyDivisibleByThreadCount() throws InterruptedException {
         int[] primes = {2, 3, 5, 7, 11, 13, 17, 19};
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(primes, 4);
-        assertFalse(checker.withoutPrime());
+        assertFalse(ParallPrimeCheckThread.withoutPrime(primes, 4));
     }
 
     @Test
     void testArraySizeNotDivisibleByThreadCount() throws InterruptedException {
         int[] primes = {2, 3, 5, 7, 11, 13, 17, 19, 23};
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(primes, 4);
-        assertFalse(checker.withoutPrime());
+        assertFalse(ParallPrimeCheckThread.withoutPrime(primes, 4));
     }
 
     @Test
@@ -163,8 +148,7 @@ class ParallPrimeCheckThreadTest {
         for (int i = 0; i < size; i++) {
             largeArray[i] = 1_000_000_007;
         }
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(largeArray, 8);
-        assertFalse(checker.withoutPrime());
+        assertFalse(ParallPrimeCheckThread.withoutPrime(largeArray, 8));
     }
 
     @Test
@@ -175,8 +159,7 @@ class ParallPrimeCheckThreadTest {
         for (int i = 1; i < size; i++) {
             largeArray[i] = 1_000_000_007;
         }
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(largeArray, 8);
-        assertTrue(checker.withoutPrime());
+        assertTrue(ParallPrimeCheckThread.withoutPrime(largeArray, 8));
     }
 
     @Test
@@ -187,8 +170,7 @@ class ParallPrimeCheckThreadTest {
             largeArray[i] = 1_000_000_007;
         }
         largeArray[size - 1] = 4;
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(largeArray, 8);
-        assertTrue(checker.withoutPrime());
+        assertTrue(ParallPrimeCheckThread.withoutPrime(largeArray, 8));
     }
 
     @Test
@@ -199,15 +181,13 @@ class ParallPrimeCheckThreadTest {
             largeArray[i] = 1_000_000_007;
         }
         largeArray[size / 2] = 4;
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(largeArray, 8);
-        assertTrue(checker.withoutPrime());
+        assertTrue(ParallPrimeCheckThread.withoutPrime(largeArray, 8));
     }
 
     @Test
     void testMultipleNonPrimes() throws InterruptedException {
         int[] numbers = {4, 6, 8, 9, 2, 3, 5, 7, 10, 12};
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(numbers, 4);
-        assertTrue(checker.withoutPrime());
+        assertTrue(ParallPrimeCheckThread.withoutPrime(numbers, 4));
     }
 
     @Test
@@ -216,8 +196,7 @@ class ParallPrimeCheckThreadTest {
         for (int i = 0; i < 1000; i++) {
             numbers[i] = 1_000_000_007;
         }
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(numbers, 4);
-        assertFalse(checker.withoutPrime());
+        assertFalse(ParallPrimeCheckThread.withoutPrime(numbers, 4));
     }
 
     @Test
@@ -226,21 +205,18 @@ class ParallPrimeCheckThreadTest {
         for (int i = 0; i < 1000; i++) {
             numbers[i] = 1000000;
         }
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(numbers, 4);
-        assertTrue(checker.withoutPrime());
+        assertTrue(ParallPrimeCheckThread.withoutPrime(numbers, 4));
     }
 
     @Test
     void testThreadCountGreaterThanArrayLength() throws InterruptedException {
         int[] primes = {2, 3, 5};
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(primes, 10);
-        assertFalse(checker.withoutPrime());
+        assertFalse(ParallPrimeCheckThread.withoutPrime(primes, 10));
     }
 
     @Test
     void testInterleavedPrimesAndNonPrimes() throws InterruptedException {
         int[] numbers = {2, 4, 3, 6, 5, 8, 7, 9, 11, 12};
-        ParallPrimeCheckThread checker = new ParallPrimeCheckThread(numbers, 4);
-        assertTrue(checker.withoutPrime());
+        assertTrue(ParallPrimeCheckThread.withoutPrime(numbers, 4));
     }
 }

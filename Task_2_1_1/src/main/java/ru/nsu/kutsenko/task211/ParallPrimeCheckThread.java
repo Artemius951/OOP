@@ -7,28 +7,19 @@ package ru.nsu.kutsenko.task211;
  */
 public class ParallPrimeCheckThread {
 
-    private final int[] numbers;
-    private final int threadCount;
-
     /**
-     * Создает объект для параллельной проверки с заданным количеством потоков.
+     * Выполняет параллельную проверку массива на наличие непростых чисел.
      *
      * @param numbers массив целых чисел для проверки.
-     * @param threadCount количество потоков (не может быть меньше 1).
-     */
-    public ParallPrimeCheckThread(int[] numbers, int threadCount) {
-        this.numbers = numbers;
-        this.threadCount = Math.max(1, threadCount);
-    }
-
-    /**
-     * Запускает потоки и ожидает их завершения.
-     * Каждый поток обрабатывает свой непрерывный диапазон индексов.
-     *
+     * @param threadCount количество потоков.
      * @return true, если найдено непростое число, иначе false.
      * @throws InterruptedException если прервано ожидание завершения потоков.
      */
-    public boolean withoutPrime() throws InterruptedException {
+    public static boolean withoutPrime(int[] numbers, int threadCount) throws InterruptedException {
+        if (threadCount < 1) {
+            throw new IllegalArgumentException("Thread count must be at least 1");
+        }
+
         int n = numbers.length;
         if (n == 0) {
             return false;

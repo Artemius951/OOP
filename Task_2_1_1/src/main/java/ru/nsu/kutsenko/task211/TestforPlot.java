@@ -36,7 +36,7 @@ public class TestforPlot {
 
         int threads = 8;
         start = System.nanoTime();
-        boolean par = new ParallPrimeCheckThread(data, threads).withoutPrime();
+        boolean par = ParallPrimeCheckThread.withoutPrime(data, threads);
         end = System.nanoTime();
         long parMs = (end - start) / 1_000_000;
         System.out.println("Thread (" + threads + "): " + parMs + " ms, result = " + par);
