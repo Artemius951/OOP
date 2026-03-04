@@ -3,7 +3,6 @@ package ru.nsu.kutsenko.task221;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.lang.reflect.Field;
-
 import org.junit.jupiter.api.Test;
 
 class PizzaConfigTest {

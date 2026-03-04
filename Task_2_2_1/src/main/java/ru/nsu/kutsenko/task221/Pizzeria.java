@@ -1,7 +1,6 @@
 package ru.nsu.kutsenko.task221;
 
 import com.google.gson.Gson;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;

@@ -1,7 +1,7 @@
 package ru.nsu.kutsenko.task221;
 
-import java.util.Queue;
 import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * Очередь заказов для пиццерии.

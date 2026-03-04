@@ -7,7 +7,7 @@ package ru.nsu.kutsenko.task221;
 public class Logger implements OrderLogger {
 
     /**
-     * Выводит состояние заказа в формате: [orderId=N] [СТАТУС]
+     * Выводит состояние заказа в формате: [orderId=N] [СТАТУС].
      *
      * @param order заказ, состояние которого изменилось.
      * @param status новое состояние заказа.
