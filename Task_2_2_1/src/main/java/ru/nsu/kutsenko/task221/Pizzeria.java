@@ -21,7 +21,11 @@ public class Pizzeria {
      * @param args аргументы командной строки.
      */
     public static void main(String[] args) {
-        PizzaConfig config = loadConfig("config.json");
+        String configPath = (args != null && args.length > 0)
+            ? args[0]
+            : "config.json";
+
+        PizzaConfig config = loadConfig(configPath);
 
         Logger logger = new Logger();
         OrderQueue orderQueue = new OrderQueue();
@@ -71,6 +75,7 @@ public class Pizzeria {
                 break;
             }
         }
+
         orderQueue.stopAccepting();
 
         for (Thread t : bakerThreads) {
