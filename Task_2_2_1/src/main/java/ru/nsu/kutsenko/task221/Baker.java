@@ -49,12 +49,12 @@ public class Baker implements Runnable {
 
                 order.setBakerId(id);
                 order.setStatus(OrderStatus.COOKING);
-                logger.logOrderState(order, OrderStatus.COOKING);
+                logger.logOrderState(order);
 
                 Thread.sleep(cookingTimePerPizzaMillis);
 
                 order.setStatus(OrderStatus.READY);
-                logger.logOrderState(order, OrderStatus.READY);
+                logger.logOrderState(order);
 
                 warehouse.put(order);
             }

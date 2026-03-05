@@ -57,14 +57,14 @@ public class Deliverymen implements Runnable {
                 for (Order order : orders) {
                     order.setCourierId(id);
                     order.setStatus(OrderStatus.DELIVERING);
-                    logger.logOrderState(order, OrderStatus.DELIVERING);
+                    logger.logOrderState(order);
                 }
 
                 Thread.sleep(deliveryTimeMillis);
 
                 for (Order order : orders) {
                     order.setStatus(OrderStatus.DELIVERED);
-                    logger.logOrderState(order, OrderStatus.DELIVERED);
+                    logger.logOrderState(order);
                 }
             }
         } catch (InterruptedException e) {

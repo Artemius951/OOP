@@ -46,8 +46,8 @@ class BakerTest {
         private final List<OrderStatus> statuses = new ArrayList<>();
 
         @Override
-        public void logOrderState(Order order, OrderStatus status) {
-            statuses.add(status);
+        public void logOrderState(Order order) {
+            statuses.add(order.getStatus());
         }
 
         List<OrderStatus> getStatuses() {

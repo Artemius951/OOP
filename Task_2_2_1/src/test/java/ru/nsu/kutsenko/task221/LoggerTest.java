@@ -12,12 +12,13 @@ class LoggerTest {
     void logOrderStatePrintsOrderIdAndStatus() {
         Logger logger = new Logger();
         Order order = new Order(7);
+        order.setStatus(OrderStatus.READY);
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         PrintStream original = System.out;
         System.setOut(new PrintStream(out));
         try {
-            logger.logOrderState(order, OrderStatus.READY);
+            logger.logOrderState(order);
         } finally {
             System.setOut(original);
         }

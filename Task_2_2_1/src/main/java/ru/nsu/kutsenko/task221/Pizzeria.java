@@ -61,7 +61,7 @@ public class Pizzeria {
 
         while (System.currentTimeMillis() - start < workTimeMillis) {
             Order order = new Order(nextOrderId++);
-            logger.logOrderState(order, OrderStatus.NEW);
+            logger.logOrderState(order);
             orderQueue.put(order);
 
             try {
@@ -71,7 +71,6 @@ public class Pizzeria {
                 break;
             }
         }
-
         orderQueue.stopAccepting();
 
         for (Thread t : bakerThreads) {

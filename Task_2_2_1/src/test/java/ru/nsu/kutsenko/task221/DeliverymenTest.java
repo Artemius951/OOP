@@ -31,8 +31,8 @@ class DeliverymenTest {
         private final List<OrderStatus> statuses = new ArrayList<>();
 
         @Override
-        public void logOrderState(Order order, OrderStatus status) {
-            statuses.add(status);
+        public void logOrderState(Order order) {
+            statuses.add(order.getStatus());
         }
 
         List<OrderStatus> getStatuses() {
@@ -55,8 +55,7 @@ class DeliverymenTest {
         TestWarehouse warehouse = new TestWarehouse(batches);
         TestLogger logger = new TestLogger();
 
-        Deliverymen courier = new Deliverymen(7, 2, warehouse, logger,
-            1L);
+        Deliverymen courier = new Deliverymen(7, 2, warehouse, logger, 1L);
         Thread thread = new Thread(courier);
         thread.start();
         thread.join();
@@ -77,8 +76,7 @@ class DeliverymenTest {
         TestWarehouse warehouse = new TestWarehouse(batches);
         TestLogger logger = new TestLogger();
 
-        Deliverymen courier = new Deliverymen(1, 1, warehouse, logger,
-            1L);
+        Deliverymen courier = new Deliverymen(1, 1, warehouse, logger, 1L);
         Thread thread = new Thread(courier);
         thread.start();
         thread.join();
