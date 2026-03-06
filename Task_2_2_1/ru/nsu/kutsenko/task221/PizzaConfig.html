@@ -106,9 +106,10 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>long</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getBakerCookingTimeMillis()" class="member-name-link">getBakerCookingTimeMillis</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getBakerCookingTimeMillis(int)" class="member-name-link">getBakerCookingTimeMillis</a><wbr>(int&nbsp;index)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает время приготовления одной пиццы в миллисекундах.</div>
+<div class="block">Возвращает время приготовления одной пиццы в миллисекундах
+ для конкретного пекаря.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getBakersCount()" class="member-name-link">getBakersCount</a>()</code></div>
@@ -116,9 +117,10 @@ loadScripts(document, 'script');</script>
 <div class="block">Возвращает количество пекарей.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCourierCapacity()" class="member-name-link">getCourierCapacity</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCourierCapacity(int)" class="member-name-link">getCourierCapacity</a><wbr>(int&nbsp;index)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает вместимость курьера (сколько заказов может взять за раз).</div>
+<div class="block">Возвращает вместимость курьера (сколько заказов может взять за раз)
+ для конкретного курьера.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>long</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCourierDeliveryTimeMillis()" class="member-name-link">getCourierDeliveryTimeMillis</a>()</code></div>
@@ -197,7 +199,8 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getBakersCount()">
 <h3>getBakersCount</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getBakersCount</span>()</div>
-<div class="block">Возвращает количество пекарей.</div>
+<div class="block">Возвращает количество пекарей.
+ Равно длине массива времён приготовления.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>количество пекарей.</dd>
@@ -205,11 +208,14 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="getBakerCookingTimeMillis()">
+<section class="detail" id="getBakerCookingTimeMillis(int)">
 <h3>getBakerCookingTimeMillis</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">getBakerCookingTimeMillis</span>()</div>
-<div class="block">Возвращает время приготовления одной пиццы в миллисекундах.</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">getBakerCookingTimeMillis</span><wbr><span class="parameters">(int&nbsp;index)</span></div>
+<div class="block">Возвращает время приготовления одной пиццы в миллисекундах
+ для конкретного пекаря.</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>index</code> - индекс пекаря (от 0)</dd>
 <dt>Returns:</dt>
 <dd>время приготовления.</dd>
 </dl>
@@ -219,7 +225,8 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getCouriersCount()">
 <h3>getCouriersCount</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getCouriersCount</span>()</div>
-<div class="block">Возвращает количество курьеров.</div>
+<div class="block">Возвращает количество курьеров.
+ Равно длине массива вместимостей.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>количество курьеров.</dd>
@@ -227,11 +234,14 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="getCourierCapacity()">
+<section class="detail" id="getCourierCapacity(int)">
 <h3>getCourierCapacity</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getCourierCapacity</span>()</div>
-<div class="block">Возвращает вместимость курьера (сколько заказов может взять за раз).</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getCourierCapacity</span><wbr><span class="parameters">(int&nbsp;index)</span></div>
+<div class="block">Возвращает вместимость курьера (сколько заказов может взять за раз)
+ для конкретного курьера.</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>index</code> - индекс курьера (от 0)</dd>
 <dt>Returns:</dt>
 <dd>вместимость курьера.</dd>
 </dl>
