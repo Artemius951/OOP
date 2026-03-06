@@ -14,6 +14,11 @@ public class Order {
     private Integer bakerId;
     private Integer courierId;
 
+    /**
+     * Создает новый заказ с указанным идентификатором.
+     *
+     * @param id уникальный идентификатор заказа
+     */
     public Order(int id) {
         this.id = id;
         this.createdAtMillis = System.currentTimeMillis();

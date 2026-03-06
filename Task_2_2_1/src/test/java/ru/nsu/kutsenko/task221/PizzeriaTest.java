@@ -36,7 +36,7 @@ class PizzeriaTest {
 
     @Test
     void mainRunsWithRandomArgs() {
-        String[] args = {"arg1", "arg2"};
+        String[] args = {"config.json", "arg2"};
         assertDoesNotThrow(() -> Pizzeria.main(args));
     }
 
