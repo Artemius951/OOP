@@ -21,6 +21,7 @@ public class Pizzeria {
      * @param args аргументы командной строки.
      */
     public static void main(String[] args) {
+        
         String configPath = (args != null && args.length > 0)
             ? args[0]
             : "config.json";
