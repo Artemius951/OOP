@@ -9,11 +9,10 @@ public class PizzaConfig {
     private int warehouseCapacity;
     private long workTimeMillis;
 
-    private int bakersCount;
-    private long bakerCookingTimeMillis;
+    private long[] bakerCookingTimeMillis;
 
-    private int couriersCount;
-    private int courierCapacity;
+    private int[] courierCapacity;
+
     private long courierDeliveryTimeMillis;
 
     /**
@@ -36,38 +35,44 @@ public class PizzaConfig {
 
     /**
      * Возвращает количество пекарей.
+     * Равно длине массива времён приготовления.
      *
      * @return количество пекарей.
      */
     public int getBakersCount() {
-        return bakersCount;
+        return bakerCookingTimeMillis == null ? 0 : bakerCookingTimeMillis.length;
     }
 
     /**
-     * Возвращает время приготовления одной пиццы в миллисекундах.
+     * Возвращает время приготовления одной пиццы в миллисекундах
+     * для конкретного пекаря.
      *
+     * @param index индекс пекаря (от 0)
      * @return время приготовления.
      */
-    public long getBakerCookingTimeMillis() {
-        return bakerCookingTimeMillis;
+    public long getBakerCookingTimeMillis(int index) {
+        return bakerCookingTimeMillis[index];
     }
 
     /**
      * Возвращает количество курьеров.
+     * Равно длине массива вместимостей.
      *
      * @return количество курьеров.
      */
     public int getCouriersCount() {
-        return couriersCount;
+        return courierCapacity == null ? 0 : courierCapacity.length;
     }
 
     /**
-     * Возвращает вместимость курьера (сколько заказов может взять за раз).
+     * Возвращает вместимость курьера (сколько заказов может взять за раз)
+     * для конкретного курьера.
      *
+     * @param index индекс курьера (от 0)
      * @return вместимость курьера.
      */
-    public int getCourierCapacity() {
-        return courierCapacity;
+    public int getCourierCapacity(int index) {
+        return courierCapacity[index];
     }
 
     /**

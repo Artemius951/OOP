@@ -34,28 +34,30 @@ public class Pizzeria {
 
         List<Thread> bakerThreads = new ArrayList<>();
         for (int i = 0; i < config.getBakersCount(); i++) {
+            int bakerId = i + 1;
             Baker baker = new Baker(
-                i + 1,
-                config.getBakerCookingTimeMillis(),
+                bakerId,
+                config.getBakerCookingTimeMillis(i),
                 orderQueue,
                 warehouse,
                 logger
             );
-            Thread t = new Thread(baker, "Baker-" + (i + 1));
+            Thread t = new Thread(baker, "Baker-" + bakerId);
             bakerThreads.add(t);
             t.start();
         }
 
         List<Thread> courierThreads = new ArrayList<>();
         for (int i = 0; i < config.getCouriersCount(); i++) {
+            int courierId = i + 1;
             Deliverymen courier = new Deliverymen(
-                i + 1,
-                config.getCourierCapacity(),
+                courierId,
+                config.getCourierCapacity(i),
                 warehouse,
                 logger,
                 config.getCourierDeliveryTimeMillis()
             );
-            Thread t = new Thread(courier, "Courier-" + (i + 1));
+            Thread t = new Thread(courier, "Courier-" + courierId);
             courierThreads.add(t);
             t.start();
         }

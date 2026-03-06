@@ -13,18 +13,24 @@ class PizzaConfigTest {
 
         setField(config, "warehouseCapacity", 10);
         setField(config, "workTimeMillis", 1000L);
-        setField(config, "bakersCount", 3);
-        setField(config, "bakerCookingTimeMillis", 200L);
-        setField(config, "couriersCount", 2);
-        setField(config, "courierCapacity", 5);
+
+        setField(config, "bakerCookingTimeMillis", new long[]{200L, 300L});
+        setField(config, "courierCapacity", new int[]{5, 7});
         setField(config, "courierDeliveryTimeMillis", 500L);
 
         assertEquals(10, config.getWarehouseCapacity());
         assertEquals(1000L, config.getWorkTimeMillis());
-        assertEquals(3, config.getBakersCount());
-        assertEquals(200L, config.getBakerCookingTimeMillis());
+
+        // пекари
+        assertEquals(2, config.getBakersCount());
+        assertEquals(200L, config.getBakerCookingTimeMillis(0));
+        assertEquals(300L, config.getBakerCookingTimeMillis(1));
+
+        // курьеры
         assertEquals(2, config.getCouriersCount());
-        assertEquals(5, config.getCourierCapacity());
+        assertEquals(5, config.getCourierCapacity(0));
+        assertEquals(7, config.getCourierCapacity(1));
+
         assertEquals(500L, config.getCourierDeliveryTimeMillis());
     }
 
