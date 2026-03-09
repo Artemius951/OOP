@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.nsu.kutsenko.task221.PizzaConfigTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-03-06T16:58:01.747Z" hostname="ARTEMIUS951" time="0.031">
-  <properties/>
-  <testcase name="gettersReturnUnderlyingFieldValues()" classname="ru.nsu.kutsenko.task221.PizzaConfigTest" time="0.031"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
