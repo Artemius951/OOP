@@ -1,10 +1,17 @@
 package ru.nsu.kutsenko.task231;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
-import static org.junit.jupiter.api.Assertions.*;
-import java.util.concurrent.atomic.AtomicInteger;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+/**
+ * Tests for GameController class.
+ */
 public class GameControllerTest {
     private GameController controller;
     private GameConfig config;
@@ -80,7 +87,6 @@ public class GameControllerTest {
         assertTrue(lengthAfterUpdate >= initialLength);
     }
 
-
     @Test
     public void testControllerStopGameStopsThread() {
         GameController testController = new GameController(config, () -> {}, () -> {});
@@ -103,12 +109,10 @@ public class GameControllerTest {
 
     @Test
     public void testControllerRestartResetsEngine() {
-        // Обновляем несколько раз
         for (int i = 0; i < 5; i++) {
             controller.getEngine().update();
         }
 
-        int lengthBeforeRestart = controller.getEngine().getSnake().getLength();
         controller.restart();
         int lengthAfterRestart = controller.getEngine().getSnake().getLength();
 
@@ -132,18 +136,17 @@ public class GameControllerTest {
 
     @Test
     public void testControllerGameOverCallback() {
-        AtomicInteger callbackCount = new AtomicInteger(0);
         GameConfig smallConfig = new GameConfig(5, 5, 0, 50, 150);
         GameController testController = new GameController(
             smallConfig,
             () -> {},
-            () -> callbackCount.incrementAndGet()
+            () -> {}
         );
 
         testController.startGame();
 
         try {
-            Thread.sleep(1000);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
@@ -178,9 +181,8 @@ public class GameControllerTest {
 
     @Test
     public void testControllerStopGameWhenNotRunning() {
-        // Вызываем stop на уже остановленном контроллере
         controller.stopGame();
-        controller.stopGame(); // Не должно быть ошибки
+        controller.stopGame();
     }
 
     @Test
@@ -189,5 +191,142 @@ public class GameControllerTest {
         GameController customController = new GameController(customConfig, () -> {}, () -> {});
 
         assertEquals(5, customController.getEngine().getFood().getCount());
+    }
+
+    @Test
+    public void testControllerWithNullCallbacks() {
+        GameController nullController = new GameController(config, null, null);
+        assertNotNull(nullController.getEngine());
+        assertNotNull(nullController.getInputHandler());
+    }
+
+    @Test
+    public void testControllerGameProgressWithUpdates() {
+        Cell headBefore = controller.getEngine().getSnake().getHead();
+        controller.getEngine().update();
+        Cell headAfter = controller.getEngine().getSnake().getHead();
+
+        assertNotEquals(headBefore, headAfter);
+    }
+
+    @Test
+    public void testControllerSnakeMoves() {
+        Cell headBefore = controller.getEngine().getSnake().getHead();
+        int x = headBefore.x;
+        int y = headBefore.y;
+
+        controller.getEngine().update();
+        Cell headAfter = controller.getEngine().getSnake().getHead();
+
+        assertTrue(headAfter.y < y);
+    }
+
+    @Test
+    public void testControllerFoodCount() {
+        Food food = controller.getEngine().getFood();
+        assertNotNull(food);
+        assertEquals(3, food.getCount());
+    }
+
+    @Test
+    public void testControllerSnakeNotOutOfBounds() {
+        Cell head = controller.getEngine().getSnake().getHead();
+        assertTrue(config.isInBounds(head));
+    }
+
+    @Test
+    public void testControllerGameRunningState() {
+        assertEquals(GameState.RUNNING, controller.getEngine().getGameState());
+        assertTrue(controller.getEngine().isRunning());
+    }
+
+    @Test
+    public void testControllerMultipleUpdatesGameRunning() {
+        for (int i = 0; i < 20; i++) {
+            controller.getEngine().update();
+            if (!controller.getEngine().isRunning()) {
+                break;
+            }
+        }
+
+        GameState state = controller.getEngine().getGameState();
+        assertTrue(state == GameState.RUNNING || state.isFinished());
+    }
+
+    @Test
+    public void testControllerEngineNotNull() {
+        assertNotNull(controller.getEngine());
+        assertNotNull(controller.getEngine().getSnake());
+        assertNotNull(controller.getEngine().getFood());
+    }
+
+    @Test
+    public void testControllerDifferentConfigs() {
+        GameConfig config1 = new GameConfig(15, 15, 2, 40, 200);
+        GameConfig config2 = new GameConfig(25, 25, 5, 60, 100);
+
+        GameController controller1 = new GameController(config1, () -> {}, () -> {});
+        GameController controller2 = new GameController(config2, () -> {}, () -> {});
+
+        assertEquals(2, controller1.getEngine().getFood().getCount());
+        assertEquals(5, controller2.getEngine().getFood().getCount());
+    }
+
+    @Test
+    public void testControllerConfigSize() {
+        GameConfig testConfig = new GameConfig(25, 15, 2, 30, 100);
+        GameController testController = new GameController(testConfig, () -> {}, () -> {});
+
+        Cell head = testController.getEngine().getSnake().getHead();
+        assertEquals(12, head.x);
+        assertEquals(7, head.y);
+    }
+
+    @Test
+    public void testControllerInputHandlerDirection() {
+        Direction direction = controller.getInputHandler().getNextDirection();
+        assertNotNull(direction);
+        assertEquals(Direction.DOWN, direction);
+    }
+
+    @Test
+    public void testControllerRestartsWithoutErrors() {
+        controller.restart();
+        controller.restart();
+        controller.restart();
+
+        assertEquals(GameState.RUNNING, controller.getEngine().getGameState());
+    }
+
+    @Test
+    public void testControllerGameNotWonInitially() {
+        GameState state = controller.getEngine().getGameState();
+        assertNotEquals(GameState.WON, state);
+    }
+
+    @Test
+    public void testControllerGameNotLostInitially() {
+        GameState state = controller.getEngine().getGameState();
+        assertNotEquals(GameState.LOST, state);
+    }
+
+    @Test
+    public void testControllerFoodNotInSnake() {
+        for (Cell food : controller.getEngine().getFood().getAll()) {
+            assertNotEquals(true, controller.getEngine().getSnake().contains(food));
+        }
+    }
+
+    @Test
+    public void testControllerSnakeHeadInBounds() {
+        Cell head = controller.getEngine().getSnake().getHead();
+        assertTrue(config.isInBounds(head));
+    }
+
+    @Test
+    public void testControllerAllFoodInBounds() {
+        for (Cell foodCell : controller.getEngine().getFood().getAll()) {
+            assertTrue(config.isInBounds(foodCell));
+        }
     }
 }
