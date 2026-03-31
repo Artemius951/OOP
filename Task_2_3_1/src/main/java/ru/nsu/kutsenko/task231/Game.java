@@ -1,7 +1,6 @@
 package ru.nsu.kutsenko.task231;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
@@ -11,11 +10,10 @@ import javafx.scene.control.Button;
 import javafx.geometry.Pos;
 
 public class Game extends Application {
-    private GameEngine engine;
+    private GameController gameController;
     private GamePanel gamePanel;
     private Label infoLabel;
     private Button restartButton;
-    private Thread gameThread;
     private GameConfig config;
     private Stage primaryStage;
 
@@ -35,16 +33,18 @@ public class Game extends Application {
         primaryStage.show();
 
         primaryStage.setOnCloseRequest(event -> {
-            if (gameThread != null && gameThread.isAlive()) {
-                gameThread.interrupt();
-            }
+            gameController.stopGame();
         });
     }
 
     private void createGame() {
-        InputHandler inputHandler = new InputHandler();
-        engine = new GameEngine(config, inputHandler);
-        gamePanel = new GamePanel(engine, config.getFieldWidth(), config.getFieldHeight());
+        gameController = new GameController(
+            config,
+            this::onRender,
+            this::onGameOver
+        );
+
+        gamePanel = new GamePanel(gameController.getEngine(), config.getFieldWidth(), config.getFieldHeight());
 
         infoLabel = new Label("State: RUNNING | Length: 1 | Food: " + config.getFoodCount());
         infoLabel.setStyle("-fx-font-size: 14; -fx-padding: 10;");
@@ -66,65 +66,36 @@ public class Game extends Application {
         root.getChildren().addAll(topPanel, gamePanel);
 
         Scene scene = new Scene(root);
-        scene.setOnKeyPressed(inputHandler::keyPressed);
+        scene.setOnKeyPressed(gameController.getInputHandler()::keyPressed);
 
         primaryStage.setScene(scene);
 
         gamePanel.requestFocus();
 
-        startGameLoop();
+        gameController.startGame();
+    }
+
+    private void onRender() {
+        gamePanel.render();
+        updateInfo();
+    }
+
+    private void onGameOver() {
+        gamePanel.render();
+        updateInfo();
+        restartButton.setVisible(true);
+        restartButton.requestFocus();
     }
 
     private void restartGame() {
-        if (gameThread != null && gameThread.isAlive()) {
-            gameThread.interrupt();
-            try {
-                gameThread.join(1000);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-        }
-
+        gameController.stopGame();
         createGame();
     }
 
-    private void startGameLoop() {
-        gameThread = new Thread(() -> {
-            while (!Thread.currentThread().isInterrupted()) {
-                engine.update();
-
-                Platform.runLater(() -> {
-                    gamePanel.render();
-                    updateInfo();
-                });
-
-                try {
-                    Thread.sleep(config.getTickMs());
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    break;
-                }
-
-                if (engine.getGameState().isFinished()) {
-                    Platform.runLater(() -> {
-                        gamePanel.render();
-                        updateInfo();
-                        restartButton.setVisible(true);
-                        restartButton.requestFocus();
-                    });
-                    break;
-                }
-            }
-        });
-
-        gameThread.setDaemon(true);
-        gameThread.start();
-    }
-
     private void updateInfo() {
-        int length = engine.getSnake().getLength();
-        int food = engine.getFood().getCount();
-        String state = engine.getGameState().toString();
+        int length = gameController.getEngine().getSnake().getLength();
+        int food = gameController.getEngine().getFood().getCount();
+        String state = gameController.getEngine().getGameState().toString();
         infoLabel.setText("State: " + state + " | Length: " + length + " | Food: " + food);
     }
 
