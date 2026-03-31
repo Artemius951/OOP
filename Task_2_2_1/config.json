@@ -1,0 +1,9 @@
+{
+  "warehouseCapacity": 10,
+  "workTimeMillis": 5000,
+
+  "bakerCookingTimeMillis": [1500, 1000, 2000],
+
+  "courierCapacity": [4, 2],
+  "courierDeliveryTimeMillis": 3000
+}
