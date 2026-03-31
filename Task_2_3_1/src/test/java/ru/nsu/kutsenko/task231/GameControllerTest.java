@@ -20,7 +20,11 @@ public class GameControllerTest {
         assertNotNull(controller.getEngine());
         assertEquals(GameState.RUNNING, controller.getEngine().getGameState());
     }
-    
+
+    @Test
+    public void testControllerHasInputHandler() {
+        assertNotNull(controller.getInputHandler());
+    }
 
     @Test
     public void testGameEngineInitialSnakeLength() {
@@ -146,7 +150,6 @@ public class GameControllerTest {
 
         testController.stopGame();
     }
-
 
     @Test
     public void testControllerMultipleRestarts() {

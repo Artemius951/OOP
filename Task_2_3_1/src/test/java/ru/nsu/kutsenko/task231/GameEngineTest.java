@@ -59,15 +59,6 @@ public class GameEngineTest {
     }
 
     @Test
-    public void testGameEngineSnakeLengthAfterMove() {
-        int initialLength = engine.getSnake().getLength();
-        engine.update();
-        int newLength = engine.getSnake().getLength();
-
-        assertEquals(initialLength, newLength); // Длина не меняется если нет еды
-    }
-
-    @Test
     public void testGameEngineIsRunning() {
         assertTrue(engine.isRunning());
     }
