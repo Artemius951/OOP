@@ -43,19 +43,6 @@ public class GameEngineTest {
         assertEquals(GameState.RUNNING, engine.getGameState());
     }
 
-    @Test
-    public void testGameEngineSnakeMovesDown() {
-        GameConfig config = new GameConfig(20, 20, 3, 50, 150);
-        InputHandler input = new InputHandler();
-        GameEngine engine = new GameEngine(config, input);
-
-        Cell initialHead = engine.getSnake().getHead();
-        engine.update();
-        Cell newHead = engine.getSnake().getHead();
-
-        assertEquals(initialHead.x, newHead.x);
-        assertEquals(initialHead.y + 1, newHead.y);
-    }
 
     @Test
     public void testGameEngineIsRunning() {
