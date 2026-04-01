@@ -26,7 +26,8 @@ public class GameEngine {
         this.gameState = GameState.RUNNING;
         this.currentDirection = Direction.UP;
 
-        Cell startCell = new Cell(config.getFieldWidth() / 2, config.getFieldHeight() / 2);
+        Cell startCell = new Cell(config.getFieldWidth() / 2,
+            config.getFieldHeight() / 2);
         this.snake = new Snake(startCell);
 
         this.food = new Food();
@@ -142,14 +143,14 @@ public class GameEngine {
      */
     @Override
     public String toString() {
-        return "GameEngine{" +
-            "state=" + gameState +
-            ", snakeLength=" + snake.getLength() +
-            ", foodCount=" + food.getCount() +
-            ", goal=" + config.getWinLength() +
-            ", snake=" + snake +
-            ", food=" + food +
-            ", direction=" + currentDirection +
-            '}';
+        return "GameEngine{"
+            + "state=" + gameState
+            + ", snakeLength=" + snake.getLength()
+            + ", foodCount=" + food.getCount()
+            + ", goal=" + config.getWinLength()
+            + ", snake=" + snake
+            + ", food=" + food
+            + ", direction=" + currentDirection
+            + '}';
     }
 }
