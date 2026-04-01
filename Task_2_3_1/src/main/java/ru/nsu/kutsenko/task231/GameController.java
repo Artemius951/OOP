@@ -2,7 +2,9 @@ package ru.nsu.kutsenko.task231;
 
 import javafx.application.Platform;
 
-
+/**
+ * Управляет игровым циклом, потоками и взаимодействием между движком и представлением.
+ */
 public class GameController {
     private GameEngine engine;
     private GameConfig config;
@@ -11,6 +13,13 @@ public class GameController {
     private final Runnable onRender;
     private final Runnable onGameOver;
 
+    /**
+     * Создает контроллер игры.
+     *
+     * @param config     конфигурация игры
+     * @param onRender   обратный вызов для рендеринга кадра
+     * @param onGameOver обратный вызов при окончании игры
+     */
     public GameController(GameConfig config, Runnable onRender, Runnable onGameOver) {
         this.config = config;
         this.onRender = onRender;
@@ -19,26 +28,45 @@ public class GameController {
         this.engine = new GameEngine(config, inputHandler);
     }
 
-
+    /**
+     * Возвращает игровой движок.
+     *
+     * @return объект GameEngine
+     */
     public GameEngine getEngine() {
         return engine;
     }
 
+    /**
+     * Возвращает обработчик ввода.
+     *
+     * @return объект InputHandler
+     */
     public InputHandler getInputHandler() {
         return inputHandler;
     }
 
+    /**
+     * Проверяет, запущен ли игровой цикл.
+     *
+     * @return true, если игра запущена, иначе false
+     */
     public boolean isGameRunning() {
         return gameThread != null && gameThread.isAlive();
     }
 
+    /**
+     * Запускает игровой цикл в отдельном потоке.
+     */
     public void startGame() {
         gameThread = new Thread(this::gameLoop);
         gameThread.setDaemon(true);
         gameThread.start();
     }
 
-
+    /**
+     * Основной игровой цикл, обновляющий состояние игры и управляющий задержками.
+     */
     private void gameLoop() {
         while (!Thread.currentThread().isInterrupted()) {
             engine.update();
@@ -59,7 +87,7 @@ public class GameController {
     }
 
     /**
-     * Invokes the render callback safely using Platform.runLater.
+     * Вызывает обратный вызов рендеринга безопасно через Platform.runLater.
      */
     private void invokeRender() {
         if (onRender != null) {
@@ -72,7 +100,7 @@ public class GameController {
     }
 
     /**
-     * Invokes the game over callback safely using Platform.runLater.
+     * Вызывает обратный вызов окончания игры безопасно через Platform.runLater.
      */
     private void invokeGameOver() {
         if (onGameOver != null) {
@@ -85,7 +113,7 @@ public class GameController {
     }
 
     /**
-     * Stops the game loop and waits for the thread to terminate.
+     * Останавливает игровой цикл и ожидает завершения потока.
      */
     public void stopGame() {
         if (gameThread != null && gameThread.isAlive()) {
@@ -99,8 +127,8 @@ public class GameController {
     }
 
     /**
-     * Restarts the game by stopping the current game loop,
-     * resetting the engine and input handler, and starting a new game loop.
+     * Перезапускает игру, останавливая текущий игровой цикл,
+     * сбрасывая движок и обработчик ввода, и запуская новый игровой цикл.
      */
     public void restart() {
         stopGame();

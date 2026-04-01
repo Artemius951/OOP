@@ -2,13 +2,27 @@ package ru.nsu.kutsenko.task231;
 
 import java.util.Random;
 
+/**
+ * Генерирует еду на игровом поле в свободных клетках.
+ */
 public class FoodGenerator {
     private Random random;
 
+    /**
+     * Создает генератор еды с инициализированным генератором случайных чисел.
+     */
     public FoodGenerator() {
         this.random = new Random();
     }
 
+    /**
+     * Генерирует одну свободную клетку для размещения еды.
+     *
+     * @param config конфигурация игрового поля
+     * @param snake  объект змейки
+     * @param food   объект с текущей едой
+     * @return свободная клетка для еды, или null если свободных клеток нет
+     */
     public Cell generateFoodCell(GameConfig config, Snake snake, Food food) {
         int maxAttempts = config.getFieldWidth() * config.getFieldHeight();
         int attempts = 0;
@@ -28,6 +42,14 @@ public class FoodGenerator {
         return null;
     }
 
+    /**
+     * Генерирует указанное количество объектов еды.
+     *
+     * @param count  количество объектов еды для генерации
+     * @param config конфигурация игрового поля
+     * @param snake  объект змейки
+     * @param food   объект для добавления сгенерированной еды
+     */
     public void generateFood(int count, GameConfig config, Snake snake, Food food) {
         for (int i = 0; i < count; i++) {
             Cell foodCell = generateFoodCell(config, snake, food);
@@ -37,6 +59,13 @@ public class FoodGenerator {
         }
     }
 
+    /**
+     * Инициализирует еду на игровом поле при старте игры.
+     *
+     * @param config конфигурация игрового поля
+     * @param snake  объект змейки
+     * @param food   объект для добавления еды
+     */
     public void initializeFood(GameConfig config, Snake snake, Food food) {
         generateFood(config.getFoodCount(), config, snake, food);
     }

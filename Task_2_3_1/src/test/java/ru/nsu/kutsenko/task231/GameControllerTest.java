@@ -62,7 +62,7 @@ public class GameControllerTest {
         assertEquals(GameState.RUNNING, secondEngine.getGameState());
         assertEquals(1, secondEngine.getSnake().getLength());
     }
-    
+
     @Test
     public void testIsGameNotRunningInitially() {
         assertFalse(controller.isGameRunning());

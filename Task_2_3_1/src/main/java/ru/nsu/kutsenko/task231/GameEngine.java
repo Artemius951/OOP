@@ -1,5 +1,8 @@
 package ru.nsu.kutsenko.task231;
 
+/**
+ * Основной игровой движок, управляющий логикой игры, обновлением состояния и проверкой правил.
+ */
 public class GameEngine {
     private GameConfig config;
     private Snake snake;
@@ -9,6 +12,13 @@ public class GameEngine {
     private Direction currentDirection;
     private InputHandler inputHandler;
 
+    /**
+     * Создает игровой движок с заданной конфигурацией и обработчиком ввода.
+     * Инициализирует начальное положение змейки в центре поля и генерирует начальное количество еды.
+     *
+     * @param config       конфигурация игры
+     * @param inputHandler обработчик ввода пользователя
+     */
     public GameEngine(GameConfig config, InputHandler inputHandler) {
         this.config = config;
         this.inputHandler = inputHandler;
@@ -23,20 +33,37 @@ public class GameEngine {
         foodGenerator.initializeFood(config, snake, food);
     }
 
-
+    /**
+     * Возвращает текущее состояние игры.
+     *
+     * @return состояние игры (RUNNING, LOST, WON)
+     */
     public GameState getGameState() {
         return gameState;
     }
 
-
+    /**
+     * Возвращает объект змейки.
+     *
+     * @return объект Snake
+     */
     public Snake getSnake() {
         return snake;
     }
 
+    /**
+     * Возвращает объект с едой.
+     *
+     * @return объект Food
+     */
     public Food getFood() {
         return food;
     }
 
+    /**
+     * Обновляет состояние игры на один кадр.
+     * Обрабатывает движение змейки, проверку коллизий, поедание еды и условия победы/поражения.
+     */
     public void update() {
         if (!gameState.isActive()) {
             return;
@@ -72,11 +99,20 @@ public class GameEngine {
         }
     }
 
-
+    /**
+     * Проверяет, выполняется ли игра в данный момент.
+     *
+     * @return true, если игра активна, иначе false
+     */
     public boolean isRunning() {
         return gameState == GameState.RUNNING;
     }
 
+    /**
+     * Возвращает строковое представление игрового движка.
+     *
+     * @return строка с текущим состоянием игры
+     */
     @Override
     public String toString() {
         return "GameEngine{" +

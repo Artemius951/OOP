@@ -6,12 +6,22 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
+/**
+ * Игровая панель для отрисовки игрового поля, змейки, еды и состояния игры.
+ */
 public class GamePanel extends Canvas {
     private GameEngine engine;
     private int fieldWidth;
     private int fieldHeight;
     private static final int CELL_SIZE = 20;
 
+    /**
+     * Создает игровую панель с заданным движком и размерами поля.
+     *
+     * @param engine      игровой движок
+     * @param fieldWidth  ширина поля в клетках
+     * @param fieldHeight высота поля в клетках
+     */
     public GamePanel(GameEngine engine, int fieldWidth, int fieldHeight) {
         this.engine = engine;
         this.fieldWidth = fieldWidth;
@@ -21,6 +31,9 @@ public class GamePanel extends Canvas {
         setHeight(fieldHeight * CELL_SIZE);
     }
 
+    /**
+     * Отрисовывает все элементы игры: сетку, еду, змейку и сообщение о состоянии.
+     */
     public void render() {
         GraphicsContext gc = getGraphicsContext2D();
 
@@ -33,6 +46,11 @@ public class GamePanel extends Canvas {
         drawGameState(gc);
     }
 
+    /**
+     * Отрисовывает сетку игрового поля.
+     *
+     * @param gc графический контекст
+     */
     private void drawGrid(GraphicsContext gc) {
         gc.setStroke(Color.LIGHTGRAY);
         gc.setLineWidth(0.5);
@@ -46,6 +64,11 @@ public class GamePanel extends Canvas {
         }
     }
 
+    /**
+     * Отрисовывает еду на игровом поле.
+     *
+     * @param gc графический контекст
+     */
     private void drawFood(GraphicsContext gc) {
         gc.setFill(Color.RED);
 
@@ -56,6 +79,11 @@ public class GamePanel extends Canvas {
         }
     }
 
+    /**
+     * Отрисовывает змейку на игровом поле.
+     *
+     * @param gc графический контекст
+     */
     private void drawSnake(GraphicsContext gc) {
         var cells = engine.getSnake().getAllCells();
 
@@ -74,6 +102,11 @@ public class GamePanel extends Canvas {
         }
     }
 
+    /**
+     * Отрисовывает сообщение о состоянии игры (победа или поражение).
+     *
+     * @param gc графический контекст
+     */
     private void drawGameState(GraphicsContext gc) {
         GameState state = engine.getGameState();
 
@@ -84,11 +117,16 @@ public class GamePanel extends Canvas {
         }
     }
 
+    /**
+     * Отрисовывает сообщение об окончании игры с полупрозрачным чёрным фоном.
+     *
+     * @param gc      графический контекст
+     * @param message текст сообщения
+     * @param color   цвет сообщения (зелёный для победы, красный для поражения)
+     */
     private void drawGameOverMessage(GraphicsContext gc, String message, Color color) {
-
         gc.setFill(Color.color(0, 0, 0, 0.7));
         gc.fillRect(0, 0, getWidth(), getHeight());
-
 
         gc.setFill(color);
         gc.setFont(Font.font("Arial", 50));
@@ -99,13 +137,17 @@ public class GamePanel extends Canvas {
 
         gc.fillText(message, centerX, centerY);
 
-
         gc.setFont(Font.font("Arial", 20));
         gc.setFill(Color.WHITE);
         String info = "Length: " + engine.getSnake().getLength();
         gc.fillText(info, centerX, centerY + 50);
     }
 
+    /**
+     * Возвращает размер клетки в пикселях.
+     *
+     * @return размер клетки
+     */
     public static int getCellSize() {
         return CELL_SIZE;
     }

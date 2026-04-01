@@ -9,6 +9,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.geometry.Pos;
 
+/**
+ * Главный класс игры, управляющий графическим интерфейсом и жизненным циклом приложения.
+ */
 public class Game extends Application {
     private GameController gameController;
     private GamePanel gamePanel;
@@ -17,6 +20,12 @@ public class Game extends Application {
     private GameConfig config;
     private Stage primaryStage;
 
+    /**
+     * Точка входа в JavaFX приложение.
+     *
+     * @param primaryStage основная сцена приложения
+     * @throws Exception если возникла ошибка при загрузке приложения
+     */
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -37,6 +46,9 @@ public class Game extends Application {
         });
     }
 
+    /**
+     * Создает и настраивает игровые компоненты, сцену и элементы управления.
+     */
     private void createGame() {
         gameController = new GameController(
             config,
@@ -44,7 +56,8 @@ public class Game extends Application {
             this::onGameOver
         );
 
-        gamePanel = new GamePanel(gameController.getEngine(), config.getFieldWidth(), config.getFieldHeight());
+        gamePanel = new GamePanel(gameController.getEngine(), config.getFieldWidth(),
+            config.getFieldHeight());
 
         infoLabel = new Label("State: RUNNING | Length: 1 | Food: " + config.getFoodCount());
         infoLabel.setStyle("-fx-font-size: 14; -fx-padding: 10;");
@@ -75,11 +88,17 @@ public class Game extends Application {
         gameController.startGame();
     }
 
+    /**
+     * Обрабатывает событие рендеринга кадра.
+     */
     private void onRender() {
         gamePanel.render();
         updateInfo();
     }
 
+    /**
+     * Обрабатывает событие окончания игры.
+     */
     private void onGameOver() {
         gamePanel.render();
         updateInfo();
@@ -87,11 +106,17 @@ public class Game extends Application {
         restartButton.requestFocus();
     }
 
+    /**
+     * Перезапускает игру.
+     */
     private void restartGame() {
         gameController.stopGame();
         createGame();
     }
 
+    /**
+     * Обновляет информационную панель с текущими данными игры.
+     */
     private void updateInfo() {
         int length = gameController.getEngine().getSnake().getLength();
         int food = gameController.getEngine().getFood().getCount();
@@ -99,6 +124,11 @@ public class Game extends Application {
         infoLabel.setText("State: " + state + " | Length: " + length + " | Food: " + food);
     }
 
+    /**
+     * Точка входа в приложение.
+     *
+     * @param args аргументы командной строки
+     */
     public static void main(String[] args) {
         launch(args);
     }
