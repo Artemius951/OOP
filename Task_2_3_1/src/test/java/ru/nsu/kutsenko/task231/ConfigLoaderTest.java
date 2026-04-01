@@ -18,7 +18,7 @@ public class ConfigLoaderTest {
         assertEquals(20, config.getFieldWidth());
         assertEquals(20, config.getFieldHeight());
         assertEquals(3, config.getFoodCount());
-        assertEquals(50, config.getWinLength());
+        assertEquals(30, config.getWinLength());
         assertEquals(150, config.getTickMs());
     }
 
