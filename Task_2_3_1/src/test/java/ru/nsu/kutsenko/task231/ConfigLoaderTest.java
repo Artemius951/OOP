@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -30,8 +29,8 @@ public class ConfigLoaderTest {
     public void testLoadConfigValid(@TempDir File tempDir) throws IOException {
         File configFile = new File(tempDir, "config.json");
         try (FileWriter writer = new FileWriter(configFile)) {
-            writer.write("{\"fieldWidth\":30,\"fieldHeight\":25,\"foodCount\":5," +
-                "\"winLength\":100,\"tickMs\":200}");
+            writer.write("{\"fieldWidth\":30,\"fieldHeight\":25,\"foodCount\":5,"
+                + "\"winLength\":100,\"tickMs\":200}");
         }
 
         GameConfig config = ConfigLoader.loadConfig(configFile.getAbsolutePath());

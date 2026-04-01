@@ -134,8 +134,8 @@ public class GameEngineTest {
         for (int i = 0; i < 1000; i++) {
             winEngine.update();
             if (!winEngine.isRunning()) {
-                assertTrue(winEngine.getGameState() == GameState.WON ||
-                    winEngine.getGameState() == GameState.LOST);
+                assertTrue(winEngine.getGameState() == GameState.WON
+                    || winEngine.getGameState() == GameState.LOST);
                 break;
             }
         }
