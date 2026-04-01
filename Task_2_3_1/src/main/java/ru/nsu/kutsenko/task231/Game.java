@@ -59,7 +59,10 @@ public class Game extends Application {
         gamePanel = new GamePanel(gameController.getEngine(), config.getFieldWidth(),
             config.getFieldHeight());
 
-        infoLabel = new Label("State: RUNNING | Length: 1 | Food: " + config.getFoodCount());
+        infoLabel = new Label(
+            "State: RUNNING | Length: 1 | Food: " + config.getFoodCount()
+                + " | Goal: " + config.getWinLength()
+        );
         infoLabel.setStyle("-fx-font-size: 14; -fx-padding: 10;");
 
         restartButton = new Button("Restart Game");
@@ -120,8 +123,12 @@ public class Game extends Application {
     private void updateInfo() {
         int length = gameController.getEngine().getSnake().getLength();
         int food = gameController.getEngine().getFood().getCount();
+        int goal = gameController.getEngine().getGoal();
         String state = gameController.getEngine().getGameState().toString();
-        infoLabel.setText("State: " + state + " | Length: " + length + " | Food: " + food);
+        infoLabel.setText(
+            "State: " + state + " | Length: " + length + " | Food: " + food
+                + " | Goal: " + goal
+        );
     }
 
     /**

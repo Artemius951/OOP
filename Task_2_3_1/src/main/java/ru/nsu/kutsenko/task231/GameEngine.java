@@ -61,6 +61,33 @@ public class GameEngine {
     }
 
     /**
+     * Возвращает текущую длину змейки.
+     *
+     * @return длина змейки
+     */
+    public int getSnakeLength() {
+        return snake.getLength();
+    }
+
+    /**
+     * Возвращает текущее количество еды на поле.
+     *
+     * @return количество еды
+     */
+    public int getFoodCount() {
+        return food.getCount();
+    }
+
+    /**
+     * Возвращает целевую длину для победы.
+     *
+     * @return целевая длина змейки
+     */
+    public int getGoal() {
+        return config.getWinLength();
+    }
+
+    /**
      * Обновляет состояние игры на один кадр.
      * Обрабатывает движение змейки, проверку коллизий, поедание еды и условия победы/поражения.
      */
@@ -117,6 +144,9 @@ public class GameEngine {
     public String toString() {
         return "GameEngine{" +
             "state=" + gameState +
+            ", snakeLength=" + snake.getLength() +
+            ", foodCount=" + food.getCount() +
+            ", goal=" + config.getWinLength() +
             ", snake=" + snake +
             ", food=" + food +
             ", direction=" + currentDirection +
