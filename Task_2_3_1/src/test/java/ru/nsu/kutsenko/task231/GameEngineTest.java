@@ -17,6 +17,9 @@ public class GameEngineTest {
     private InputHandler inputHandler;
     private GameEngine engine;
 
+    /**
+     * Запускает окружение перед каждым тестом
+     */
     @BeforeEach
     public void setUp() {
         config = new GameConfig(20, 20, 3, 50, 150);
