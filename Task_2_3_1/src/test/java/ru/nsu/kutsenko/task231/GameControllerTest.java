@@ -1,10 +1,20 @@
 package ru.nsu.kutsenko.task231;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+/**
+ * Tests for GameController class.
+ */
 public class GameControllerTest {
     private GameController controller;
     private GameConfig config;
@@ -73,6 +83,7 @@ public class GameControllerTest {
         controller.getEngine().update();
         assertEquals(GameState.RUNNING, controller.getEngine().getGameState());
     }
+
     @Test
     public void testGameStateAfterUpdate() {
         controller.getEngine().update();
@@ -89,7 +100,6 @@ public class GameControllerTest {
 
         assertTrue(lengthAfterUpdate >= initialLength);
     }
-
 
     @Test
     public void testControllerStopGameStopsThread() {
@@ -113,7 +123,6 @@ public class GameControllerTest {
 
     @Test
     public void testControllerRestartResetsEngine() {
-        // Обновляем несколько раз
         for (int i = 0; i < 5; i++) {
             controller.getEngine().update();
         }
@@ -188,14 +197,14 @@ public class GameControllerTest {
 
     @Test
     public void testControllerStopGameWhenNotRunning() {
-        // Вызываем stop на уже остановленном контроллере
         controller.stopGame();
-        controller.stopGame(); // Не должно быть ошибки
+        controller.stopGame();
     }
 
     @Test
     public void testControllerConfigRespected() {
-        GameConfig customConfig = new GameConfig(30, 30, 5, 100, 200);
+        GameConfig customConfig = new GameConfig(30, 30, 5,
+            100, 200);
         GameController customController = new GameController(customConfig, () -> {}, () -> {});
 
         assertEquals(5, customController.getEngine().getFood().getCount());

@@ -1,12 +1,16 @@
 package ru.nsu.kutsenko.task231;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+/**
+ * Tests for InputHandler class.
+ */
 public class InputHandlerTest {
     private InputHandler inputHandler;
 
