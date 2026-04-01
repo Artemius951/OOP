@@ -13,7 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * Tests for GameController class.
+ * Тесты для класса GameController.
  */
 public class GameControllerTest {
     private GameController controller;
@@ -203,8 +203,7 @@ public class GameControllerTest {
 
     @Test
     public void testControllerConfigRespected() {
-        GameConfig customConfig = new GameConfig(30, 30, 5,
-            100, 200);
+        GameConfig customConfig = new GameConfig(30, 30, 5, 100, 200);
         GameController customController = new GameController(customConfig, () -> {}, () -> {});
 
         assertEquals(5, customController.getEngine().getFood().getCount());

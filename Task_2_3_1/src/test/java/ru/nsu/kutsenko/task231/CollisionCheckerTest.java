@@ -1,14 +1,19 @@
 package ru.nsu.kutsenko.task231;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.Test;
+
+/**
+ * Тесты для класса CollisionChecker.
+ */
 public class CollisionCheckerTest {
 
     @Test
     public void testIsOutOfBoundsValid() {
-        GameConfig config = new GameConfig(20, 20, 3, 50, 150);
+        GameConfig config = new GameConfig(20, 20, 3, 50,
+            150);
         Cell cell = new Cell(10, 10);
 
         assertFalse(CollisionChecker.isOutOfBounds(cell, config));
@@ -16,7 +21,8 @@ public class CollisionCheckerTest {
 
     @Test
     public void testIsOutOfBoundsNegative() {
-        GameConfig config = new GameConfig(20, 20, 3, 50, 150);
+        GameConfig config = new GameConfig(20, 20, 3, 50,
+            150);
 
         assertTrue(CollisionChecker.isOutOfBounds(new Cell(-1, 10), config));
         assertTrue(CollisionChecker.isOutOfBounds(new Cell(10, -1), config));
@@ -24,7 +30,8 @@ public class CollisionCheckerTest {
 
     @Test
     public void testIsOutOfBoundsTooLarge() {
-        GameConfig config = new GameConfig(20, 20, 3, 50, 150);
+        GameConfig config = new GameConfig(20, 20, 3, 50,
+            150);
 
         assertTrue(CollisionChecker.isOutOfBounds(new Cell(20, 10), config));
         assertTrue(CollisionChecker.isOutOfBounds(new Cell(10, 20), config));
@@ -52,7 +59,8 @@ public class CollisionCheckerTest {
 
     @Test
     public void testIsGameOver() {
-        GameConfig config = new GameConfig(20, 20, 3, 50, 150);
+        GameConfig config = new GameConfig(20, 20, 3, 50,
+            150);
         Snake snake = new Snake(new Cell(10, 10));
 
         assertFalse(CollisionChecker.isGameOver(new Cell(10, 9), snake, config));

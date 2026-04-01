@@ -1,9 +1,17 @@
 package ru.nsu.kutsenko.task231;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+/**
+ * Тесты для класса GameEngine.
+ */
 public class GameEngineTest {
     private GameConfig config;
     private InputHandler inputHandler;
@@ -37,7 +45,7 @@ public class GameEngineTest {
         Cell newHead = engine.getSnake().getHead();
 
         assertEquals(initialHead.x, newHead.x);
-        assertEquals(initialHead.y - 1, newHead.y); // Direction.UP
+        assertEquals(initialHead.y - 1, newHead.y);
     }
 
     @Test
@@ -109,7 +117,6 @@ public class GameEngineTest {
 
         int initialLength = testEngine.getSnake().getLength();
 
-        // Симулируем много обновлений чтобы съесть еду
         for (int i = 0; i < 1000 && testEngine.isRunning(); i++) {
             testEngine.update();
             if (testEngine.getSnake().getLength() > initialLength) {
@@ -124,7 +131,6 @@ public class GameEngineTest {
         GameConfig winConfig = new GameConfig(20, 20, 100, 2, 150);
         GameEngine winEngine = new GameEngine(winConfig, new InputHandler());
 
-        // Обновляем пока не выиграем или не потеряем
         for (int i = 0; i < 1000; i++) {
             winEngine.update();
             if (!winEngine.isRunning()) {
@@ -146,19 +152,17 @@ public class GameEngineTest {
 
         assertEquals(GameState.LOST, lostEngine.getGameState());
 
-        // Дальнейший update не должен менять состояние
         lostEngine.update();
         assertEquals(GameState.LOST, lostEngine.getGameState());
     }
 
     @Test
     public void testGameEngineDirectionChangeValid() {
-        // Проверяем что можно менять направление
         Cell headBefore = engine.getSnake().getHead();
-        engine.update(); // Move UP
+        engine.update();
         Cell headAfter = engine.getSnake().getHead();
 
-        assertTrue(headAfter.y < headBefore.y); // Движемся вверх
+        assertTrue(headAfter.y < headBefore.y);
     }
 
     @Test

@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * Tests for InputHandler class.
+ * Тесты для класса InputHandler.
  */
 public class InputHandlerTest {
     private InputHandler inputHandler;
