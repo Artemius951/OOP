@@ -106,12 +106,12 @@ public class GameConfig {
      */
     @Override
     public String toString() {
-        return "GameConfig{" +
-            "fieldWidth=" + fieldWidth +
-            ", fieldHeight=" + fieldHeight +
-            ", foodCount=" + foodCount +
-            ", winLength=" + winLength +
-            ", tickMs=" + tickMs +
-            '}';
+        return "GameConfig{"
+            + "fieldWidth=" + fieldWidth
+            + ", fieldHeight=" + fieldHeight
+            + ", foodCount=" + foodCount
+            + ", winLength=" + winLength
+            + ", tickMs=" + tickMs
+            + '}';
     }
 }

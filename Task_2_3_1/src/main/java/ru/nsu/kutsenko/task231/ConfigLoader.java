@@ -2,8 +2,8 @@ package ru.nsu.kutsenko.task231;
 
 import com.google.gson.Gson;
 import java.io.FileReader;
-import java.io.Reader;
 import java.io.IOException;
+import java.io.Reader;
 
 /**
  * Предоставляет методы для загрузки конфигурации игры из JSON-файла.
