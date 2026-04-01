@@ -1,18 +1,26 @@
 package ru.nsu.kutsenko.task231;
+
 import java.util.Objects;
 
 /**
- * Представляет клетку на координатной плоскости с координатами X и Y.
+ * Представляет одну ячейку на игровом поле.
  */
 public final class Cell {
+    /**
+     * X координата ячейки.
+     */
     public final int x;
+
+    /**
+     * Y координата ячейки.
+     */
     public final int y;
 
     /**
-     * Создает клетку с заданными координатами.
+     * Создает ячейку с заданными координатами.
      *
-     * @param x координата по оси X.
-     * @param y координата по оси Y.
+     * @param x координата X
+     * @param y координата Y
      */
     public Cell(int x, int y) {
         this.x = x;
@@ -20,21 +28,16 @@ public final class Cell {
     }
 
     /**
-     * Возвращает новую клетку, смещенную относительно текущей на заданные значения.
+     * Возвращает новую ячейку смещенну�� на заданные дельты.
      *
-     * @param dx смещение по оси X.
-     * @param dy смещение по оси Y.
-     * @return новая клетка с координатами (x + dx, y + dy).
+     * @param dx смещение по X
+     * @param dy смещение по Y
+     * @return новая ячейка с скорректированными координатами
      */
     public Cell add(int dx, int dy) {
         return new Cell(x + dx, y + dy);
     }
 
-    /**
-     * Проверяет равенство объектов по координатам.
-     * @param o объект для сравнения.
-     * @return true, если координаты совпадают, иначе false.
-     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -43,19 +46,11 @@ public final class Cell {
         return x == cell.x && y == cell.y;
     }
 
-    /**
-     * Вычисляет хэш-код на основе координат клетки.
-     * @return хэш-код.
-     */
     @Override
     public int hashCode() {
         return Objects.hash(x, y);
     }
 
-    /**
-     * Возвращает строковое представление клетки в формате "x,y".
-     * @return строка с координатами.
-     */
     @Override
     public String toString() {
         return x + "," + y;

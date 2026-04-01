@@ -1,16 +1,17 @@
 package ru.nsu.kutsenko.task231;
 
 import javafx.application.Application;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Button;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
- * Главный класс игры, управляющий графическим интерфейсом и жизненным циклом приложения.
+ * Главный класс приложения Snake Game.
+ * Управляет графическим интерфейсом и жизненным циклом приложения.
  */
 public class Game extends Application {
     private GameController gameController;
@@ -24,7 +25,6 @@ public class Game extends Application {
      * Точка входа в JavaFX приложение.
      *
      * @param primaryStage основная сцена приложения
-     * @throws Exception если возникла ошибка при загрузке приложения
      */
     @Override
     public void start(Stage primaryStage) {
