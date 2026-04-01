@@ -52,7 +52,7 @@ public class DirectionLogicTest {
     @Test
     public void testGetOffset() {
         Cell offset = DirectionLogic.getOffset(Direction.UP);
-        assertEquals(0, offset.xCoord);
-        assertEquals(-1, offset.yCoord);
+        assertEquals(0, offset.cellx);
+        assertEquals(-1, offset.celly);
     }
 }

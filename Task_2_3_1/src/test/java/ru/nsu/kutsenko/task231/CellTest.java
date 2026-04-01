@@ -13,8 +13,8 @@ public class CellTest {
     @Test
     public void testCellCreation() {
         Cell cell = new Cell(5, 10);
-        assertEquals(5, cell.xCoord);
-        assertEquals(10, cell.yCoord);
+        assertEquals(5, cell.cellx);
+        assertEquals(10, cell.celly);
     }
 
     @Test
@@ -22,10 +22,10 @@ public class CellTest {
         Cell cell = new Cell(5, 10);
         Cell result = cell.add(3, 2);
 
-        assertEquals(8, result.xCoord);
-        assertEquals(12, result.yCoord);
-        assertEquals(5, cell.xCoord);
-        assertEquals(10, cell.yCoord);
+        assertEquals(8, result.cellx);
+        assertEquals(12, result.celly);
+        assertEquals(5, cell.cellx);
+        assertEquals(10, cell.celly);
     }
 
     @Test
@@ -33,8 +33,8 @@ public class CellTest {
         Cell cell = new Cell(5, 10);
         Cell result = cell.add(-2, -3);
 
-        assertEquals(3, result.xCoord);
-        assertEquals(7, result.yCoord);
+        assertEquals(3, result.cellx);
+        assertEquals(7, result.celly);
     }
 
     @Test

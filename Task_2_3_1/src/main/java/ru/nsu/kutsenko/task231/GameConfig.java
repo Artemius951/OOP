@@ -96,7 +96,7 @@ public class GameConfig {
      * @return true, если клетка внутри поля, иначе false
      */
     public boolean isInBounds(Cell cell) {
-        return isInBounds(cell.xCoord, cell.yCoord);
+        return isInBounds(cell.cellx, cell.celly);
     }
 
     /**

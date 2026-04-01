@@ -37,8 +37,8 @@ public class GameEngineTest {
     @Test
     public void testGameEngineSnakeStartPosition() {
         Cell head = engine.getSnake().getHead();
-        assertEquals(10, head.xCoord);
-        assertEquals(10, head.yCoord);
+        assertEquals(10, head.cellx);
+        assertEquals(10, head.celly);
     }
 
     @Test
@@ -47,8 +47,8 @@ public class GameEngineTest {
         engine.update();
         Cell newHead = engine.getSnake().getHead();
 
-        assertEquals(initialHead.xCoord, newHead.xCoord);
-        assertEquals(initialHead.yCoord - 1, newHead.yCoord);
+        assertEquals(initialHead.cellx, newHead.cellx);
+        assertEquals(initialHead.celly - 1, newHead.celly);
     }
 
     @Test
@@ -167,7 +167,7 @@ public class GameEngineTest {
         engine.update();
         Cell headAfter = engine.getSnake().getHead();
 
-        assertTrue(headAfter.yCoord < headBefore.yCoord);
+        assertTrue(headAfter.celly < headBefore.celly);
     }
 
     @Test

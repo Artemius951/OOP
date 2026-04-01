@@ -9,22 +9,22 @@ public final class Cell {
     /**
      * X координата ячейки.
      */
-    public final int xCoord;
+    public final int cellx;
 
     /**
      * Y координата ячейки.
      */
-    public final int yCoord;
+    public final int celly;
 
     /**
      * Создает ячейку с заданными координатами.
      *
-     * @param x координата X
-     * @param y координата Y
+     * @param cellx координата X
+     * @param celly координата Y
      */
-    public Cell(int x, int y) {
-        this.xCoord = x;
-        this.yCoord = y;
+    public Cell(int cellx, int celly) {
+        this.cellx = cellx;
+        this.celly = celly;
     }
 
     /**
@@ -35,7 +35,7 @@ public final class Cell {
      * @return новая ячейка с скорректированными координатами
      */
     public Cell add(int dx, int dy) {
-        return new Cell(xCoord + dx, yCoord + dy);
+        return new Cell(cellx + dx, celly + dy);
     }
 
     @Override
@@ -47,16 +47,16 @@ public final class Cell {
             return false;
         }
         Cell cell = (Cell) o;
-        return xCoord == cell.xCoord && yCoord == cell.yCoord;
+        return cellx == cell.cellx && celly == cell.celly;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(xCoord, yCoord);
+        return Objects.hash(cellx, celly);
     }
 
     @Override
     public String toString() {
-        return xCoord + "," + yCoord;
+        return cellx + "," + celly;
     }
 }
