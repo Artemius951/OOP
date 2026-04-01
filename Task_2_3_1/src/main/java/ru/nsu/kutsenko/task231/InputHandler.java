@@ -3,23 +3,23 @@ package ru.nsu.kutsenko.task231;
 import javafx.scene.input.KeyEvent;
 
 /**
- * Обрабатывает ввод с клавиатуры для управления змейкой.
+ * Обрабатывает ввод пользователя и управляет направлением движения змейки.
  */
 public class InputHandler {
     private volatile Direction nextDirection = Direction.DOWN;
 
     /**
-     * Возвращает следующее направление движения.
+     * Возвращает следующее направление, выбранное пользователем.
      *
-     * @return текущее запрошенное направление
+     * @return направление движения
      */
     public synchronized Direction getNextDirection() {
         return nextDirection;
     }
 
     /**
-     * Обрабатывает нажатие клавиши и устанавливает соответствующее направление.
-     * Поддерживает клавиши стрелок (UP, DOWN, LEFT, RIGHT) и клавиши WASD.
+     * Обрабатывает нажатие клавиши и обновляет направление движения.
+     * Поддерживает как стрелки, так и WASD управление.
      *
      * @param e событие нажатия клавиши
      */
@@ -27,30 +27,17 @@ public class InputHandler {
         String code = e.getCode().toString();
 
         switch (code) {
-            case "UP":
-                nextDirection = Direction.UP;
-                break;
-            case "DOWN":
-                nextDirection = Direction.DOWN;
-                break;
-            case "LEFT":
-                nextDirection = Direction.LEFT;
-                break;
-            case "RIGHT":
-                nextDirection = Direction.RIGHT;
-                break;
-            case "W":
-                nextDirection = Direction.UP;
-                break;
-            case "S":
-                nextDirection = Direction.DOWN;
-                break;
-            case "A":
-                nextDirection = Direction.LEFT;
-                break;
-            case "D":
-                nextDirection = Direction.RIGHT;
-                break;
+            case "UP" -> nextDirection = Direction.UP;
+            case "DOWN" -> nextDirection = Direction.DOWN;
+            case "LEFT" -> nextDirection = Direction.LEFT;
+            case "RIGHT" -> nextDirection = Direction.RIGHT;
+            case "W" -> nextDirection = Direction.UP;
+            case "S" -> nextDirection = Direction.DOWN;
+            case "A" -> nextDirection = Direction.LEFT;
+            case "D" -> nextDirection = Direction.RIGHT;
+            default -> {
+                // Непрописанные клавиши игнорируются
+            }
         }
     }
 }
