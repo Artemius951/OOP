@@ -18,7 +18,7 @@ public class GameEngineTest {
     private GameEngine engine;
 
     /**
-     * Запускает окружение перед каждым тестом
+     * Запускает окружение перед каждым тестом.
      */
     @BeforeEach
     public void setUp() {
@@ -37,8 +37,8 @@ public class GameEngineTest {
     @Test
     public void testGameEngineSnakeStartPosition() {
         Cell head = engine.getSnake().getHead();
-        assertEquals(10, head.x);
-        assertEquals(10, head.y);
+        assertEquals(10, head.xCoord);
+        assertEquals(10, head.yCoord);
     }
 
     @Test
@@ -47,8 +47,8 @@ public class GameEngineTest {
         engine.update();
         Cell newHead = engine.getSnake().getHead();
 
-        assertEquals(initialHead.x, newHead.x);
-        assertEquals(initialHead.y - 1, newHead.y);
+        assertEquals(initialHead.xCoord, newHead.xCoord);
+        assertEquals(initialHead.yCoord - 1, newHead.yCoord);
     }
 
     @Test

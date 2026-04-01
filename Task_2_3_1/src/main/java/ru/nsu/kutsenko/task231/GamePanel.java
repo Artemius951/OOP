@@ -73,8 +73,8 @@ public class GamePanel extends Canvas {
         gc.setFill(Color.RED);
 
         for (Cell foodCell : engine.getFood().getAll()) {
-            int x = foodCell.x * CELL_SIZE;
-            int y = foodCell.y * CELL_SIZE;
+            int x = foodCell.xCoord * CELL_SIZE;
+            int y = foodCell.yCoord * CELL_SIZE;
             gc.fillRect(x + 2, y + 2, CELL_SIZE - 4, CELL_SIZE - 4);
         }
     }
@@ -89,8 +89,8 @@ public class GamePanel extends Canvas {
 
         for (int i = 0; i < cells.size(); i++) {
             Cell cell = cells.get(i);
-            int x = cell.x * CELL_SIZE;
-            int y = cell.y * CELL_SIZE;
+            int x = cell.xCoord * CELL_SIZE;
+            int y = cell.yCoord * CELL_SIZE;
 
             if (i == 0) {
                 gc.setFill(Color.BLACK);
