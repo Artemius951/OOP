@@ -72,6 +72,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">SnakeNode</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Представляет узел в связной структуре данных змейки.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -86,10 +87,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code><a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a></code></div>
 <div class="col-second even-row-color"><code><a href="#cell" class="member-name-link">cell</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Ячейка, занимаемая этим узлом.</div>
+</div>
 <div class="col-first odd-row-color"><code><a href="SnakeNode.html" title="class in ru.nsu.kutsenko.task231">SnakeNode</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#next" class="member-name-link">next</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Следующий узел в змейке, или null если это хвост.</div>
+</div>
 </div>
 </section>
 </li>
@@ -102,10 +107,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.kutsenko.task231.Cell)" class="member-name-link">SnakeNode</a><wbr>(<a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a>&nbsp;cell)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Создает узел змейки с заданной ячейкой.</div>
+</div>
 <div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(ru.nsu.kutsenko.task231.Cell,ru.nsu.kutsenko.task231.SnakeNode)" class="member-name-link">SnakeNode</a><wbr>(<a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a>&nbsp;cell,
  <a href="SnakeNode.html" title="class in ru.nsu.kutsenko.task231">SnakeNode</a>&nbsp;next)</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Создает узел змейки с заданной ячейкой и следующим узлом.</div>
+</div>
 </div>
 </section>
 </li>
@@ -131,12 +140,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="cell">
 <h3>cell</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a></span>&nbsp;<span class="element-name">cell</span></div>
+<div class="block">Ячейка, занимаемая этим узлом.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="next">
 <h3>next</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SnakeNode.html" title="class in ru.nsu.kutsenko.task231">SnakeNode</a></span>&nbsp;<span class="element-name">next</span></div>
+<div class="block">Следующий узел в змейке, или null если это хвост.</div>
 </section>
 </li>
 </ul>
@@ -151,6 +162,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(ru.nsu.kutsenko.task231.Cell)">
 <h3>SnakeNode</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SnakeNode</span><wbr><span class="parameters">(<a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a>&nbsp;cell)</span></div>
+<div class="block">Создает узел змейки с заданной ячейкой.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>cell</code> - ячейка для этого узла</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -158,6 +174,12 @@ loadScripts(document, 'script');</script>
 <h3>SnakeNode</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SnakeNode</span><wbr><span class="parameters">(<a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a>&nbsp;cell,
  <a href="SnakeNode.html" title="class in ru.nsu.kutsenko.task231">SnakeNode</a>&nbsp;next)</span></div>
+<div class="block">Создает узел змейки с заданной ячейкой и следующим узлом.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>cell</code> - ячейка для этого узла</dd>
+<dd><code>next</code> - следующий узел в цепи</dd>
+</dl>
 </section>
 </li>
 </ul>

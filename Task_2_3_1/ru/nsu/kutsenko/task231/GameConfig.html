@@ -76,6 +76,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">GameConfig</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Конфигурация игры, содержащая параметры игрового поля и правила игры.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -88,13 +89,17 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">GameConfig</a>()</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Конструктор по умолчанию для десериализации JSON.</div>
+</div>
 <div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(int,int,int,int,int)" class="member-name-link">GameConfig</a><wbr>(int&nbsp;fieldWidth,
  int&nbsp;fieldHeight,
  int&nbsp;foodCount,
  int&nbsp;winLength,
  int&nbsp;tickMs)</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Создает конфигурацию игры с заданными параметрами.</div>
+</div>
 </div>
 </section>
 </li>
@@ -111,29 +116,45 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getFieldHeight()" class="member-name-link">getFieldHeight</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает высоту игрового поля.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getFieldWidth()" class="member-name-link">getFieldWidth</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает ширину игрового поля.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getFoodCount()" class="member-name-link">getFoodCount</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает количество еды на игровом поле.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTickMs()" class="member-name-link">getTickMs</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает задержку между кадрами игры.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getWinLength()" class="member-name-link">getWinLength</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает длину змейки, необходимую для победы.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isInBounds(int,int)" class="member-name-link">isInBounds</a><wbr>(int&nbsp;x,
  int&nbsp;y)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Проверяет, находятся ли координаты в пределах игрового поля.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isInBounds(ru.nsu.kutsenko.task231.Cell)" class="member-name-link">isInBounds</a><wbr>(<a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a>&nbsp;cell)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Проверяет, находится ли клетка в пределах игрового поля.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает строковое представление конфигурации.</div>
+</div>
 </div>
 </div>
 </div>
@@ -155,6 +176,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;()">
 <h3>GameConfig</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">GameConfig</span>()</div>
+<div class="block">Конструктор по умолчанию для десериализации JSON.</div>
 </section>
 </li>
 <li>
@@ -165,6 +187,15 @@ loadScripts(document, 'script');</script>
  int&nbsp;foodCount,
  int&nbsp;winLength,
  int&nbsp;tickMs)</span></div>
+<div class="block">Создает конфигурацию игры с заданными параметрами.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>fieldWidth</code> - ширина игрового поля</dd>
+<dd><code>fieldHeight</code> - высота игрового поля</dd>
+<dd><code>foodCount</code> - количество еды на поле</dd>
+<dd><code>winLength</code> - длина змейки для победы</dd>
+<dd><code>tickMs</code> - задержка между кадрами в миллисекундах</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -179,30 +210,55 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getFieldWidth()">
 <h3>getFieldWidth</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getFieldWidth</span>()</div>
+<div class="block">Возвращает ширину игрового поля.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>ширина поля в клетках</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getFieldHeight()">
 <h3>getFieldHeight</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getFieldHeight</span>()</div>
+<div class="block">Возвращает высоту игрового поля.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>высота поля в клетках</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getFoodCount()">
 <h3>getFoodCount</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getFoodCount</span>()</div>
+<div class="block">Возвращает количество еды на игровом поле.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>количество объектов еды</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getWinLength()">
 <h3>getWinLength</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getWinLength</span>()</div>
+<div class="block">Возвращает длину змейки, необходимую для победы.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>длина змейки для победы</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getTickMs()">
 <h3>getTickMs</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getTickMs</span>()</div>
+<div class="block">Возвращает задержку между кадрами игры.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>задержка в миллисекундах</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -210,21 +266,39 @@ loadScripts(document, 'script');</script>
 <h3>isInBounds</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isInBounds</span><wbr><span class="parameters">(int&nbsp;x,
  int&nbsp;y)</span></div>
+<div class="block">Проверяет, находятся ли координаты в пределах игрового поля.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>x</code> - координата по оси X</dd>
+<dd><code>y</code> - координата по оси Y</dd>
+<dt>Returns:</dt>
+<dd>true, если координаты внутри поля, иначе false</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="isInBounds(ru.nsu.kutsenko.task231.Cell)">
 <h3>isInBounds</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isInBounds</span><wbr><span class="parameters">(<a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a>&nbsp;cell)</span></div>
+<div class="block">Проверяет, находится ли клетка в пределах игрового поля.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>cell</code> - проверяемая клетка</dd>
+<dt>Returns:</dt>
+<dd>true, если клетка внутри поля, иначе false</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="toString()">
 <h3>toString</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">toString</span>()</div>
+<div class="block">Возвращает строковое представление конфигурации.</div>
 <dl class="notes">
 <dt>Overrides:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
+<dt>Returns:</dt>
+<dd>строка с параметрами конфигурации</dd>
 </dl>
 </section>
 </li>

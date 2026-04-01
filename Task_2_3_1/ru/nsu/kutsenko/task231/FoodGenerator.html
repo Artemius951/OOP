@@ -76,6 +76,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">FoodGenerator</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Генерирует еду на игровом поле в свободных клетках.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -88,7 +89,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">FoodGenerator</a>()</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Создает генератор еды с инициализированным генератором случайных чисел.</div>
+</div>
 </div>
 </section>
 </li>
@@ -108,17 +111,23 @@ loadScripts(document, 'script');</script>
  <a href="GameConfig.html" title="class in ru.nsu.kutsenko.task231">GameConfig</a>&nbsp;config,
  <a href="Snake.html" title="class in ru.nsu.kutsenko.task231">Snake</a>&nbsp;snake,
  <a href="Food.html" title="class in ru.nsu.kutsenko.task231">Food</a>&nbsp;food)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Генерирует указанное количество объектов еды.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#generateFoodCell(ru.nsu.kutsenko.task231.GameConfig,ru.nsu.kutsenko.task231.Snake,ru.nsu.kutsenko.task231.Food)" class="member-name-link">generateFoodCell</a><wbr>(<a href="GameConfig.html" title="class in ru.nsu.kutsenko.task231">GameConfig</a>&nbsp;config,
  <a href="Snake.html" title="class in ru.nsu.kutsenko.task231">Snake</a>&nbsp;snake,
  <a href="Food.html" title="class in ru.nsu.kutsenko.task231">Food</a>&nbsp;food)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Генерирует одну свободную клетку для размещения еды.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#initializeFood(ru.nsu.kutsenko.task231.GameConfig,ru.nsu.kutsenko.task231.Snake,ru.nsu.kutsenko.task231.Food)" class="member-name-link">initializeFood</a><wbr>(<a href="GameConfig.html" title="class in ru.nsu.kutsenko.task231">GameConfig</a>&nbsp;config,
  <a href="Snake.html" title="class in ru.nsu.kutsenko.task231">Snake</a>&nbsp;snake,
  <a href="Food.html" title="class in ru.nsu.kutsenko.task231">Food</a>&nbsp;food)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Инициализирует еду на игровом поле при старте игры.</div>
+</div>
 </div>
 </div>
 </div>
@@ -140,6 +149,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;()">
 <h3>FoodGenerator</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">FoodGenerator</span>()</div>
+<div class="block">Создает генератор еды с инициализированным генератором случайных чисел.</div>
 </section>
 </li>
 </ul>
@@ -156,6 +166,15 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a></span>&nbsp;<span class="element-name">generateFoodCell</span><wbr><span class="parameters">(<a href="GameConfig.html" title="class in ru.nsu.kutsenko.task231">GameConfig</a>&nbsp;config,
  <a href="Snake.html" title="class in ru.nsu.kutsenko.task231">Snake</a>&nbsp;snake,
  <a href="Food.html" title="class in ru.nsu.kutsenko.task231">Food</a>&nbsp;food)</span></div>
+<div class="block">Генерирует одну свободную клетку для размещения еды.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>config</code> - конфигурация игрового поля</dd>
+<dd><code>snake</code> - объект змейки</dd>
+<dd><code>food</code> - объект с текущей едой</dd>
+<dt>Returns:</dt>
+<dd>свободная клетка для еды, или null если свободных клеток нет</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -165,6 +184,14 @@ loadScripts(document, 'script');</script>
  <a href="GameConfig.html" title="class in ru.nsu.kutsenko.task231">GameConfig</a>&nbsp;config,
  <a href="Snake.html" title="class in ru.nsu.kutsenko.task231">Snake</a>&nbsp;snake,
  <a href="Food.html" title="class in ru.nsu.kutsenko.task231">Food</a>&nbsp;food)</span></div>
+<div class="block">Генерирует указанное количество объектов еды.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>count</code> - количество объектов еды для генерации</dd>
+<dd><code>config</code> - конфигурация игрового поля</dd>
+<dd><code>snake</code> - объект змейки</dd>
+<dd><code>food</code> - объект для добавления сгенерированной еды</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -173,6 +200,13 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">initializeFood</span><wbr><span class="parameters">(<a href="GameConfig.html" title="class in ru.nsu.kutsenko.task231">GameConfig</a>&nbsp;config,
  <a href="Snake.html" title="class in ru.nsu.kutsenko.task231">Snake</a>&nbsp;snake,
  <a href="Food.html" title="class in ru.nsu.kutsenko.task231">Food</a>&nbsp;food)</span></div>
+<div class="block">Инициализирует еду на игровом поле при старте игры.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>config</code> - конфигурация игрового поля</dd>
+<dd><code>snake</code> - объект змейки</dd>
+<dd><code>food</code> - объект для добавления еды</dd>
+</dl>
 </section>
 </li>
 </ul>

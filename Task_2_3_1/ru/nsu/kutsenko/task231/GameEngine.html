@@ -76,6 +76,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">GameEngine</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Основной игровой движок, управляющий логикой игры, обновлением состояния и проверкой правил.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -89,7 +90,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.kutsenko.task231.GameConfig,ru.nsu.kutsenko.task231.InputHandler)" class="member-name-link">GameEngine</a><wbr>(<a href="GameConfig.html" title="class in ru.nsu.kutsenko.task231">GameConfig</a>&nbsp;config,
  <a href="InputHandler.html" title="class in ru.nsu.kutsenko.task231">InputHandler</a>&nbsp;inputHandler)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Создает игровой движок с заданной конфигурацией и обработчиком ввода.</div>
+</div>
 </div>
 </section>
 </li>
@@ -106,22 +109,34 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Food.html" title="class in ru.nsu.kutsenko.task231">Food</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getFood()" class="member-name-link">getFood</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает объект с едой.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="GameState.html" title="enum class in ru.nsu.kutsenko.task231">GameState</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGameState()" class="member-name-link">getGameState</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает текущее состояние игры.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Snake.html" title="class in ru.nsu.kutsenko.task231">Snake</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSnake()" class="member-name-link">getSnake</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает объект змейки.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isRunning()" class="member-name-link">isRunning</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Проверяет, выполняется ли игра в данный момент.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает строковое представление игрового движка.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#update()" class="member-name-link">update</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Обновляет состояние игры на один кадр.</div>
+</div>
 </div>
 </div>
 </div>
@@ -144,6 +159,13 @@ loadScripts(document, 'script');</script>
 <h3>GameEngine</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">GameEngine</span><wbr><span class="parameters">(<a href="GameConfig.html" title="class in ru.nsu.kutsenko.task231">GameConfig</a>&nbsp;config,
  <a href="InputHandler.html" title="class in ru.nsu.kutsenko.task231">InputHandler</a>&nbsp;inputHandler)</span></div>
+<div class="block">Создает игровой движок с заданной конфигурацией и обработчиком ввода.
+ Инициализирует начальное положение змейки в центре поля и генерирует начальное количество еды.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>config</code> - конфигурация игры</dd>
+<dd><code>inputHandler</code> - обработчик ввода пользователя</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -158,39 +180,64 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getGameState()">
 <h3>getGameState</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="GameState.html" title="enum class in ru.nsu.kutsenko.task231">GameState</a></span>&nbsp;<span class="element-name">getGameState</span>()</div>
+<div class="block">Возвращает текущее состояние игры.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>состояние игры (RUNNING, LOST, WON)</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getSnake()">
 <h3>getSnake</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Snake.html" title="class in ru.nsu.kutsenko.task231">Snake</a></span>&nbsp;<span class="element-name">getSnake</span>()</div>
+<div class="block">Возвращает объект змейки.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>объект Snake</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getFood()">
 <h3>getFood</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Food.html" title="class in ru.nsu.kutsenko.task231">Food</a></span>&nbsp;<span class="element-name">getFood</span>()</div>
+<div class="block">Возвращает объект с едой.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>объект Food</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="update()">
 <h3>update</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">update</span>()</div>
+<div class="block">Обновляет состояние игры на один кадр.
+ Обрабатывает движение змейки, проверку коллизий, поедание еды и условия победы/поражения.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="isRunning()">
 <h3>isRunning</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isRunning</span>()</div>
+<div class="block">Проверяет, выполняется ли игра в данный момент.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true, если игра активна, иначе false</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="toString()">
 <h3>toString</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">toString</span>()</div>
+<div class="block">Возвращает строковое представление игрового движка.</div>
 <dl class="notes">
 <dt>Overrides:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
+<dt>Returns:</dt>
+<dd>строка с текущим состоянием игры</dd>
 </dl>
 </section>
 </li>

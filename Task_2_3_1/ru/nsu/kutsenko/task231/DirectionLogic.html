@@ -76,6 +76,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">DirectionLogic</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Вспомогательный класс для логики, связанной с направлениями.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -106,14 +107,20 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#canChangeDirection(ru.nsu.kutsenko.task231.Direction,ru.nsu.kutsenko.task231.Direction)" class="member-name-link">canChangeDirection</a><wbr>(<a href="Direction.html" title="enum class in ru.nsu.kutsenko.task231">Direction</a>&nbsp;currentDir,
  <a href="Direction.html" title="enum class in ru.nsu.kutsenko.task231">Direction</a>&nbsp;newDir)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Проверяет, является ли изменение направления допустимым.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getOffset(ru.nsu.kutsenko.task231.Direction)" class="member-name-link">getOffset</a><wbr>(<a href="Direction.html" title="enum class in ru.nsu.kutsenko.task231">Direction</a>&nbsp;direction)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Получает смещение ячейки для заданного направления.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#isOpposite(ru.nsu.kutsenko.task231.Direction,ru.nsu.kutsenko.task231.Direction)" class="member-name-link">isOpposite</a><wbr>(<a href="Direction.html" title="enum class in ru.nsu.kutsenko.task231">Direction</a>&nbsp;current,
  <a href="Direction.html" title="enum class in ru.nsu.kutsenko.task231">Direction</a>&nbsp;other)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Проверяет, являются ли два направления противоположными.</div>
+</div>
 </div>
 </div>
 </div>
@@ -150,12 +157,27 @@ loadScripts(document, 'script');</script>
 <h3>isOpposite</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isOpposite</span><wbr><span class="parameters">(<a href="Direction.html" title="enum class in ru.nsu.kutsenko.task231">Direction</a>&nbsp;current,
  <a href="Direction.html" title="enum class in ru.nsu.kutsenko.task231">Direction</a>&nbsp;other)</span></div>
+<div class="block">Проверяет, являются ли два направления противоположными.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>current</code> - текущее направление</dd>
+<dd><code>other</code> - другое направление</dd>
+<dt>Returns:</dt>
+<dd>true если направления противоположны, иначе false</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getOffset(ru.nsu.kutsenko.task231.Direction)">
 <h3>getOffset</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a></span>&nbsp;<span class="element-name">getOffset</span><wbr><span class="parameters">(<a href="Direction.html" title="enum class in ru.nsu.kutsenko.task231">Direction</a>&nbsp;direction)</span></div>
+<div class="block">Получает смещение ячейки для заданного направления.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>direction</code> - направление</dd>
+<dt>Returns:</dt>
+<dd>ячейка с дельта-значениями направления</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -163,6 +185,14 @@ loadScripts(document, 'script');</script>
 <h3>canChangeDirection</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">canChangeDirection</span><wbr><span class="parameters">(<a href="Direction.html" title="enum class in ru.nsu.kutsenko.task231">Direction</a>&nbsp;currentDir,
  <a href="Direction.html" title="enum class in ru.nsu.kutsenko.task231">Direction</a>&nbsp;newDir)</span></div>
+<div class="block">Проверяет, является ли изменение направления допустимым.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>currentDir</code> - текущее направление</dd>
+<dd><code>newDir</code> - новое направление</dd>
+<dt>Returns:</dt>
+<dd>true если изменение разрешено, false если направления противоположны</dd>
+</dl>
 </section>
 </li>
 </ul>

@@ -84,6 +84,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">GamePanel</span>
 <span class="extends-implements">extends javafx.scene.canvas.Canvas</span></div>
+<div class="block">Игровая панель для отрисовки игрового поля, змейки, еды и состояния игры.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -119,7 +120,9 @@ loadScripts(document, 'script');</script>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.kutsenko.task231.GameEngine,int,int)" class="member-name-link">GamePanel</a><wbr>(<a href="GameEngine.html" title="class in ru.nsu.kutsenko.task231">GameEngine</a>&nbsp;engine,
  int&nbsp;fieldWidth,
  int&nbsp;fieldHeight)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Создает игровую панель с заданным движком и размерами поля.</div>
+</div>
 </div>
 </section>
 </li>
@@ -136,10 +139,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getCellSize()" class="member-name-link">getCellSize</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Возвращает размер клетки в пикселях.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#render()" class="member-name-link">render</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Отрисовывает все элементы игры: сетку, еду, змейку и сообщение о состоянии.</div>
+</div>
 </div>
 </div>
 </div>
@@ -172,6 +179,13 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">GamePanel</span><wbr><span class="parameters">(<a href="GameEngine.html" title="class in ru.nsu.kutsenko.task231">GameEngine</a>&nbsp;engine,
  int&nbsp;fieldWidth,
  int&nbsp;fieldHeight)</span></div>
+<div class="block">Создает игровую панель с заданным движком и размерами поля.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>engine</code> - игровой движок</dd>
+<dd><code>fieldWidth</code> - ширина поля в клетках</dd>
+<dd><code>fieldHeight</code> - высота поля в клетках</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -186,12 +200,18 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="render()">
 <h3>render</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">render</span>()</div>
+<div class="block">Отрисовывает все элементы игры: сетку, еду, змейку и сообщение о состоянии.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="getCellSize()">
 <h3>getCellSize</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getCellSize</span>()</div>
+<div class="block">Возвращает размер клетки в пикселях.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>размер клетки</dd>
+</dl>
 </section>
 </li>
 </ul>

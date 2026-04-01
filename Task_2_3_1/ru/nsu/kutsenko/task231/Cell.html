@@ -76,6 +76,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">Cell</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Представляет одну ячейку на игровом поле.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -90,10 +91,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>final int</code></div>
 <div class="col-second even-row-color"><code><a href="#x" class="member-name-link">x</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">X координата ячейки.</div>
+</div>
 <div class="col-first odd-row-color"><code>final int</code></div>
 <div class="col-second odd-row-color"><code><a href="#y" class="member-name-link">y</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Y координата ячейки.</div>
+</div>
 </div>
 </section>
 </li>
@@ -107,7 +112,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,int)" class="member-name-link">Cell</a><wbr>(int&nbsp;x,
  int&nbsp;y)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Создает ячейку с заданными координатами.</div>
+</div>
 </div>
 </section>
 </li>
@@ -125,7 +132,9 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#add(int,int)" class="member-name-link">add</a><wbr>(int&nbsp;dx,
  int&nbsp;dy)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает новую ячейку смещенну�� на заданные дельты.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#equals(java.lang.Object)" class="member-name-link">equals</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;o)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -156,12 +165,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="x">
 <h3>x</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">x</span></div>
+<div class="block">X координата ячейки.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="y">
 <h3>y</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">y</span></div>
+<div class="block">Y координата ячейки.</div>
 </section>
 </li>
 </ul>
@@ -177,6 +188,12 @@ loadScripts(document, 'script');</script>
 <h3>Cell</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Cell</span><wbr><span class="parameters">(int&nbsp;x,
  int&nbsp;y)</span></div>
+<div class="block">Создает ячейку с заданными координатами.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>x</code> - координата X</dd>
+<dd><code>y</code> - координата Y</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -192,6 +209,14 @@ loadScripts(document, 'script');</script>
 <h3>add</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a></span>&nbsp;<span class="element-name">add</span><wbr><span class="parameters">(int&nbsp;dx,
  int&nbsp;dy)</span></div>
+<div class="block">Возвращает новую ячейку смещенну�� на заданные дельты.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>dx</code> - смещение по X</dd>
+<dd><code>dy</code> - смещение по Y</dd>
+<dt>Returns:</dt>
+<dd>новая ячейка с скорректированными координатами</dd>
+</dl>
 </section>
 </li>
 <li>

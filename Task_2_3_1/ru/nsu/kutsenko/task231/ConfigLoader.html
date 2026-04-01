@@ -76,6 +76,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">ConfigLoader</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Предоставляет методы для загрузки конфигурации игры из JSON-файла.
+ Поддерживает загрузку пользовательской конфигурации и создание конфигурации по умолчанию.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -106,7 +108,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="GameConfig.html" title="class in ru.nsu.kutsenko.task231">GameConfig</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#createDefault()" class="member-name-link">createDefault</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Возвращает конфигурацию по умолчанию, если файл не найден.</div>
+<div class="block">Возвращает конфигурацию по умолчанию.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="GameConfig.html" title="class in ru.nsu.kutsenko.task231">GameConfig</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#loadConfig(java.lang.String)" class="member-name-link">loadConfig</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;path)</code></div>
@@ -153,7 +155,7 @@ loadScripts(document, 'script');</script>
 <dt>Parameters:</dt>
 <dd><code>path</code> - путь к JSON-файлу конфигурации</dd>
 <dt>Returns:</dt>
-<dd>объект GameConfig</dd>
+<dd>объект GameConfig, содержащий параметры игры</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/RuntimeException.html" title="class or interface in java.lang" class="external-link">RuntimeException</a></code> - если файл не найден или произошла ошибка чтения</dd>
 </dl>
@@ -163,7 +165,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="createDefault()">
 <h3>createDefault</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="GameConfig.html" title="class in ru.nsu.kutsenko.task231">GameConfig</a></span>&nbsp;<span class="element-name">createDefault</span>()</div>
-<div class="block">Возвращает конфигурацию по умолчанию, если файл не найден.</div>
+<div class="block">Возвращает конфигурацию по умолчанию.
+ Используется в случае, если файл конфигурации не найден или произошла ошибка загрузки.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>объект GameConfig с параметрами по умолчанию:
+         ширина поля = 20, высота поля = 20, начальная длина змейки = 3,
+         задержка между кадрами = 150 мс, количество очков для победы = 30</dd>
+</dl>
 </section>
 </li>
 </ul>

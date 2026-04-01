@@ -76,6 +76,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">GameController</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Управляет игровым циклом, потоками и взаимодействием между движком и представлением.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -90,7 +91,9 @@ loadScripts(document, 'script');</script>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.kutsenko.task231.GameConfig,java.lang.Runnable,java.lang.Runnable)" class="member-name-link">GameController</a><wbr>(<a href="GameConfig.html" title="class in ru.nsu.kutsenko.task231">GameConfig</a>&nbsp;config,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>&nbsp;onRender,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>&nbsp;onGameOver)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Создает контроллер игры.</div>
+</div>
 </div>
 </section>
 </li>
@@ -107,26 +110,34 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="GameEngine.html" title="class in ru.nsu.kutsenko.task231">GameEngine</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getEngine()" class="member-name-link">getEngine</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает игровой движок.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="InputHandler.html" title="class in ru.nsu.kutsenko.task231">InputHandler</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getInputHandler()" class="member-name-link">getInputHandler</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает обработчик ввода.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isGameRunning()" class="member-name-link">isGameRunning</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Проверяет, запущен ли игровой цикл.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#restart()" class="member-name-link">restart</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Restarts the game by stopping the current game loop,
- resetting the engine and input handler, and starting a new game loop.</div>
+<div class="block">Перезапускает игру, останавливая текущий игровой цикл,
+ сбрасывая движок и обработчик ввода, и запуская новый игровой цикл.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#startGame()" class="member-name-link">startGame</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Запускает игровой цикл в отдельном потоке.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#stopGame()" class="member-name-link">stopGame</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Stops the game loop and waits for the thread to terminate.</div>
+<div class="block">Останавливает игровой цикл и ожидает завершения потока.</div>
 </div>
 </div>
 </div>
@@ -151,6 +162,13 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">GameController</span><wbr><span class="parameters">(<a href="GameConfig.html" title="class in ru.nsu.kutsenko.task231">GameConfig</a>&nbsp;config,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>&nbsp;onRender,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>&nbsp;onGameOver)</span></div>
+<div class="block">Создает контроллер игры.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>config</code> - конфигурация игры</dd>
+<dd><code>onRender</code> - обратный вызов для рендеринга кадра</dd>
+<dd><code>onGameOver</code> - обратный вызов при окончании игры</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -165,39 +183,55 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getEngine()">
 <h3>getEngine</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="GameEngine.html" title="class in ru.nsu.kutsenko.task231">GameEngine</a></span>&nbsp;<span class="element-name">getEngine</span>()</div>
+<div class="block">Возвращает игровой движок.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>объект GameEngine</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getInputHandler()">
 <h3>getInputHandler</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="InputHandler.html" title="class in ru.nsu.kutsenko.task231">InputHandler</a></span>&nbsp;<span class="element-name">getInputHandler</span>()</div>
+<div class="block">Возвращает обработчик ввода.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>объект InputHandler</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="isGameRunning()">
 <h3>isGameRunning</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isGameRunning</span>()</div>
+<div class="block">Проверяет, запущен ли игровой цикл.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true, если игра запущена, иначе false</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="startGame()">
 <h3>startGame</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">startGame</span>()</div>
+<div class="block">Запускает игровой цикл в отдельном потоке.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="stopGame()">
 <h3>stopGame</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">stopGame</span>()</div>
-<div class="block">Stops the game loop and waits for the thread to terminate.</div>
+<div class="block">Останавливает игровой цикл и ожидает завершения потока.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="restart()">
 <h3>restart</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">restart</span>()</div>
-<div class="block">Restarts the game by stopping the current game loop,
- resetting the engine and input handler, and starting a new game loop.</div>
+<div class="block">Перезапускает игру, останавливая текущий игровой цикл,
+ сбрасывая движок и обработчик ввода, и запуская новый игровой цикл.</div>
 </section>
 </li>
 </ul>

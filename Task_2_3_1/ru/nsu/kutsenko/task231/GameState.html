@@ -82,6 +82,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public enum </span><span class="element-name type-name-label">GameState</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;<a href="GameState.html" title="enum class in ru.nsu.kutsenko.task231">GameState</a>&gt;</span></div>
+<div class="block">Перечисление возможных состояний игры.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -103,13 +104,21 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Enum Constant</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code><a href="#LOST" class="member-name-link">LOST</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Игрок проиграл игру.</div>
+</div>
 <div class="col-first odd-row-color"><code><a href="#PAUSED" class="member-name-link">PAUSED</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Игра приостановлена.</div>
+</div>
 <div class="col-first even-row-color"><code><a href="#RUNNING" class="member-name-link">RUNNING</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Игра активна и работает.</div>
+</div>
 <div class="col-first odd-row-color"><code><a href="#WON" class="member-name-link">WON</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Игрок выиграл игру.</div>
+</div>
 </div>
 </section>
 </li>
@@ -126,10 +135,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isActive()" class="member-name-link">isActive</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Проверяет, находится ли игра в активном состоянии.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isFinished()" class="member-name-link">isFinished</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Проверяет, завершена ли игра.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="GameState.html" title="enum class in ru.nsu.kutsenko.task231">GameState</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#valueOf(java.lang.String)" class="member-name-link">valueOf</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
@@ -165,24 +178,28 @@ the order they are declared.</div>
 <section class="detail" id="RUNNING">
 <h3>RUNNING</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="GameState.html" title="enum class in ru.nsu.kutsenko.task231">GameState</a></span>&nbsp;<span class="element-name">RUNNING</span></div>
+<div class="block">Игра активна и работает.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="WON">
 <h3>WON</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="GameState.html" title="enum class in ru.nsu.kutsenko.task231">GameState</a></span>&nbsp;<span class="element-name">WON</span></div>
+<div class="block">Игрок выиграл игру.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="LOST">
 <h3>LOST</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="GameState.html" title="enum class in ru.nsu.kutsenko.task231">GameState</a></span>&nbsp;<span class="element-name">LOST</span></div>
+<div class="block">Игрок проиграл игру.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="PAUSED">
 <h3>PAUSED</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="GameState.html" title="enum class in ru.nsu.kutsenko.task231">GameState</a></span>&nbsp;<span class="element-name">PAUSED</span></div>
+<div class="block">Игра приостановлена.</div>
 </section>
 </li>
 </ul>
@@ -228,12 +245,22 @@ not permitted.)</div>
 <section class="detail" id="isActive()">
 <h3>isActive</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isActive</span>()</div>
+<div class="block">Проверяет, находится ли игра в активном состоянии.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true если RUNNING или PAUSED, иначе false</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="isFinished()">
 <h3>isFinished</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isFinished</span>()</div>
+<div class="block">Проверяет, завершена ли игра.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true если WON или LOST, иначе false</dd>
+</dl>
 </section>
 </li>
 </ul>
