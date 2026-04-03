@@ -69,7 +69,8 @@ public class Game extends Application {
             restartButton.setOnAction(event -> restartGame());
 
             root.getChildren().add(gamePanel);
-
+            VBox.setVgrow(gamePanel, javafx.scene.layout.Priority.ALWAYS);
+            
             Scene scene = new Scene(root);
             scene.setOnKeyPressed(gameController.getInputHandler()::keyPressed);
 

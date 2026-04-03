@@ -1,148 +1,103 @@
 package ru.nsu.kutsenko.task231;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
- * Представляет змейку как двусвязный список клеток.
+ * Представляет змейку в игре Snake.
+ * Использует LinkedList для эффективного добавления головы и удаления хвоста.
  */
 public class Snake {
-    private SnakeNode head;
-    private SnakeNode tail;
-    private int length;
+    private LinkedList<Cell> body;
 
     /**
-     * Создает змейку с начальной клеткой.
+     * Создает змейку с одним сегментом в указанной клетке.
      *
-     * @param startCell начальная клетка головы змейки
+     * @param startCell начальная клетка для головы
      */
     public Snake(Cell startCell) {
-        this.head = new SnakeNode(startCell);
-        this.tail = this.head;
-        this.length = 1;
-    }
-
-    /**
-     * Возвращает клетку головы змейки.
-     *
-     * @return клетка головы
-     */
-    public synchronized Cell getHead() {
-        return head.cell;
-    }
-
-    /**
-     * Возвращает клетку хвоста змейки.
-     *
-     * @return клетка хвоста
-     */
-    public synchronized Cell getTail() {
-        return tail.cell;
+        this.body = new LinkedList<>();
+        this.body.addFirst(startCell);
     }
 
     /**
      * Возвращает длину змейки.
      *
-     * @return количество сегментов змейки
+     * @return количество сегментов
      */
-    public synchronized int getLength() {
-        return length;
+    public int getLength() {
+        return body.size();
     }
 
     /**
-     * Проверяет, находится ли заданная клетка в теле змейки.
+     * Возвращает голову змейки.
      *
-     * @param cell проверяемая клетка
-     * @return true, если клетка принадлежит змейке, иначе false
+     * @return клетка головы (первый элемент списка)
      */
-    public synchronized boolean contains(Cell cell) {
-        SnakeNode current = head;
-        while (current != null) {
-            if (current.cell.equals(cell)) {
-                return true;
-            }
-            current = current.next;
-        }
-        return false;
+    public Cell getHead() {
+        return body.getFirst();
+    }
+
+    /**
+     * Возвращает хвост змейки.
+     *
+     * @return клетка хвоста (последний элемент списка)
+     */
+    public Cell getTail() {
+        return body.getLast();
+    }
+
+    /**
+     * Проверяет, содержит ли змейка указанную клетку.
+     *
+     * @param cell клетка для проверки
+     * @return true, если клетка принадлежит змейке
+     */
+    public boolean contains(Cell cell) {
+        return body.contains(cell);
     }
 
     /**
      * Перемещает змейку на новую клетку, добавляя голову и удаляя хвост.
+     * Голова всегда остаётся неразрывно связана с телом.
      *
      * @param newHead новая клетка головы
      */
     public synchronized void move(Cell newHead) {
-        addHead(newHead);
-        removeTail();
+        body.addFirst(newHead);
+        body.removeLast();
     }
 
     /**
-     * Увеличивает змейку, добавляя новую голову без удаления хвоста.
+     * Растит змейку, добавляя новый сегмент в голову.
+     * Хвост не удаляется.
      *
      * @param newHead новая клетка головы
      */
     public synchronized void grow(Cell newHead) {
-        addHead(newHead);
+        body.addFirst(newHead);
     }
 
     /**
-     * Добавляет новую голову к змейке.
+     * Возвращает все клетки змейки в порядке от головы к хвосту.
      *
-     * @param newHead новая клетка головы
+     * @return список всех клеток
      */
-    private void addHead(Cell newHead) {
-        SnakeNode newNode = new SnakeNode(newHead, head);
-        head = newNode;
-        length++;
+    public List<Cell> getAllCells() {
+        return new ArrayList<>(body);
     }
 
     /**
-     * Удаляет хвост змейки.
-     */
-    private void removeTail() {
-        if (length <= 1) {
-            return;
-        }
-
-        SnakeNode current = head;
-        while (current.next != tail) {
-            current = current.next;
-        }
-
-        current.next = null;
-        tail = current;
-        length--;
-    }
-
-    /**
-     * Возвращает список всех клеток змейки от головы к хвосту.
+     * Возвращает строковое представление зме��ки.
      *
-     * @return список клеток змейки
-     */
-    public synchronized java.util.List<Cell> getAllCells() {
-        java.util.List<Cell> cells = new java.util.ArrayList<>();
-        SnakeNode current = head;
-        while (current != null) {
-            cells.add(current.cell);
-            current = current.next;
-        }
-        return cells;
-    }
-
-    /**
-     * Возвращает строковое представление змейки.
-     *
-     * @return строка с последовательностью клеток
+     * @return строка с информацией о змейке
      */
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("Snake[");
-        SnakeNode current = head;
-        while (current != null) {
-            sb.append(current.cell);
-            if (current.next != null) {
-                sb.append(" -> ");
-            }
-            current = current.next;
-        }
-        sb.append("]");
-        return sb.toString();
+        return "Snake{" +
+            "body=" + body +
+            ", length=" + body.size() +
+            '}';
     }
 }
