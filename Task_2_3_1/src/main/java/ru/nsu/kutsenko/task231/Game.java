@@ -1,14 +1,18 @@
 package ru.nsu.kutsenko.task231;
 
 import javafx.application.Application;
+import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import java.io.IOException;
 
+/**
+ * Главный класс приложения Snake Game.
+ * Управляет графическим интерфейсом и жизненным циклом приложения.
+ */
 public class Game extends Application {
     private GameController gameController;
     private GamePanel gamePanel;
@@ -17,6 +21,11 @@ public class Game extends Application {
     private GameConfig config;
     private Stage primaryStage;
 
+    /**
+     * Точка входа в JavaFX приложение.
+     *
+     * @param primaryStage основная сцена приложения
+     */
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -37,6 +46,9 @@ public class Game extends Application {
         });
     }
 
+    /**
+     * Создает и настраивает игровые компоненты, сцену и элементы управления.
+     */
     private void createGame() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("game.fxml"));
@@ -70,11 +82,17 @@ public class Game extends Application {
         }
     }
 
+    /**
+     * Обрабатывает событие рендеринга кадра.
+     */
     private void onRender() {
         gamePanel.render();
         updateInfo();
     }
 
+    /**
+     * Обрабатывает событие окончания игры.
+     */
     private void onGameOver() {
         gamePanel.render();
         updateInfo();
@@ -82,11 +100,17 @@ public class Game extends Application {
         restartButton.requestFocus();
     }
 
+    /**
+     * Перезапускает игру.
+     */
     private void restartGame() {
         gameController.stopGame();
         createGame();
     }
 
+    /**
+     * Обновляет информационную панель с текущими данными игры.
+     */
     private void updateInfo() {
         int length = gameController.getEngine().getSnake().getLength();
         int food = gameController.getEngine().getFood().getCount();
