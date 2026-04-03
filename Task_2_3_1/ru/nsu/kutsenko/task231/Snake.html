@@ -76,7 +76,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Snake</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">Представляет змейку как двусвязный список клеток.</div>
+<div class="block">Представляет змейку в игре Snake.
+ Использует LinkedList для эффективного добавления головы и удаления хвоста.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -90,7 +91,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.kutsenko.task231.Cell)" class="member-name-link">Snake</a><wbr>(<a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a>&nbsp;startCell)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Создает змейку с начальной клеткой.</div>
+<div class="block">Создает змейку с одним сегментом в указанной клетке.</div>
 </div>
 </div>
 </section>
@@ -109,17 +110,17 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#contains(ru.nsu.kutsenko.task231.Cell)" class="member-name-link">contains</a><wbr>(<a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a>&nbsp;cell)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Проверяет, находится ли заданная клетка в теле змейки.</div>
+<div class="block">Проверяет, содержит ли змейка указанную клетку.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAllCells()" class="member-name-link">getAllCells</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает список всех клеток змейки от головы к хвосту.</div>
+<div class="block">Возвращает все клетки змейки в порядке от головы к хвосту.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHead()" class="member-name-link">getHead</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает клетку головы змейки.</div>
+<div class="block">Возвращает голову змейки.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getLength()" class="member-name-link">getLength</a>()</code></div>
@@ -129,12 +130,12 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTail()" class="member-name-link">getTail</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает клетку хвоста змейки.</div>
+<div class="block">Возвращает хвост змейки.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#grow(ru.nsu.kutsenko.task231.Cell)" class="member-name-link">grow</a><wbr>(<a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a>&nbsp;newHead)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Увеличивает змейку, добавляя новую голову без удаления хвоста.</div>
+<div class="block">Растит змейку, добавляя новый сегмент в голову.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#move(ru.nsu.kutsenko.task231.Cell)" class="member-name-link">move</a><wbr>(<a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a>&nbsp;newHead)</code></div>
@@ -144,7 +145,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает строковое представление змейки.</div>
+<div class="block">Возвращает строковое представление зме��ки.</div>
 </div>
 </div>
 </div>
@@ -167,10 +168,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(ru.nsu.kutsenko.task231.Cell)">
 <h3>Snake</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Snake</span><wbr><span class="parameters">(<a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a>&nbsp;startCell)</span></div>
-<div class="block">Создает змейку с начальной клеткой.</div>
+<div class="block">Создает змейку с одним сегментом в указанной клетке.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>startCell</code> - начальная клетка головы змейки</dd>
+<dd><code>startCell</code> - начальная клетка для головы</dd>
 </dl>
 </section>
 </li>
@@ -183,13 +184,24 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
+<section class="detail" id="getLength()">
+<h3>getLength</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getLength</span>()</div>
+<div class="block">Возвращает длину змейки.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>количество сегментов</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="getHead()">
 <h3>getHead</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a></span>&nbsp;<span class="element-name">getHead</span>()</div>
-<div class="block">Возвращает клетку головы змейки.</div>
+<div class="block">Возвращает голову змейки.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>клетка головы</dd>
+<dd>клетка головы (первый элемент списка)</dd>
 </dl>
 </section>
 </li>
@@ -197,21 +209,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getTail()">
 <h3>getTail</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a></span>&nbsp;<span class="element-name">getTail</span>()</div>
-<div class="block">Возвращает клетку хвоста змейки.</div>
+<div class="block">Возвращает хвост змейки.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>клетка хвоста</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getLength()">
-<h3>getLength</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getLength</span>()</div>
-<div class="block">Возвращает длину змейки.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>количество сегментов змейки</dd>
+<dd>клетка хвоста (последний элемент списка)</dd>
 </dl>
 </section>
 </li>
@@ -219,12 +220,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="contains(ru.nsu.kutsenko.task231.Cell)">
 <h3>contains</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">contains</span><wbr><span class="parameters">(<a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a>&nbsp;cell)</span></div>
-<div class="block">Проверяет, находится ли заданная клетка в теле змейки.</div>
+<div class="block">Проверяет, содержит ли змейка указанную клетку.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>cell</code> - проверяемая клетка</dd>
+<dd><code>cell</code> - клетка для проверки</dd>
 <dt>Returns:</dt>
-<dd>true, если клетка принадлежит змейке, иначе false</dd>
+<dd>true, если клетка принадлежит змейке</dd>
 </dl>
 </section>
 </li>
@@ -232,7 +233,8 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="move(ru.nsu.kutsenko.task231.Cell)">
 <h3>move</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">move</span><wbr><span class="parameters">(<a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a>&nbsp;newHead)</span></div>
-<div class="block">Перемещает змейку на новую клетку, добавляя голову и удаляя хвост.</div>
+<div class="block">Перемещает змейку на новую клетку, добавляя голову и удаляя хвост.
+ Голова всегда остаётся неразрывно связана с телом.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>newHead</code> - новая клетка головы</dd>
@@ -243,7 +245,8 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="grow(ru.nsu.kutsenko.task231.Cell)">
 <h3>grow</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">grow</span><wbr><span class="parameters">(<a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a>&nbsp;newHead)</span></div>
-<div class="block">Увеличивает змейку, добавляя новую голову без удаления хвоста.</div>
+<div class="block">Растит змейку, добавляя новый сегмент в голову.
+ Хвост не удаляется.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>newHead</code> - новая клетка головы</dd>
@@ -254,10 +257,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getAllCells()">
 <h3>getAllCells</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a>&gt;</span>&nbsp;<span class="element-name">getAllCells</span>()</div>
-<div class="block">Возвращает список всех клеток змейки от головы к хвосту.</div>
+<div class="block">Возвращает все клетки змейки в порядке от головы к хвосту.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>список клеток змейки</dd>
+<dd>список всех клеток</dd>
 </dl>
 </section>
 </li>
@@ -265,12 +268,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="toString()">
 <h3>toString</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">toString</span>()</div>
-<div class="block">Возвращает строковое представление змейки.</div>
+<div class="block">Возвращает строковое представление зме��ки.</div>
 <dl class="notes">
 <dt>Overrides:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
 <dt>Returns:</dt>
-<dd>строка с последовательностью клеток</dd>
+<dd>строка с информацией о змейке</dd>
 </dl>
 </section>
 </li>
