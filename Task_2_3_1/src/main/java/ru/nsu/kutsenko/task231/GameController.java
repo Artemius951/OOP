@@ -94,7 +94,6 @@ public class GameController {
             try {
                 Platform.runLater(onRender);
             } catch (IllegalStateException e) {
-                // Не иниц. Игнорируется
             }
         }
     }
@@ -107,7 +106,6 @@ public class GameController {
             try {
                 Platform.runLater(onGameOver);
             } catch (IllegalStateException e) {
-                // Не иниц. Игнорируется
             }
         }
     }

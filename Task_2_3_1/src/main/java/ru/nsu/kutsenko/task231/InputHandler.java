@@ -36,7 +36,6 @@ public class InputHandler {
             case "A" -> nextDirection = Direction.LEFT;
             case "D" -> nextDirection = Direction.RIGHT;
             default -> {
-                // Непрописанные клавиши игнорируются
             }
         }
     }
