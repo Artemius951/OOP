@@ -95,9 +95,9 @@ public class Snake {
      */
     @Override
     public String toString() {
-        return "Snake{" +
-            "body=" + body +
-            ", length=" + body.size() +
-            '}';
+        return "Snake{"
+            + "body=" + body
+            + ", length=" + body.size()
+            + '}';
     }
 }
