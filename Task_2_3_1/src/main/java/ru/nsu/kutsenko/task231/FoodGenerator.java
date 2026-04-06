@@ -18,13 +18,19 @@ public class FoodGenerator {
     /**
      * Генерирует одну свободную клетку для размещения еды.
      *
+     * Использует метод случайного поиска с множественными попытками.
+     * При наличии свободных клеток вероятность успешного нахождения практически 100%.
+     * Если после всех попыток свободная клетка не найдена, возвращает null.
+     * Это может происходить только в редких случаях, когда поле почти полностью заполнено.
+     *
      * @param config конфигурация игрового поля
      * @param snake  объект змейки
      * @param food   объект с текущей едой
-     * @return свободная клетка для еды, или null если свободных клеток нет
+     * @return свободная клетка для еды, или null если свободная клетка не найдена
+     *         после множественных попыток случайного поиска
      */
     public Cell generateFoodCell(GameConfig config, Snake snake, Food food) {
-        int maxAttempts = config.getFieldWidth() * config.getFieldHeight();
+        int maxAttempts = config.getFieldWidth() * config.getFieldHeight() * 10;
         int attempts = 0;
 
         while (attempts < maxAttempts) {
