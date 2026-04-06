@@ -4,8 +4,10 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -16,7 +18,10 @@ import javafx.stage.Stage;
 public class Game extends Application {
     private GameController gameController;
     private GamePanel gamePanel;
-    private Label infoLabel;
+    private Label stateLabel;
+    private Label lengthLabel;
+    private Label foodLabel;
+    private Label goalLabel;
     private Button restartButton;
     private GameConfig config;
     private Stage primaryStage;
@@ -54,7 +59,10 @@ public class Game extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("game.fxml"));
             VBox root = loader.load();
 
-            infoLabel = (Label) root.lookup("#infoLabel");
+            stateLabel = (Label) root.lookup("#stateLabel");
+            lengthLabel = (Label) root.lookup("#lengthLabel");
+            foodLabel = (Label) root.lookup("#foodLabel");
+            goalLabel = (Label) root.lookup("#goalLabel");
             restartButton = (Button) root.lookup("#restartButton");
 
             gameController = new GameController(
@@ -69,7 +77,7 @@ public class Game extends Application {
             restartButton.setOnAction(event -> restartGame());
 
             root.getChildren().add(gamePanel);
-            VBox.setVgrow(gamePanel, javafx.scene.layout.Priority.ALWAYS);
+            VBox.setVgrow(gamePanel, Priority.ALWAYS);
 
             Scene scene = new Scene(root);
             scene.setOnKeyPressed(gameController.getInputHandler()::keyPressed);
@@ -79,7 +87,10 @@ public class Game extends Application {
             gameController.startGame();
 
         } catch (IOException e) {
+            String errorMessage = "Не удалось загрузить FXML файл: " + e.getMessage();
+            System.err.println(errorMessage);
             e.printStackTrace();
+            showErrorDialog("Ошибка загрузки интерфейса", errorMessage);
         }
     }
 
@@ -117,12 +128,32 @@ public class Game extends Application {
         int food = gameController.getEngine().getFood().getCount();
         int goal = gameController.getEngine().getGoal();
         String state = gameController.getEngine().getGameState().toString();
-        infoLabel.setText(
-            "State: " + state + " | Length: " + length + " | Food: " + food
-                + " | Goal: " + goal
-        );
+
+        stateLabel.setText(state);
+        lengthLabel.setText(String.valueOf(length));
+        foodLabel.setText(String.valueOf(food));
+        goalLabel.setText(String.valueOf(goal));
     }
 
+    /**
+     * Показывает диалог ошибки пользователю.
+     *
+     * @param title   заголовок диалога
+     * @param message текст сообщения об ошибке
+     */
+    private void showErrorDialog(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(title);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    /**
+     * Точка входа в приложение.
+     *
+     * @param args аргументы командной строки
+     */
     public static void main(String[] args) {
         launch(args);
     }
