@@ -166,14 +166,20 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Cell.html" title="class in ru.nsu.kutsenko.task231">Cell</a></span>&nbsp;<span class="element-name">generateFoodCell</span><wbr><span class="parameters">(<a href="GameConfig.html" title="class in ru.nsu.kutsenko.task231">GameConfig</a>&nbsp;config,
  <a href="Snake.html" title="class in ru.nsu.kutsenko.task231">Snake</a>&nbsp;snake,
  <a href="Food.html" title="class in ru.nsu.kutsenko.task231">Food</a>&nbsp;food)</span></div>
-<div class="block">Генерирует одну свободную клетку для размещения еды.</div>
+<div class="block">Генерирует одну свободную клетку для размещения еды.
+
+ Использует метод случайного поиска с множественными попытками.
+ При наличии свободных клеток вероятность успешного нахождения практически 100%.
+ Если после всех попыток свободная клетка не найдена, возвращает null.
+ Это может происходить только в редких случаях, когда поле почти полностью заполнено.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>config</code> - конфигурация игрового поля</dd>
 <dd><code>snake</code> - объект змейки</dd>
 <dd><code>food</code> - объект с текущей едой</dd>
 <dt>Returns:</dt>
-<dd>свободная клетка для еды, или null если свободных клеток нет</dd>
+<dd>свободная клетка для еды, или null если свободная клетка не найдена
+         после множественных попыток случайного поиска</dd>
 </dl>
 </section>
 </li>
