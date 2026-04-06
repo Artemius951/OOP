@@ -128,7 +128,6 @@ public class Game extends Application {
         int food = gameController.getEngine().getFood().getCount();
         int goal = gameController.getEngine().getGoal();
         String state = gameController.getEngine().getGameState().toString();
-
         stateLabel.setText(state);
         lengthLabel.setText(String.valueOf(length));
         foodLabel.setText(String.valueOf(food));
