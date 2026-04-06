@@ -109,9 +109,14 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Возвращает следующее направление, выбранное пользователем.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#keyPressed(javafx.scene.input.KeyEvent)" class="member-name-link">keyPressed</a><wbr>(javafx.scene.input.KeyEvent&nbsp;e)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isPauseRequested()" class="member-name-link">isPauseRequested</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Проверяет, был ли запрос паузы, и сбрасывает флаг.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#keyPressed(javafx.scene.input.KeyEvent)" class="member-name-link">keyPressed</a><wbr>(javafx.scene.input.KeyEvent&nbsp;e)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Обрабатывает нажатие клавиши и обновляет направление движения.</div>
 </div>
 </div>
@@ -157,11 +162,23 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="isPauseRequested()">
+<h3>isPauseRequested</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isPauseRequested</span>()</div>
+<div class="block">Проверяет, был ли запрос паузы, и сбрасывает флаг.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true, если была нажата клавиша паузы</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="keyPressed(javafx.scene.input.KeyEvent)">
 <h3>keyPressed</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">keyPressed</span><wbr><span class="parameters">(javafx.scene.input.KeyEvent&nbsp;e)</span></div>
 <div class="block">Обрабатывает нажатие клавиши и обновляет направление движения.
- Поддерживает как стрелки, так и WASD управление.</div>
+ Поддерживает как стрелки, так и WASD управление.
+ Пробел - для паузы.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>e</code> - событие нажатия клавиши</dd>
