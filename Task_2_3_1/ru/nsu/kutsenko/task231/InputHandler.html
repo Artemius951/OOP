@@ -119,6 +119,11 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Обрабатывает нажатие клавиши и обновляет направление движения.</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setGameState(ru.nsu.kutsenko.task231.GameState)" class="member-name-link">setGameState</a><wbr>(<a href="GameState.html" title="enum class in ru.nsu.kutsenko.task231">GameState</a>&nbsp;state)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Обновляет текущее состояние игры.</div>
+</div>
 </div>
 </div>
 </div>
@@ -173,12 +178,26 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="setGameState(ru.nsu.kutsenko.task231.GameState)">
+<h3>setGameState</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setGameState</span><wbr><span class="parameters">(<a href="GameState.html" title="enum class in ru.nsu.kutsenko.task231">GameState</a>&nbsp;state)</span></div>
+<div class="block">Обновляет текущее состояние игры.
+ Используется для определения, разрешены ли изменения направления.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>state</code> - текущее состояние игры</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="keyPressed(javafx.scene.input.KeyEvent)">
 <h3>keyPressed</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">keyPressed</span><wbr><span class="parameters">(javafx.scene.input.KeyEvent&nbsp;e)</span></div>
 <div class="block">Обрабатывает нажатие клавиши и обновляет направление движения.
  Поддерживает как стрелки, так и WASD управление.
- Пробел - для паузы.</div>
+ Пробел - для паузы.
+
+ Изменение направления запрещено во время паузы.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>e</code> - событие нажатия клавиши</dd>
