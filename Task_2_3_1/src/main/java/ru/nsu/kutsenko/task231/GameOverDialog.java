@@ -26,7 +26,8 @@ public class GameOverDialog {
      * @param onRestart  обработчик нажатия кнопки "Restart"
      * @param onExit     обработчик нажатия кнопки "Exit"
      */
-    public GameOverDialog(Stage ownerStage, GameEngine engine, Runnable onRestart, Runnable onExit) {
+    public GameOverDialog(Stage ownerStage, GameEngine engine,
+                          Runnable onRestart, Runnable onExit) {
         this.ownerStage = ownerStage;
         this.engine = engine;
         this.onRestart = onRestart;
@@ -46,7 +47,6 @@ public class GameOverDialog {
         GameState state = engine.getGameState();
         boolean isWon = state == GameState.WON;
         String title = isWon ? "YOU WON!" : "GAME OVER!";
-        String bgColor = isWon ? "#4CAF50" : "#f44336";
 
         Label titleLabel = new Label(title);
         titleLabel.setStyle("-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: white;");
@@ -78,7 +78,9 @@ public class GameOverDialog {
 
         VBox root = new VBox(20);
         root.setAlignment(Pos.CENTER);
+        String bgColor = isWon ? "#4CAF50" : "#f44336";
         root.setStyle("-fx-padding: 30; -fx-background-color: " + bgColor + ";");
+
         root.getChildren().addAll(titleLabel, lengthLabelDialog, buttonBox);
 
         Scene scene = new Scene(root, 300, 250);
