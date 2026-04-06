@@ -126,7 +126,8 @@ public class Game extends Application {
         Label titleLabel = new Label(title);
         titleLabel.setStyle("-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: white;");
 
-        Label lengthLabelDialog = new Label("Final Length: " + gameController.getEngine().getSnake().getLength());
+        Label lengthLabelDialog = new Label("Final Length: "
+            + gameController.getEngine().getSnake().getLength());
         lengthLabelDialog.setStyle("-fx-font-size: 16; -fx-text-fill: white;");
 
         Button restartButton = new Button("Restart");

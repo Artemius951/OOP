@@ -8,6 +8,7 @@ import javafx.scene.input.KeyEvent;
 public class InputHandler {
     private volatile Direction nextDirection = Direction.DOWN;
     private volatile boolean pauseRequested = false;
+    private volatile GameState gameState = GameState.RUNNING;
 
     /**
      * Возвращает следующее направление, выбранное пользователем.
@@ -30,21 +31,41 @@ public class InputHandler {
     }
 
     /**
+     * Обновляет текущее состояние игры.
+     * Используется для определения, разрешены ли изменения направления.
+     *
+     * @param state текущее состояние игры
+     */
+    public synchronized void setGameState(GameState state) {
+        this.gameState = state;
+    }
+
+    /**
      * Обрабатывает нажатие клавиши и обновляет направление движения.
      * Поддерживает как стрелки, так и WASD управление.
      * Пробел - для паузы.
+     *
+     * Изменение направления запрещено во время паузы.
      *
      * @param e событие нажатия клавиши
      */
     public synchronized void keyPressed(KeyEvent e) {
         String code = e.getCode().toString();
 
+        if ("SPACE".equals(code)) {
+            pauseRequested = true;
+            return;
+        }
+
+        if (gameState == GameState.PAUSED) {
+            return;
+        }
+
         switch (code) {
             case "UP", "W" -> nextDirection = Direction.UP;
             case "DOWN", "S" -> nextDirection = Direction.DOWN;
             case "LEFT", "A" -> nextDirection = Direction.LEFT;
             case "RIGHT", "D" -> nextDirection = Direction.RIGHT;
-            case "SPACE" -> pauseRequested = true;
             default -> {
             }
         }
