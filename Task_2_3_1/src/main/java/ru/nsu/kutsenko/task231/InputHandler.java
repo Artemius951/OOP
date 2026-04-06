@@ -40,10 +40,10 @@ public class InputHandler {
         String code = e.getCode().toString();
 
         switch (code) {
-            case "UP","W" -> nextDirection = Direction.UP;
-            case "DOWN","S" -> nextDirection = Direction.DOWN;
-            case "LEFT","A" -> nextDirection = Direction.LEFT;
-            case "RIGHT","D" -> nextDirection = Direction.RIGHT;
+            case "UP", "W" -> nextDirection = Direction.UP;
+            case "DOWN", "S" -> nextDirection = Direction.DOWN;
+            case "LEFT", "A" -> nextDirection = Direction.LEFT;
+            case "RIGHT", "D" -> nextDirection = Direction.RIGHT;
             case "SPACE" -> pauseRequested = true;
             default -> {
             }
