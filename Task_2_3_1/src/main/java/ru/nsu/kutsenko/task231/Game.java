@@ -126,12 +126,11 @@ public class Game extends Application {
     private void updateInfo() {
         int length = gameController.getEngine().getSnake().getLength();
         int food = gameController.getEngine().getFood().getCount();
-        int goal = gameController.getEngine().getGoal();
         String state = gameController.getEngine().getGameState().toString();
         stateLabel.setText(state);
         lengthLabel.setText(String.valueOf(length));
         foodLabel.setText(String.valueOf(food));
-        goalLabel.setText(String.valueOf(goal));
+        goalLabel.setText(String.valueOf(gameController.getEngine().getGoal()));
     }
 
     /**
