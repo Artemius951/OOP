@@ -32,7 +32,7 @@ public class GamePanel extends Canvas {
     }
 
     /**
-     * Отрисовывает все элементы игры: сетку, еду, змейку и сообщение о состоянии.
+     * Отрисовывает все элементы игры: сетку, еду, змейку и сообщение о паузе.
      */
     public void render() {
         GraphicsContext gc = getGraphicsContext2D();
@@ -43,7 +43,7 @@ public class GamePanel extends Canvas {
         drawGrid(gc);
         drawFood(gc);
         drawSnake(gc);
-        drawGameState(gc);
+        drawPause(gc);
     }
 
     /**
@@ -103,70 +103,29 @@ public class GamePanel extends Canvas {
     }
 
     /**
-     * Отрисовывает сообщение о состоянии игры (победа, поражение или пауза).
+     * Отрисовывает сообщение о паузе, если игра на паузе.
      *
      * @param gc графический контекст
      */
-    private void drawGameState(GraphicsContext gc) {
-        GameState state = engine.getGameState();
+    private void drawPause(GraphicsContext gc) {
+        if (engine.getGameState() == GameState.PAUSED) {
+            gc.setFill(Color.color(0, 0, 0, 0.7));
+            gc.fillRect(0, 0, getWidth(), getHeight());
 
-        if (state == GameState.WON) {
-            drawGameOverMessage(gc, "YOU WON!", Color.GREEN);
-        } else if (state == GameState.LOST) {
-            drawGameOverMessage(gc, "GAME OVER!", Color.RED);
-        } else if (state == GameState.PAUSED) {
-            drawPausedMessage(gc);
+            gc.setFill(Color.YELLOW);
+            gc.setFont(Font.font("Arial", 50));
+            gc.setTextAlign(TextAlignment.CENTER);
+
+            double centerx = getWidth() / 2;
+            double centery = getHeight() / 2 - 30;
+
+            gc.fillText("PAUSED", centerx, centery);
+
+            gc.setFont(Font.font("Arial", 20));
+            gc.setFill(Color.WHITE);
+            String info = "Length: " + engine.getSnake().getLength();
+            gc.fillText(info, centerx, centery + 50);
         }
-    }
-
-    /**
-     * Отрисовывает сообщение об окончании игры с полупрозрачным чёрным фоном.
-     *
-     * @param gc      графический контекст
-     * @param message текст сообщения
-     * @param color   цвет сообщения (зелёный для победы, красный для поражения)
-     */
-    private void drawGameOverMessage(GraphicsContext gc, String message, Color color) {
-        gc.setFill(Color.color(0, 0, 0, 0.7));
-        gc.fillRect(0, 0, getWidth(), getHeight());
-
-        gc.setFill(color);
-        gc.setFont(Font.font("Arial", 50));
-        gc.setTextAlign(TextAlignment.CENTER);
-
-        double centerx = getWidth() / 2;
-        double centery = getHeight() / 2 - 30;
-
-        gc.fillText(message, centerx, centery);
-
-        gc.setFont(Font.font("Arial", 20));
-        gc.setFill(Color.WHITE);
-        String info = "Length: " + engine.getSnake().getLength();
-        gc.fillText(info, centerx, centery + 50);
-    }
-
-    /**
-     * Отрисовывает сообщение о паузе с полупрозрачным чёрным фоном.
-     *
-     * @param gc графический контекст
-     */
-    private void drawPausedMessage(GraphicsContext gc) {
-        gc.setFill(Color.color(0, 0, 0, 0.7));
-        gc.fillRect(0, 0, getWidth(), getHeight());
-
-        gc.setFill(Color.YELLOW);
-        gc.setFont(Font.font("Arial", 50));
-        gc.setTextAlign(TextAlignment.CENTER);
-
-        double centerx = getWidth() / 2;
-        double centery = getHeight() / 2 - 30;
-
-        gc.fillText("PAUSED", centerx, centery);
-
-        gc.setFont(Font.font("Arial", 20));
-        gc.setFill(Color.WHITE);
-        String info = "Length: " + engine.getSnake().getLength();
-        gc.fillText(info, centerx, centery + 50);
     }
 
     /**

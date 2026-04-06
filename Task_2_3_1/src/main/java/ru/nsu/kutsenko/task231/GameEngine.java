@@ -105,10 +105,12 @@ public class GameEngine {
      * Обрабатывает движение змейки, проверку коллизий, поедание еды и условия победы/поражения.
      */
     public void update() {
+        // Проверяем запрос паузы в начале обновления
         if (inputHandler.isPauseRequested()) {
             togglePause();
         }
 
+        // Если игра на паузе или закончена, не обновляем состояние
         if (gameState != GameState.RUNNING) {
             return;
         }

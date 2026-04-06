@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx"
@@ -12,7 +14,9 @@
       style="-fx-padding: 10; -fx-background-color: #f0f0f0;"
       alignment="TOP_CENTER">
 
-    <HBox spacing="20" style="-fx-padding: 10;" alignment="CENTER">
+    <HBox spacing="20" style="-fx-padding: 10;" alignment="BOTTOM_RIGHT" VBox.vgrow="NEVER">
+        <Region HBox.hgrow="ALWAYS"/>
+
         <HBox spacing="5">
             <Label text="State:" style="-fx-font-weight: bold;"/>
             <Label fx:id="stateLabel" text="RUNNING" style="-fx-text-fill: green;"/>
@@ -32,11 +36,5 @@
             <Label text="Goal:" style="-fx-font-weight: bold;"/>
             <Label fx:id="goalLabel" text="50"/>
         </HBox>
-
-        <Button fx:id="restartButton"
-                text="Restart Game"
-                style="-fx-font-size: 14; -fx-padding: 10;"
-                visible="false"
-                focusTraversable="false"/>
     </HBox>
 </VBox>

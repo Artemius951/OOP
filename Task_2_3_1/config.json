@@ -1,7 +1,7 @@
 {
-  "fieldWidth": 30,
+  "fieldWidth": 20,
   "fieldHeight": 20,
-  "foodCount": 5,
-  "winLength": 5,
+  "foodCount": 3,
+  "winLength": 30,
   "tickMs": 150
 }
