@@ -38,7 +38,7 @@ public class GameEngine {
     /**
      * Возвращает текущее состояние игры.
      *
-     * @return состояние игры (RUNNING, LOST, WON)
+     * @return состояние игры (RUNNING, LOST, WON, PAUSED)
      */
     public GameState getGameState() {
         return gameState;
@@ -90,11 +90,26 @@ public class GameEngine {
     }
 
     /**
+     * Переключает состояние паузы.
+     */
+    public void togglePause() {
+        if (gameState == GameState.RUNNING) {
+            gameState = GameState.PAUSED;
+        } else if (gameState == GameState.PAUSED) {
+            gameState = GameState.RUNNING;
+        }
+    }
+
+    /**
      * Обновляет состояние игры на один кадр.
      * Обрабатывает движение змейки, проверку коллизий, поедание еды и условия победы/поражения.
      */
     public void update() {
-        if (!gameState.isActive()) {
+        if (inputHandler.isPauseRequested()) {
+            togglePause();
+        }
+
+        if (gameState != GameState.RUNNING) {
             return;
         }
 

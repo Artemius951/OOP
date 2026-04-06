@@ -103,7 +103,7 @@ public class GamePanel extends Canvas {
     }
 
     /**
-     * Отрисовывает сообщение о состоянии игры (победа или поражение).
+     * Отрисовывает сообщение о состоянии игры (победа, поражение или пауза).
      *
      * @param gc графический контекст
      */
@@ -114,6 +114,8 @@ public class GamePanel extends Canvas {
             drawGameOverMessage(gc, "YOU WON!", Color.GREEN);
         } else if (state == GameState.LOST) {
             drawGameOverMessage(gc, "GAME OVER!", Color.RED);
+        } else if (state == GameState.PAUSED) {
+            drawPausedMessage(gc);
         }
     }
 
@@ -136,6 +138,30 @@ public class GamePanel extends Canvas {
         double centery = getHeight() / 2 - 30;
 
         gc.fillText(message, centerx, centery);
+
+        gc.setFont(Font.font("Arial", 20));
+        gc.setFill(Color.WHITE);
+        String info = "Length: " + engine.getSnake().getLength();
+        gc.fillText(info, centerx, centery + 50);
+    }
+
+    /**
+     * Отрисовывает сообщение о паузе с полупрозрачным чёрным фоном.
+     *
+     * @param gc графический контекст
+     */
+    private void drawPausedMessage(GraphicsContext gc) {
+        gc.setFill(Color.color(0, 0, 0, 0.7));
+        gc.fillRect(0, 0, getWidth(), getHeight());
+
+        gc.setFill(Color.YELLOW);
+        gc.setFont(Font.font("Arial", 50));
+        gc.setTextAlign(TextAlignment.CENTER);
+
+        double centerx = getWidth() / 2;
+        double centery = getHeight() / 2 - 30;
+
+        gc.fillText("PAUSED", centerx, centery);
 
         gc.setFont(Font.font("Arial", 20));
         gc.setFill(Color.WHITE);
