@@ -3,14 +3,11 @@ package ru.nsu.kutsenko.task231;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -85,7 +82,7 @@ public class Game extends Application {
             gameController.startGame();
 
         } catch (IOException e) {
-            String errorMessage = "Не удало��ь загрузить FXML файл: " + e.getMessage();
+            String errorMessage = "Не удалось загрузить FXML файл: " + e.getMessage();
             System.err.println(errorMessage);
             showErrorDialog("Ошибка загрузки интерфейса", errorMessage);
         }
@@ -105,57 +102,14 @@ public class Game extends Application {
     private void onGameOver() {
         gamePanel.render();
         updateInfo();
-        showGameOverDialog();
-    }
 
-    /**
-     * Показывает диалог окончания игры с кнопками Restart и Exit.
-     */
-    private void showGameOverDialog() {
-        Stage dialogStage = new Stage();
-        dialogStage.initModality(Modality.APPLICATION_MODAL);
-        dialogStage.initOwner(primaryStage);
-        dialogStage.setTitle("Game Over");
-        dialogStage.setResizable(false);
-
-        GameState state = gameController.getEngine().getGameState();
-        boolean isWon = state == GameState.WON;
-        String title = isWon ? "YOU WON!" : "GAME OVER!";
-        String bgColor = isWon ? "#4CAF50" : "#f44336";
-
-        Label titleLabel = new Label(title);
-        titleLabel.setStyle("-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: white;");
-
-        Label lengthLabelDialog = new Label("Final Length: "
-            + gameController.getEngine().getSnake().getLength());
-        lengthLabelDialog.setStyle("-fx-font-size: 16; -fx-text-fill: white;");
-
-        Button restartButton = new Button("Restart");
-        restartButton.setStyle("-fx-font-size: 14; -fx-padding: 10;");
-        restartButton.setOnAction(event -> {
-            dialogStage.close();
-            restartGame();
-        });
-
-        Button exitButton = new Button("Exit");
-        exitButton.setStyle("-fx-font-size: 14; -fx-padding: 10;");
-        exitButton.setOnAction(event -> {
-            gameController.stopGame();
-            primaryStage.close();
-        });
-
-        VBox buttonBox = new VBox(10);
-        buttonBox.setAlignment(Pos.CENTER);
-        buttonBox.getChildren().addAll(restartButton, exitButton);
-
-        VBox root = new VBox(20);
-        root.setAlignment(Pos.CENTER);
-        root.setStyle("-fx-padding: 30; -fx-background-color: " + bgColor + ";");
-        root.getChildren().addAll(titleLabel, lengthLabelDialog, buttonBox);
-
-        Scene scene = new Scene(root, 300, 250);
-        dialogStage.setScene(scene);
-        dialogStage.showAndWait();
+        GameOverDialog dialog = new GameOverDialog(
+            primaryStage,
+            gameController.getEngine(),
+            this::restartGame,
+            this::exitGame
+        );
+        dialog.show();
     }
 
     /**
@@ -164,6 +118,14 @@ public class Game extends Application {
     private void restartGame() {
         gameController.stopGame();
         createGame();
+    }
+
+    /**
+     * Завершает работу приложения.
+     */
+    private void exitGame() {
+        gameController.stopGame();
+        primaryStage.close();
     }
 
     /**
