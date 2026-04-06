@@ -89,7 +89,6 @@ public class Game extends Application {
         } catch (IOException e) {
             String errorMessage = "Не удалось загрузить FXML файл: " + e.getMessage();
             System.err.println(errorMessage);
-            e.printStackTrace();
             showErrorDialog("Ошибка загрузки интерфейса", errorMessage);
         }
     }
