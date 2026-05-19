@@ -1,0 +1,7 @@
+{
+  "fieldWidth": 20,
+  "fieldHeight": 20,
+  "foodCount": 3,
+  "winLength": 30,
+  "tickMs": 150
+}

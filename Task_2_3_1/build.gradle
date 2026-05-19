@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
+    id 'jacoco'
+}
+
+group = 'ru.nsu.kutsenko.task231'
+version = '1.0-SNAPSHOT'
+sourceSets.main.resources.srcDirs += ['src/main/java']
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    implementation 'com.google.code.gson:gson:2.10.1'
+
+    testImplementation 'org.mockito:mockito-core:5.7.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.7.0'
+}
+
+javafx {
+    version = "17"
+    modules = [ "javafx.controls", "javafx.fxml" ]
+}
+
+application {
+    mainClass = "ru.nsu.g.solovev5.m.task231.SnakeGame"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+
+jacocoTestReport{
+    reports {
+        xml.required = true
+
+    }
+}
+
